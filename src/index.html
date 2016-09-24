@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>The Maiden's Tale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <script>{{compiled.js}}</script>
+    <style>{{style.css}}</style>
+  </head>
+  <body onload="domReady()">
+    <header>
+      <h3>The Maiden's Tale</h3>
+      <h4><a onclick="aboutYou()">You</a></h4>
+      <h4 class="right"><a href="http://winds.blue" target="_blank">Site</a></h4>
+      <h4 class="right"><a onclick="newGame()">New</a></h4>
+      <h4 class="right"><a onclick="loadGame()">Load</a></h4>
+      <h4 class="right"><a id="save" onclick="saveGame()">Save</a></h4>
+    </header>
+    <content id="content"></content>
+  </body>
+</html>
