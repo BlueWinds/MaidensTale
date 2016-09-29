@@ -4,7 +4,7 @@ Data.pseudoEvents.Refresh = -> # A special event, that, when it would be applied
 
   todayEvents = g.history[g.history.length - 1]
   label = todayEvents[todayEvents.length - 1]
-  appendEvent(getEvent(label), null, true)
+  appendEvent(getEvent(label), null, false)
 
 Data.pseudoEvents.Back = -> # A special event, that, when it would be applied, instead removes the last event on screen and refreshes the previous one.
   content = document.getElementById 'content'
@@ -17,7 +17,7 @@ Data.pseudoEvents.Back = -> # A special event, that, when it would be applied, i
   todayEvents.pop()
   label = todayEvents[todayEvents.length - 1]
 
-  appendEvent(getEvent(label), null, true)
+  appendEvent(getEvent(label), null, false)
 
 for type in ['events', 'randomEvents', 'jobs']
   for key, value of Data[type]
@@ -56,12 +56,17 @@ drawChoice = (label, option)->
 
   # A skill test. Render the widget.
   skillBonus = Math.floor(g.skills[option.skill] / 10)
-  mainTitle = """#{describeUnion(option.result[0], option.result[1])}
-  &nbsp;
-  Check #{option.skill} (#{skillBonus}) + 2d6 vs #{option.diff}:
-        #{describeDiff(option.result[0], option.result[1]).replace(/\n/g, '\n      ')}
+  union = describeUnion(option.result[0], option.result[1])
+  diff = [
+    describeDiff(option.result[0], option.result[1])
+    describeDiff(option.result[1], option.result[0])
+  ]
+
+  mainTitle = """#{if union then union + '\n&nbsp;\n' else ''}\
+  #{option.skill} (#{skillBonus}) + #{if option.mood then option.mood + ' +' else ''} 2d6 vs #{option.diff}:
+        #{diff[0].replace(/\n/g, '\n      ')}
   --------or--------
-        #{describeDiff(option.result[1], option.result[0]).replace(/\n/g, '\n      ')}
+        #{diff[1].replace(/\n/g, '\n      ')}
   """
 
   if option.mood
@@ -90,54 +95,63 @@ clamp = (a, min, max)->
   a = Math.min(a, Math.ceil(max))
   return a
 
-appendEvent = (event, selectedLabel, noScroll)->
+appendEvent = (event, selectedLabel, scroll = true)->
   content = document.getElementById 'content'
   setSelectedLabel(selectedLabel, content.lastElementChild)
 
   text = drawEvent(event)
   if text
-    setInteraction(false)
     content.appendChild text
-    setInteraction(true)
+    setInteraction()
 
     if content.children.length > 20
+      window.scrollTo(0, window.scrollY - content.firstChild.scrollHeight)
       content.removeChild(content.firstChild)
 
-    unless noScroll
+    # Put this async, so there's time for later events to finish appending (and removing earlier divs if there are more than 20).
+    if scroll then setTimeout ->
       header = document.getElementsByTagName('header')[0]
       smoothScroll(text.offsetTop - 40 - header.scrollHeight)
+    , 0
 
 setSelectedLabel = (label, div)->
   unless div then return
   for button in div.getElementsByTagName('button') when button.innerHTML is label
     button.classList.add('clicked')
 
-window.applyEvent = (label, selectedLabel)->
+window.applyEvent = (label, selectedLabel, scroll = true)->
   if Data.pseudoEvents[label]
     return Data.pseudoEvents[label](selectedLabel)
 
   event = getEvent(label)
-  appendEvent(event, selectedLabel)
+  appendEvent(event, selectedLabel, scroll)
 
   applyEffects(event.effects)
   g.events[label] = g.day
   g.history[g.day].push(label)
 
   if next = chooseNextEvent(event)
-    applyEvent(next)
+    applyEvent(next, null, false)
 
-window.applyTest = (test, selectedLabel, spent)->
+window.applyTest = (test, selectedLabel, spent = 0)->
   e = {}
   e[test.mood] = spent
   applyEffects(e)
 
-  result = 2 * spent
-  result += Math.floor(g.skills[test.skill] / 10)
-  result += Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6)
+  roll = Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6)
+  mood = 2 * spent
+  skill = Math.floor(g.skills[test.skill] / 10)
 
-  label = if result >= test.diff then test.result[0] else test.result[1]
+  pass = roll + mood + skill >= test.diff
 
-  return applyEvent(label, selectedLabel)
+  content = document.getElementById 'content'
+  div = document.createElement('div')
+  div.classList.add 'effects'
+  mood = if mood then "<strong>#{mood}</strong> (#{test.mood}) + " else ''
+  div.innerHTML = "<strong>#{if pass then 'Pass' else 'Fail'}</strong>: <strong>#{skill}</strong> (#{test.skill}) + #{mood}<strong>#{roll}</strong> (2d6) vs. #{test.diff}"
+  content.appendChild div
+
+  return applyEvent((if pass then test.result[0] else test.result[1]), selectedLabel)
 
 applyEffects = (effects)->
   unless effects then return
@@ -194,7 +208,7 @@ describeDiff = (label1, label2)->
 
   text = []
   if event1.description and event1.description isnt event2.description
-    text.push event1.description.call(event)
+    text.push event1.description
   for type in ['mood', 'skills'] when event1.effects?[type]
     for item, amount of event1.effects[type] when event2.effects?[type]?[item] isnt amount
       if g.mood[amount]?
@@ -210,36 +224,42 @@ describeTest = (test)->
   +2 for each #{test.mood} spent (have #{g.mood[test.mood]})"""
 
 drawEvent = (event)->
-  console.log event
   div = document.createElement('div')
   unless event.text then return
 
   currentEvent = event
-  text = describeEffects(event.effects) + event.text.call(event)
+  text = describeEffects(event.description, event.effects) + event.text.call(event)
   unless text then return
 
   div.innerHTML = '<div>' + text.split('\n\n').filter(Boolean).join('</div><div>') + '</div>'
   return div
 
-describeEffects = (effects)->
-  unless effects?.mood or effects?.skills then return ''
+describeEffects = (description, effects)->
+  unless description or effects?.mood or effects?.skills then return ''
   text = []
-  for type in ['mood', 'skills'] when effects[type]
+  for type in ['mood', 'skills'] when effects?[type]
     for item, amount of effects[type]
       if g.mood[amount]?
         text.push "#{item} +#{skillBonus(amount)} (#{amount})"
       else
         text.push "#{item} +#{amount}"
-  return """<div class="effects">#{text.join(', ')}</div>"""
+  return """<div class="effects">#{if description then description + '<br>' else ''}#{text.join(', ')}</div>"""
 
 setInteraction = (interaction)->
   content = document.getElementById('content')
-  unless content.lastElementChild then return
 
+  for child in content.children
+    for button in child.getElementsByTagName('button')
+      button.disabled = true
+    for label in child.getElementsByTagName('label')
+      label.classList.add('disabled')
+
+  unless content.lastElementChild then return
   for button in content.lastElementChild.getElementsByTagName('button')
-    button.disabled = not interaction
+    button.disabled = false
   for label in content.lastElementChild.getElementsByTagName('label')
-    label.classList.toggle('disabled', not interaction)
+    label.classList.remove('disabled')
+
   return
 
 chooseNextEvent = (event)->
@@ -248,8 +268,8 @@ chooseNextEvent = (event)->
   if event.next
     if typeof event.next is 'string' and conditionsMatch(event.next)
       return event.next
-    else if event.nextType
-      return textType[event.nextType](event.next.filter(conditionsMatch))
+    else if event.selectNext
+      return nextType[event.selectNext](event.next.filter(conditionsMatch))
   else
     g.upcoming.shift()
 
@@ -263,6 +283,7 @@ window.conditionsMatch = (label)->
   conditions = getCond(label)
   unless conditions then return true
 
+  if conditions.day?[0] > g.day or conditions.day?[1] < g.day then return false
   for type in ['mood', 'skills']
     for key, value of conditions[type]
       if g[type][key] < value[0] or g[type][key] > value[1] then return false
@@ -272,7 +293,12 @@ window.conditionsMatch = (label)->
 
   return true
 
-getCond = (label)-> (Data.events[label] or Data.randomEvents[label] or Data.jobs[label])?.conditions
+window.adventureMatch = (label)->
+  adventure = Data.adventures[label]
+  if g.events[adventure.steps[adventure.steps.length - 1]] then return false
+  return conditionsMatch(adventure)
+
+getCond = (label)-> (Data.events[label] or Data.randomEvents[label] or Data.jobs[label] or Data.adventures[label] or label).conditions
 
 conditionsEventMatch = (events)->
   for key, test of events
@@ -284,7 +310,8 @@ conditionsEventMatch = (events)->
 
 conditionsEventMisc = (misc)->
   for key, value of misc
-    if value[0] is '!' and g[key] is value.substr(1) then return false
+    if value[0] is '!'
+      if g[key] is value.substr(1) then return false
     else if g[key] isnt value then return false
 
   return true

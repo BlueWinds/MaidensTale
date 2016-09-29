@@ -1,6 +1,6 @@
 Data.jobs.ChangeMood =
   description: 'Clear your mind'
-  title: 'Trade points between moods (Pride <-> Humility, Hope <-> Despair, Spirit <-> Introspection)'
+  title: 'Trade points between moods (Pride <-> Humility, Hope <-> Despair, Spirit <-> Detachment)'
   time: 'Any'
   text: ->"""
     Taking some time for yourself, you...

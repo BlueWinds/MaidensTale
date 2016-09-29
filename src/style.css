@@ -204,8 +204,10 @@ slider.right .bottom {
   border-bottom-right-radius: 6px;
 }
 #content .effects {
+  border-bottom: none;
   font-size: 11px;
   font-style: italic;
+  margin-bottom: 20px;
   margin-top: -20px;
   text-align: center;
 }

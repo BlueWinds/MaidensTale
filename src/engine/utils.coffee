@@ -6,6 +6,9 @@ Object.defineProperty Array.prototype, 'wordJoin', {value: ->
   return @join('')
 }
 
+Object.firstValue = (obj)->
+  return obj[Object.keys(obj)[0]]
+
 Object.pickBy = (obj, filter)->
   n = {}
   for key, value of obj when filter(value, key)
@@ -37,11 +40,7 @@ Math.sum = (array)->
   for v in array then sum += v
   return sum
 
-scrolling = false
 window.smoothScroll = (targetY)->
-  if scrolling then return
-  scrolling = true
-
   startY = window.scrollY
 
   # Default is 2000 px / second, but apply a min of 100ms and max of 800ms
@@ -60,8 +59,6 @@ window.smoothScroll = (targetY)->
 
     if p < 1
       requestAnimationFrame(tick)
-    else
-      scrolling = false
 
   # Call once to get it started.
   requestAnimationFrame(tick)

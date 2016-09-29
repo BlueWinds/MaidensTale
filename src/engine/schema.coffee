@@ -44,6 +44,11 @@ module.exports = (Data, Game)->
       Conditions:
         type: 'object'
         properties:
+          day:
+            type: 'array'
+            minItems: 2
+            maxItems: 2
+            items: {type: ['integer'], min: 0}
           events:
             type: 'object'
             minProperties: 1
@@ -76,8 +81,7 @@ module.exports = (Data, Game)->
       Event:
         type: 'object'
         properties:
-          conditions:
-            $ref: '#/definitions/Conditions'
+          conditions: {$ref: '#/definitions/Conditions'}
           text:
             isFunction: true
           selectNext:
@@ -89,17 +93,6 @@ module.exports = (Data, Game)->
               {type: 'array', minItems: 2, items: {'enum': anyEvent}} # Ordered list of events for user with 'first', 'random', 'unused' or 'leastRecent' selectNext
               {type: 'object', minProperties: 1, additionalProperties: { # Player choice: {label: (event or test)}
                 oneOf: [{'enum': anyEvent}, {$ref: '#/definitions/Test'}]
-              }}
-              {type: 'object', minProperties: 1, additionalProperties: { # Skill test: {label: [skill, difficulty, passEvent, failEvent]}
-                type: 'array'
-                minItems: 4,
-                maxItems: 4,
-                items: [
-                  {'enum': aSkill}
-                  {type: 'integer', min: 0, max: 200}
-                  {'enum': anyEvent}
-                  {'enum': anyEvent}
-                ]
               }}
             ]
           description:
@@ -159,6 +152,17 @@ module.exports = (Data, Game)->
             title:
               type: 'string'
         }]
+      Adventure:
+        type: 'object'
+        required: ['conditions', 'description', 'steps']
+        properties:
+          conditions: {$ref: '#/definitions/Conditions'}
+          description: {type: 'string'}
+          steps:
+            type: 'array'
+            minItems: 2
+            items: {'enum': anyEvent}
+        additionalProperties: false
 
     type: 'object'
     properties:
@@ -174,10 +178,24 @@ module.exports = (Data, Game)->
         type: 'object'
         additionalProperties:
           $ref: '#/definitions/Event'
+      adventures:
+        type: 'object'
+        additionalProperties:
+          $ref: '#/definitions/Adventure'
       times:
         type: 'array'
         items:
           type: 'string'
           minLength: 1
         minItems: 1
+      dailyChoices:
+        type: 'object'
+        additionalProperties:
+          type: 'object'
+          required: ['from', 'descriptions']
+          properties:
+            from: {type: 'string'}
+            descriptions:
+              type: 'object'
+              additionalProperties: {type: 'string'}
   return dataSchema

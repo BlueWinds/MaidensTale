@@ -3,31 +3,43 @@ findEvent = ->
 
   possibleEvents = for label of Data.randomEvents when conditionsMatch(label)
     label
-  console.log possibleEvents
   index = Math.floor(Math.random() * possibleEvents.length)
   return possibleEvents[index]
 
 Data.events.PlanDay =
   text: ->
-    times = for time, index in Data.times
-      desc = Data.jobs[g.plans[index]].description
-      drawDropdown(desc, describeEvent(g.plans[index]), findJobs(time))
+    choices = for choice, info of Data.dailyChoices when Object.values(g[info.from]).filter(Boolean).length
+      drawDropdown(g[choice], info.descriptions[g[choice]], findChoices(choice, info.from))
 
-    choices = for choice, from of Data.dailyChoices when Object.values(g[from]).filter(Boolean).length
-      drawDropdown(g[choice], '', findChoices(choice, from))
+    times = for time, index in Data.times
+      possibleJobs = findJobs(time)
+      choice = if conditionsMatch(g.plans[index]) then g.plans[index] else Object.keys(possibleJobs)[0]
+      drawDropdown(Data.jobs[choice].description, describeEvent(choice), possibleJobs)
+
+    possibleAdventures = findAventures()
+    adventures = if possibleAdventures
+      currentAdventure = if adventureMatch(g.adventure) then g.adventure else Object.firstValue(possibleAdventures).label
+      currentAdventure = Data.adventures[currentAdventure]
+      """
+        <tr><th>&nbsp;</th></tr>
+        <tr><th colspan="#{times.length}">Adventures</th><th></th></tr>
+        <tr>
+          <th colspan="#{times.length}">#{drawDropdown(currentAdventure.description, describeAdventure(currentAdventure), possibleAdventures)}</th>
+          <th>--> <button title="Start this adventure" onclick="Data.pseudoEvents.StartAdventure()">Adventure</button></th>
+        </tr>
+      """
+    else ""
 
     """
-      <h3>Day #{g.day}</h3>
+      <h3>Day #{g.day} #{choices.join(' ')}</h3>
 
       <table>
-        <tr><th>#{Object.keys(Data.dailyChoices).join('</th><th>')}</th></tr>
-        <tr><th>#{choices.join('</th><th>')}</th></tr>
         <tr><th>#{Data.times.join('</th><th>')}</th></tr>
-        <tr><th>#{times.join('</tdh><th>')}</th><th>--> #{options}</th></tr>
+        <tr><th>#{times.join('</th><th>')}</th><th>--> <button title="Take these actions" onclick="Data.pseudoEvents.StartDay()">Normal day</button></th></tr>
+        #{adventures}
       </table>
     """
-  next:
-    Ready: 'StartDay'
+  next: false
 
 findJobs = (time)->
   possibleJobs = {}
@@ -45,7 +57,7 @@ findChoices = (set, from)->
   availableChoices = {}
   for key, value of g[from] when value
     availableChoices[key] =
-      title: ''
+      title: Data.dailyChoices[set].descriptions[key]
       click: """setDailyChoice("#{set}", "#{key}")"""
   return availableChoices
 
@@ -56,12 +68,39 @@ window.setDailyChoice = (set, choice)->
 Data.pseudoEvents.StartDay = ->
   randomEvent = findEvent()
   eventTime = Data.randomEvents[randomEvent]?.time
-  console.log randomEvent, eventTime
   for time, index in Data.times
-    g.upcoming.push(g.plans[index])
+    choice = if conditionsMatch(g.plans[index]) then g.plans[index] else Object.keys(findJobs(time))[0]
+    g.upcoming.push(choice)
     if eventTime is time then g.upcoming.push(randomEvent)
   g.upcoming.push('PlanDay')
 
   g.day++
   g.history.push []
   applyEvent(g.upcoming.shift())
+
+findAventures = ->
+  adventures = {}
+  for label, adventure of Data.adventures when adventureMatch(label)
+    adventures[adventure.description] =
+      title: describeAdventure(adventure)
+      click: """setDailyChoice("adventure", "#{label}")"""
+      label: label
+  return if Object.keys(adventures).length then adventures else false
+
+describeAdventure = (adventure)->
+  steps = adventure.steps.map (step, index)->
+    symbol = if g.events[adventure[index + 1]]? then '✓' else '○'
+    "#{symbol} #{Data.events[step].description}"
+  steps.pop() # Don't list the last step - it's just there to signal "the adventure is complete"
+  return """#{steps.join('\n')}"""
+
+
+Data.pseudoEvents.StartAdventure = (label)->
+  g.upcoming.push('PlanDay')
+  g.day++
+  g.history.push []
+
+  adventure = Data.adventures[g.adventure]
+  nextStep = adventure.steps.find (e, i)->
+    not g.events[adventure.steps[i + 1]]?
+  applyEvent(nextStep)

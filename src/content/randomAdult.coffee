@@ -1,4 +1,5 @@
 Data.randomEvents.LesbianBootyCall =
+  description: "Lesbian Booty Call"
   time: 'Morning'
   conditions:
     misc:
@@ -14,7 +15,7 @@ Data.randomEvents.LesbianBootyCall =
 
     #{options}
   """
-  options:
+  next:
     'Grin and say no': 'LesbianBootyCallDenial'
     'Torment her more': 'LesbianBootyCallTorment'
     'Help her out': 'LesbianBootyCallYes'
@@ -52,7 +53,7 @@ Data.events.LesbianBootyCallTorment =
 
   #{options}
   """
-  options:
+  next:
     'Get her off': 'LesbianBootyCallTormentYes'
     'Nope': 'LesbianBootyCallTormentNo'
 
@@ -92,7 +93,7 @@ Data.events.LesbianBootyCallCleanup =
 
 Data.events.LesbianBootyCallYes =
   effects:
-    mood: {Humility: 1}
+    mood: {Hope: 1}
   text: ->"""
     "Kneel down." You order her, and Robin eagerly obeys. She puts her hands on her thighs and fidgets while you strip down to your bare flesh and position your own pussy - starting to feel warm from her scent - just in front of her.
 
@@ -105,6 +106,7 @@ Data.events.LesbianBootyCallYes =
   next: 'LesbianBootyCallCleanup'
 
 Data.randomEvents.OverseerCarWash =
+  description: "Car Wash"
   time: 'Morning'
   conditions:
     misc:
@@ -112,7 +114,7 @@ Data.randomEvents.OverseerCarWash =
   text: ->"""
     "#{g.name}. I have a job for you." Wendy - one of the overseers - just burst in on you.
 
-    You set down the hairbrush and stand, reaching for your #{g.clothes.toLowerCase()} to finish getting dressed.
+    You set down the hairbrush and stand, reaching for your #{g.Clothes.toLowerCase()} to finish getting dressed.
 
     "No, undies are fine. Come on, I haven't got all day." She leads you out of your #{if g.confined is 'cell' then 'cell' else 'room'} and to the entrance of the mansion. You mince your steps as you try not to hurt your bare feet, and whenever she's not looking, cover yourself with your hands as best you can.
 

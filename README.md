@@ -19,7 +19,7 @@ License
 
 Parts of this game are distributed under two licenses: GPL 3.0 and CC-By-NC-SA. The short of it is "Share all you like, use the code as you like, give credit. Don't sell the writing, but you can use the engine in your own games if you wish, commercial or not." The long of it is that all material in the /src/engine directory is covered by GPL 3.0, while all material in /src/content is covered by CC-By-NC-SA. See the license files in those directories for details.
 
-Characters
+Characters so far
 =======
 
 Mr. Stevens - You don't know his first name. He's the head overseer, a dignified man with neatly trimmed salt-and-pepper beard. Enjoys his work, preferring to remain a somewhat distant figure.

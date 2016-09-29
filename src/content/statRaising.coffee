@@ -17,16 +17,18 @@ Data.jobs.ExploreMansion =
     'ExploreRecordingStudio'
     'ExploreStevensRoom'
     'ExploreSexToys'
-    'ExploreSorley'
+#     'ExploreSorley'
   ]
 
 
 Data.events.ExploreNothing =
+  description: 'Explore the mansion'
   text: ->"""
     You wander around a bit, poking your head into various rooms, but don't manage to find anything interesting. All places you've been before, locked doors and sound coming from inside rooms you don't feel like interrupting lest you be required to join in and lose the rest of your day as someone's entertainment.
   """
 
 Data.events.ExplorePool =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExplorePool: false
@@ -37,6 +39,7 @@ Data.events.ExplorePool =
   """
 
 Data.events.ExploreKitchen =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExploreKitchen: false
@@ -47,6 +50,7 @@ Data.events.ExploreKitchen =
   """
 
 Data.events.ExploreCloset =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExploreCloset: false
@@ -57,6 +61,7 @@ Data.events.ExploreCloset =
   """
 
 Data.events.ExploreLibrary =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExploreLibrary: false
@@ -67,6 +72,7 @@ Data.events.ExploreLibrary =
   """
 
 Data.events.ExploreRecordingStudio =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExploreRecordingStudio: false
@@ -77,6 +83,7 @@ Data.events.ExploreRecordingStudio =
   """
 
 Data.events.ExploreStevensRoom =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExploreStevensRoom: false
@@ -97,6 +104,7 @@ Data.events.ExploreStevensRoom =
   """
 
 Data.events.ExploreSexToys =
+  description: 'Explore the mansion'
   conditions:
     events:
       ExploreSexToys: false
@@ -108,16 +116,17 @@ Data.events.ExploreSexToys =
     But! You've just found a spot, a nice little balcony on the second floor (so no one inside can hear you) sheltered by trees (so no one outside can see you). And, of course, there's a chest full of naughty objects just waiting for use. Because going fifteen feet inside to fetch... a squirt gun filled with lube and a vibrator with a smiley face?... might ruin the mood. You close the chest again and try not to think about who decided to put it there.
   """
 
-Data.events.ExploreSorley =
-  conditions:
-    events:
-      ExploreSorley: false
-  text: -> """
-    "Hello, my cute little strumpet," a voice whispers in your ear.
-
-    You jump and draw back. How the hell did you not hear Sorley come up behind you - it's not like the hallway is noisy, this time of evening (or ever, for that matter).
-
-    "I see you've managed to find my bedroom," he gestures to the door you just passed, unmarked, still held open with his toe. He's your least favorite of the overseers. Something about the way he stares... "Come in." Damn.
-
-    A flat TV takes up most of the wall opposite a large bed, rumpled sheets and a pair of jeans hanging off the side. An empty fast food bag sits next to his laptop on a cluttered desk. The screensaver is a slideshow of nude women, and with a start, you realize that one of the photos is of <i>you</i>. Oh dear.
-  """
+# Data.events.ExploreSorley =
+#   description: 'Explore the mansion'
+#   conditions:
+#     events:
+#       ExploreSorley: false
+#   text: -> """
+#     "Hello, my cute little strumpet," a voice whispers in your ear.
+#
+#     You jump and draw back. How the hell did you not hear Sorley come up behind you - it's not like the hallway is noisy, this time of evening (or ever, for that matter).
+#
+#     "I see you've managed to find my bedroom," he gestures to the door you just passed, unmarked, still held open with his toe. He's your least favorite of the overseers. Something about the way he stares... "Come in." Damn.
+#
+#     A flat TV takes up most of the wall opposite a large bed, rumpled sheets and a pair of jeans hanging off the side. An empty fast food bag sits next to his laptop on a cluttered desk. The screensaver is a slideshow of nude women, and with a start, you realize that one of the photos is of <i>you</i>. Oh dear.
+#   """

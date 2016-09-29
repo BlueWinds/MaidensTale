@@ -9,7 +9,9 @@ Object.assign Data.events,
 
       A #{options} girl like you should have known better than to take a drink from a stranger.
 
-      <em>You have #{Object.keys(Game.skills).length} different possible skills, ranging from 0 to 10. Different events will offer you chances to raise them over time, and events will present options with various chances of success depending on your ratings.</em>
+      <em>You have #{Object.keys(Game.skills).length} different possible skills, ranging from 0 to 100. Different events will offer you chances to raise them over time, and events will present options with various chances of success depending on your ratings.</em>
+
+      <em>Almost all buttons in the game have title text - you can hover over them to see the mechanical effects of various choices.</em>
     """
     next:
       'Well Bred': 'IntroRich'
@@ -77,6 +79,7 @@ Object.assign Data.events,
         background: 'Poor'
 
   IntroPretty:
+    title: 'Past careers depending on beauty'
     text: ->"""
       "I hear she was #{options} in her old life, can you believe that? Keep her as one or mold her into something new, can't you just feel that pliable flesh in your hands... young and fresh and ripe for the plucking. She's not a virgin though, I can tell you that much." The lewd joke at your expense draws some laughter from the crowd, and some heat from your cheeks.
     """
@@ -89,6 +92,7 @@ Object.assign Data.events,
       'Something Else': 'Back'
   IntroSmart:
     ext: 'IntroPretty'
+    title: 'Past careers depending on brains'
     next:
       'A college student': 'IntroStudent'
       'A doctor': 'IntroDoctor'
@@ -99,6 +103,7 @@ Object.assign Data.events,
       'Something Else': 'Back'
   IntroHardworking:
     ext: 'IntroPretty'
+    title: 'Past careers depending on brawn'
     next:
       'An athlete': 'IntroAthlete'
       'A barista': 'IntroBarista'
@@ -514,20 +519,28 @@ Data.events.IntroPlanDay =
   text: ->"""
     #{Data.events.PlanDay.text()}
 
-    <em>Each day, you'll get to choose your activities for the morning, evening and night, as well as pick what you're going to wear (though right now, of course, you only have one option in that regard). Click on the task to change it, then Ready once you've set your schedule.</em>
+    <em>Each day, you'll get to choose your activities for the morning, evening and night, as well as pick what you're going to wear (though right now, of course, you only have one option in that regard). Click on the task to change it, then Normal Day once you've set your schedule (there will be other options for how to spend your time later).</em>
 
     <em>For actions which increase your skills, you'll learn faster by having more of the associated mood - for example, Cooking +2 (Humility) means that the action will increase your cooking faster if you had more Humility (or slower if you have less of it).</em>
   """
 
-Data.randomEvents.IntroReleaseFromCell =
-  time: 'Night'
+Data.adventures.IntroAdventure =
   conditions:
-    events:
-      IntroReleaseFromCell: false
+    day: [1, NaN]
+  description: 'Your new home'
+  steps: [
+    'ReleaseFromCell'
+    'Naming'
+    'Clothing'
+    'ClothingChoice'
+  ]
+
+Data.events.ReleaseFromCell =
+  description: 'The mansion'
   text: ->"""
     You're woken from a sound sleep by a hush of air from the door opening. You stretch your arms up and rub your eyes, trying to make sense of your surroundings. Comfortable bed, stone walls, no clothes, a strange man watching you... you sit upright and pull the sheet up to cover your naked chest.
 
-    "Good morning, my nameless little whore. It's time to get you acquianted with the estate. I'd tell you to get dressed, but, well, you don't get to." He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about them too much, even naked and at their complete mercy.
+    "Good morning, my nameless little whore. It's time to get you acquianted with the estate. I'd tell you to get dressed, but, well, you don't get to." He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their complete mercy.
 
     "Come on, get a move." He comes over to the edge of the bed and gives the sheet a tug. You hang onto it for a moment before sense takes over. He's going to get his way, one way or another, and you'd rather not give him an excuse to make "his way" into something worse than a tour and introductions. He tugs the sheet again and you let it fall, leering at your breasts as you squirm in discomfort.
 
@@ -548,6 +561,7 @@ Data.randomEvents.IntroReleaseFromCell =
   next: 'Naming'
 
 Data.events.Naming =
+  description: 'A new name'
   text: -> """
     The two of you reach a small side door to the mansion, and he gestures you inside. The interior is all red carpet, polished wood, tasteful wealth and rows of doors with bronze plakards. You don't have much of a chance to gawk though, since you're led immediately up a flight of stairs and through a pair of double doors into the master bedroom.
 
@@ -578,25 +592,78 @@ Data.events.NamingDone =
   text: ->"""
     "#{g.name}. I hope you'll find your new life enjoyably and fulfilling. We'll speak again in a few days once you've had more of a chance to settle in."
 
-    And just like that, you have a new name. #{g.name}. You roll it around in your mind trying to figure out how to feel about it. You're not given much time to decide though, since with that little ritual taken care of, the overseer - you still haven't caught his name besides "sir," and that's not a thing you want to call him to yourself - hurries you back out of #{Ms}. #{Masterson}'s presence.
+    And just like that, you have a new name. #{g.name}. You roll it around in your mind trying to figure out how to feel about it.
+
+    #{options}
+
+    <em>An adventure is a series of events, each of which ends with a skill check. Unlike random events though, each option has the same result - pass, and you continue the adventure. Fail, and the adventure comes to a halt. You can resume partially completed adventures without penalty other than wasted time, so don't be afraid to scout out new situations when they appear.</em>
+
+  """
+  next:
+    'Be polite':
+      skill: 'Etiquette'
+      diff: 6
+      result: ['Clothing', 'NamingFail']
+    'Hide your feelings':
+      skill: 'Bluffing'
+      diff: 7
+      result: ['Clothing', 'NamingFail']
+    'Be enthusiastic':
+      skill: 'Flattery'
+      diff: 6
+      result: ['Clothing', 'NamingFail']
+
+Data.events.NamingFail =
+  description: 'Pause adventure'
+  text: ->"""
+    As you hesitate, #{she} shakes #{her} head.
+
+    "Hm, no, I'm not sure it fits her. Bring her back tomorrow, we'll see if I can think of something better then."
+
+    Looks like it's another night in the cell for you. The overseer leads you back and locks you up again. Welp.
+  """
+
+Data.events.Clothing =
+  description: 'Clothes'
+  text: ->"""
+    #{Ms}. #{Masterson} smiles at your words. With that little ritual taken care of, the overseer - you still haven't caught his name besides "sir," and that's not a thing you want to call him to yourself - hurries you back out of #{her} presence.
 
     He leads you back down the stairway and into a walk-in closet right next to the manner door. It's large enough to serve as a changing room as well as a closet, with a vanity and mirror along the back wall. The hanging space is divided into several sections - Robin, Tanya, Tits, unlabeled.
 
     "That's your section right there," he points to the unlabeled division. It's mostly empty right now, only three outfits compared to the dozen or so for each of the other slaves. "Right next to Robin's clothes. You'll earn more options over time. There's another copy of this closet over on the opposite side of the mansion - use whichever's convenient. Shower's just on the other side of the hall. This drawer," he pats the vanity and leers, "always has fresh panties, since you'll be soaking, losing, tearing off or otherwise ruining them rather frequently. Now, cute as it is to watch your little derriere bouncing along, that's a treat for special occasions. Time to get dressed."
 
-    #{options}
-  """
-  effects:
-    set:
-      confined: 'manor'
-  next:
-    Miniskirt: "NamingSkirt"
-    Sundress: "NamingDress"
-    Jeans: "NamingJeans"
+    You try to find something that #{options}
 
-Data.events.NamingSkirt =
-  title: "A hip-hugging black miniskirt and low cut red blouse"
+    <em>On many adventure skill checks, you have the option to spend mood points to boost your roll, +2 per mood point spent. As the game goes on, you'll have to strike a balance between spending mood points to pass adventures versus stocking up on them to learn skills faster.</em>
+  """
+  next:
+    'Looks sharp':
+      skill: 'Fashion'
+      mood: 'Pride'
+      diff: 6
+      result: ['ClothingChoice', 'ClothingFail']
+    'Flatters your figure':
+      skill: 'Seduction'
+      mood: 'Spirit'
+      diff: 7
+      result: ['ClothingChoice', 'ClothingFail']
+    'Matches your eyes':
+      skill: 'Makeup'
+      mood: 'Detachment'
+      diff: 6
+      result: ['ClothingChoice', 'ClothingFail']
+
+Data.events.ClothingFail =
+  description: 'Pause adventure'
   text: ->"""
+    You can't really find anything that catches your interest, and after a few minutes,
+  """
+
+Data.events.ClothingChoice =
+  description: 'Get clothing'
+  text: ->"""
+    "I'll get whatever you pick tailored, and get a few more similar outfits for each closet."
+
     By this point you know better than to hope he'll let you dress in privacy, and you can feel his eyes on you while you wiggle into your new clothes. But it doesn't really matter - you're dressed in something resembling normal clothes, and that instantly allows you to recover some portion of the modesty, sense of control and self esteem you've been so lacking in since this whole ordeal began. You breathe a sigh of relief.
 
     "You know, I was going to give you a tour of the estate, but my enthusiasm has suddenly just dried up. Your room's on the third floor. You're currently confined to the manor house - don't go wandering, we'll know. And remember, anyone can fuck you whenever and however they want. You're everyone's slut."
@@ -605,24 +672,38 @@ Data.events.NamingSkirt =
   """
   effects:
     set:
-      Clothes: 'miniskirt'
+      confined: 'manor'
       availableClothes:
         Miniskirt: true
-
-Data.events.NamingDress =
-  title: "A skimpy flower-patterned sun dress"
-  ext: "NamingSkirt"
-  effects:
-    set:
-      Clothes: 'sundress'
-      availableClothes:
         Sundress: true
-
-Data.events.NamingJeans =
-  title: "An X-backed teal blouse and skinny jeans"
-  ext: "NamingSkirt"
-  effects:
-    set:
-      Clothes: 'jeans'
-      availableClothes:
         Jeans: true
+
+Data.jobs.Misbehave =
+  description: 'Misbehave'
+  title: "Get into trouble, setting yourself up for punishment later."
+  time: 'Night'
+  conditions:
+    misc:
+      confined: '!cell'
+      punishment: false
+  text: ->"""
+    Skulking around the mansion late at night, you decide to write down what you <em>really</em> think of one of the overseers. On the wall. With a sharpie.
+
+    No one catches you in the act, but as you scurry away you have a sinking suspicion that you're going to find yourself in trouble sometime soon.
+  """
+  effects:
+    set: {punishment: true}
+
+Data.randomEvents.ContentFinished =
+  description: "That's all for now"
+  conditions:
+    events:
+      OverseerCarWash: true
+      LesbianBootyCall: true
+      ContentFinished: false
+  time: 'Night'
+  text: ->"""
+    <em>You've now seen most of the content in the game so far. Sorry, it's a bit short as of yet, but a two week game jam isn't a ton of time to write a game engine from scratch and add content to it. I certainly intend to extend Maiden's Tale further in the future, and you can follow progress - and play my other games in the meantime - <a href="http://winds.blue" target="_blank">on my blog</a>.</em>
+
+    <em>Feel free to continue exploring the mansion - there are a good number of rooms to discover, though none of them do much yet. Also try Misbehaving - there are three different punishments available, if you haven't seen them yet.</em>
+  """

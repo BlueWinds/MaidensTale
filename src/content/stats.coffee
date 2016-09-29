@@ -3,6 +3,7 @@ window.Data =
   jobs: {}
   events: {}
   pseudoEvents: {}
+  adventures: {}
 
   times: ['Morning', 'Evening', 'Night']
   dailyEventChance: 0.6
@@ -31,14 +32,20 @@ window.Data =
     Spirit: 'Detachment'
     Detachment: 'Spirit'
   dailyChoices:
-    Clothes: 'availableClothes'
+    Clothes:
+      from: 'availableClothes'
+      descriptions:
+        Sundress: "Skimpy flower-patterned sun dress"
+        Jeans: "X-backed teal blouse and skinny jeans"
+        Miniskirt: "Hip-hugging black miniskirt and low cut red blouse"
 
 window.Game =
   day: 0
   events: {Intro: 0} # In the form {eventName: lastOccurrance}
   history: [['Intro']] # In the form [[Day0Event1, Day0Event2, ...], [Day1Event1], ...]. Start it off which the event you want to open a new game with.
   upcoming: [] # A list of upcoming events, pulled from when the "current event chain" runs out of items.
-  plans: ['ChangeMood', 'WaitCell', 'WaitCell'] # One events per item in Data.times - what they player last planned to do during each period
+  plans: ['Exercise', 'WaitCell', 'WaitCell'] # One events per item in Data.times - what they player last planned to do during each period
+  adventure: "IntroAdventure"
 
   name: 'unnamed'
   background: 'Rich'
