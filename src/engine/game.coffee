@@ -160,7 +160,7 @@ applyEffects = (effects)->
     opposed = Data.opposedMood[mood]
     g.mood[mood] = clamp(g.mood[mood] + amount, 0, 10 - g.mood[opposed])
   for skill, amount of effects.skills
-    if g.mood[amount]? then amount = 2 + skillBonus(mood)
+    if g.mood[amount]? then amount = skillBonus(amount)
     g.skills[skill] = clamp(g.skills[skill] + amount, 0, 100)
   for key, value of effects.set
     if typeof value is 'object'

@@ -18,6 +18,12 @@
     }
   });
 
+  Object.values = Object.values || function(o) {
+    return Object.keys(o).map(function(k) {
+      return o[k];
+    });
+  };
+
   Object.firstValue = function(obj) {
     return obj[Object.keys(obj)[0]];
   };
@@ -2185,7 +2191,7 @@
     for (skill in ref3) {
       amount = ref3[skill];
       if (g.mood[amount] != null) {
-        amount = 2 + skillBonus(mood);
+        amount = skillBonus(amount);
       }
       g.skills[skill] = clamp(g.skills[skill] + amount, 0, 100);
     }
