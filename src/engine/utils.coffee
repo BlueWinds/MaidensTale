@@ -6,6 +6,8 @@ Object.defineProperty Array.prototype, 'wordJoin', {value: ->
   return @join('')
 }
 
+Object.values = Object.values or (o)-> Object.keys(o).map((k)-> o[k])
+
 Object.firstValue = (obj)->
   return obj[Object.keys(obj)[0]]
 
