@@ -5,7 +5,7 @@ Data.randomEvents.LesbianBootyCall =
     misc:
       confined: 'manor'
   text: ->"""
-    You're interrupted midafternoon by a polite knock on your door. Unusual - you're near the bottom of the totem pole around here, so even the other slaves usually just open the door on you. Grateful for the respect being shown, you set down your task and answer it quickly. In the doorway stands another slave named Robin, naked, glancing around furitively. You take the hint and invite her in.
+    You're interrupted midafternoon by a polite knock on your door. Unusual - you're near the bottom of the totem pole around here, so even the other slaves usually just open the door on you. Grateful for the respect being shown, you set down your task and answer it quickly. In the doorway stands another slave named Robin, naked, glancing around furtively. You take the hint and invite her in.
 
     "I, uh, I really want to eat you out. Like, right now."
 
@@ -47,7 +47,7 @@ Data.events.LesbianBootyCallTorment =
 
   She nods. You smile and pat her head again, and return to your work.
 
-  Robin is indeed obedient. It's wonderfully distracting to have her kneeling at your feet, naked and dripping which a light buzz continues to emenate from her pussy.
+  Robin is indeed obedient. It's wonderfully distracting to have her kneeling at your feet, naked and dripping which a light buzz continues to emanate from her pussy.
 
   You let her stew there for nine minutes - not quite the ten you promised - before finally setting down your work again. She perks up instantly as you move in her direction.
 

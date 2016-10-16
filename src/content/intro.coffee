@@ -348,7 +348,7 @@ Object.assign Data.events,
 
   IntroBite:
     text: -> """
-      Sicko. You nod to show you understand. Once the cloth is gone, you spit out the rag that was holding your jaw open and work it, biding your time while he removes the blindfold and works the knots to untie you. Your attack comes when he reaches down to carress your cheek - rather than the gentle gesture he expected to give, he gets your teeth sunk into his palm and fingers.
+      Sicko. You nod to show you understand. Once the cloth is gone, you spit out the rag that was holding your jaw open and work it, biding your time while he removes the blindfold and works the knots to untie you. Your attack comes when he reaches down to caress your cheek - rather than the gentle gesture he expected to give, he gets your teeth sunk into his palm and fingers.
 
       He doesn't yell, just backhands you across the face with his other arm, a brutal blow that still isn't enough to dislodge you. His follow up kick to your gut is, however, leaving you twisting on the floor gasping for breath while he cradles a bloody hand.
 
@@ -367,7 +367,7 @@ Object.assign Data.events,
     text: ->"""
       It's all too much. His hand right by your head, the jerky ride, the shock of being told you're going to be a slave... you scream something obscene and incoherent at your captor, thrash around on the floor with wild eyes, and start to sob.
 
-      You half expected him to kick you, or perhaps drag you screaming across the yard, but the abuse never comes. Instead he sits on you long enough to pull out a knife and cut most of ropes holding you curled up, then sits behind you and pulls you upright in an irresistable hug. He doesn't speak, just holds you. You're terribly weak compared to him, but you do manage to conk him a good one in the eye with the back of your head in your panic.
+      You half expected him to kick you, or perhaps drag you screaming across the yard, but the abuse never comes. Instead he sits on you long enough to pull out a knife and cut most of ropes holding you curled up, then sits behind you and pulls you upright in an irresistible hug. He doesn't speak, just holds you. You're terribly weak compared to him, but you do manage to conk him a good one in the eye with the back of your head in your panic.
 
       Slowly though, the gentle contact works its magic, and in spite of yourself, you find your body relaxing. He still doesn't say anything, just holding you comfortingly. Eventually he lets go, and with a handkerchief from one pocket, wipes off your face, an action welcome despite the indignity of having him do it for you.
 
@@ -395,13 +395,13 @@ Object.assign Data.events,
         Despair: 3
   IntroArrive:
     text: ->"""
-      The afternoon light bites your eyes after so much darkness, making you squint and wish your arms were free so you could rub them. Lifting your head, you get your first look ot your new home.
+      The afternoon light bites your eyes after so much darkness, making you squint and wish your arms were free so you could rub them. Lifting your head, you get your first look at your new home.
 
       It's a mansion. A fabulous one, right out of a storybook. #{Ms}. #{Masterson} must be very wealthy indeed, as though you didn't already know that from the way #{she} bought a new sex slave out from under a room full of eager bidders. A red tile roof and stone walls, dozens of rooms, a garage off to one side large enough for a dozen cars. The grounds are huge, and very well kept - multiple outbuildings, some of them large enough to be houses in their own right, are interspersed with gardens and an outdoor pool. You were wrong at first - it's not a mansion, it's a palace. Or at least it seems that way.
 
       There are others working or walking around, but you don't get a chance to do more than glimpse their curious faces before Joel carries you into one of the outbuildings. It's a bedroom - or a dungeon? It has features of both. There's a soft bed, but stone walls with manacles hanging from them. A bathroom to one side, but also a hole in the ground and a hose coiled half out of sight beneath a stone bench.
 
-      Joel drops you onto the bed, and before you can react, climbs on top of you, pinning you down with his bodyweight. Like most of the men you've seen so far, he's over six foot and with muscules to back it up, the sort that come from hard work rather than the gym. If he weren't about to rape you, he'd be almost handsome, with his chiseled face, chopped brown hair and rough hands... it takes a moment before you realize you're not about to be raped. He's just taking no chances as he finishes untying you.
+      Joel drops you onto the bed, and before you can react, climbs on top of you, pinning you down with his bodyweight. Like most of the men you've seen so far, he's over six foot and with muscles to back it up, the sort that come from hard work rather than the gym. If he weren't about to rape you, he'd be almost handsome, with his chiseled face, chopped brown hair and rough hands... it takes a moment before you realize you're not about to be raped. He's just taking no chances as he finishes untying you.
 
       "This'll be your new home for the next few days, while we get everything sorted. Someone will be by soon to speak with you." He climbs off and stands as soon as he's done, no lingering touches or other unnecessary contact.
 
@@ -495,7 +495,7 @@ Object.assign Data.events,
 
       "I'm not an overseer, but that doesn't mean I can't touch you if I want to." He grabs your wrists with one hand and hauls your arms up over your head, then smacks your breast with the other. It's more shocking than painful, a sudden reminder of just how at his mercy you are.
 
-      Seeing your expression Joel seems to remember himself, and with an embarrassed, appologetic "sorry," releases you and flees the scene.
+      Seeing your expression Joel seems to remember himself, and with an embarrassed, apologetic "sorry," releases you and flees the scene.
 
       The lock clicks. You're alone.
     """
@@ -540,15 +540,15 @@ Data.events.ReleaseFromCell =
   text: ->"""
     You're woken from a sound sleep by a hush of air from the door opening. You stretch your arms up and rub your eyes, trying to make sense of your surroundings. Comfortable bed, stone walls, no clothes, a strange man watching you... you sit upright and pull the sheet up to cover your naked chest.
 
-    "Good morning, my nameless little whore. It's time to get you acquianted with the estate. I'd tell you to get dressed, but, well, you don't get to." He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their complete mercy.
+    "Good morning, my nameless little whore. It's time to get you acquainted with the estate. I'd tell you to get dressed, but, well, you don't get to." He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their complete mercy.
 
     "Come on, get a move." He comes over to the edge of the bed and gives the sheet a tug. You hang onto it for a moment before sense takes over. He's going to get his way, one way or another, and you'd rather not give him an excuse to make "his way" into something worse than a tour and introductions. He tugs the sheet again and you let it fall, leering at your breasts as you squirm in discomfort.
 
     He leads you out of your cell into the early morning light, your arms firmly crossed over your chest, providing the least possible bit of modesty. The two of you walk along a cobbled path towards the main mansion.
 
-    "#{Ms} #{Masterson} is a good owner - like most of the other sex slaves here, you'll have a lot more freedom than you might have expected. The four of you are here as decoration and fuck toys, not laborers. That's no an excuse for laziness, but you won't have someone leaning over your shoulder telling you what to do every minute. How you make yourself pleasing to us is your decision." He stops waliking suddenly, and as you nearly run into him, he reaches down between your legs to grope you. Your hands slap him away reflexively, and he takes the chance to grab a breast and squeeze, before stepping back and giving you space again.
+    "#{Ms} #{Masterson} is a good owner - like most of the other sex slaves here, you'll have a lot more freedom than you might have expected. The four of you are here as decoration and fuck toys, not laborers. That's no an excuse for laziness, but you won't have someone leaning over your shoulder telling you what to do every minute. How you make yourself pleasing to us is your decision." He stops walking suddenly, and as you nearly run into him, he reaches down between your legs to grope you. Your hands slap him away reflexively, and he takes the chance to grab a breast and squeeze, before stepping back and giving you space again.
 
-    "There's one important duty you have though. Your body's available to anyone who wants it at any time. The #{mistress}, me, the field hands, visitors from town - if they're on the estate, you're at their disposal sexually. Only overseers can give you non-sexual orders, though. That's me, Mr. Stevens, Ms. Wendy. We're also the only ones - other than the #{mistress} of course - whocan give you long-standing orders. Once you're out of sight of anyone else, you're free. Understand?"
+    "There's one important duty you have though. Your body's available to anyone who wants it at any time. The #{mistress}, me, the field hands, visitors from town - if they're on the estate, you're at their disposal sexually. Only overseers can give you non-sexual orders, though. That's me, Mr. Stevens, Ms. Wendy. We're also the only ones - other than the #{mistress} of course - who can give you long-standing orders. Once you're out of sight of anyone else, you're free. Understand?"
 
     "Yes."
 
@@ -563,7 +563,7 @@ Data.events.ReleaseFromCell =
 Data.events.Naming =
   description: 'A new name'
   text: -> """
-    The two of you reach a small side door to the mansion, and he gestures you inside. The interior is all red carpet, polished wood, tasteful wealth and rows of doors with bronze plakards. You don't have much of a chance to gawk though, since you're led immediately up a flight of stairs and through a pair of double doors into the master bedroom.
+    The two of you reach a small side door to the mansion, and he gestures you inside. The interior is all red carpet, polished wood, tasteful wealth and rows of doors with bronze placards. You don't have much of a chance to gawk though, since you're led immediately up a flight of stairs and through a pair of double doors into the master bedroom.
 
     It can't be anything other than the master bedroom, given the combination of a king sized bed, an amazingly expensive looking computer setup in one corner currently showing rows of security cameras, and the #{woman} lounging in bed reading. #{She} looks up when the two of you enter, and suddenly you're completely conscious of your nudity again. You try to shrink back, but a hand pushes you forward.
 
@@ -664,7 +664,7 @@ Data.events.ClothingChoice =
   text: ->"""
     "I'll get whatever you pick tailored, and get a few more similar outfits for each closet."
 
-    By this point you know better than to hope he'll let you dress in privacy, and you can feel his eyes on you while you wiggle into your new clothes. But it doesn't really matter - you're dressed in something resembling normal clothes, and that instantly allows you to recover some portion of the modesty, sense of control and self esteem you've been so lacking in since this whole ordeal began. You breathe a sigh of relief.
+    By this point you know better than to hope he'll let you dress in privacy, and you can feel his eyes on you while you wiggle into your new clothes. But it doesn't really matter - you're dressed in something resembling normal clothes, and that instantly allows you to recover some portion of the modesty, sense of control and self-esteem you've been so lacking in since this whole ordeal began. You breathe a sigh of relief.
 
     "You know, I was going to give you a tour of the estate, but my enthusiasm has suddenly just dried up. Your room's on the third floor. You're currently confined to the manor house - don't go wandering, we'll know. And remember, anyone can fuck you whenever and however they want. You're everyone's slut."
 
