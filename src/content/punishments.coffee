@@ -4,13 +4,13 @@ Data.randomEvents.PunishmentMorning =
     misc:
       punishment: true
   text: ->"""
-    They come for you midmorning, a polite knock on the door before they open it without waiting for you to respond. They, in this case, are a plump woman with beatiful golden waves of hair down her back and pursed lips, accompanied by a man who looks whispy, but has an iron grip when he catches one of your wrists. Caught off guard by the sudden motion, snick-snick, he cuffs your hands behind your back before it even occurs to you that resistance is possible.
+    They come for you midmorning, a polite knock on the door before they open it without waiting for you to respond. They, in this case, are a plump woman with beautiful golden waves of hair down her back and pursed lips, accompanied by a man who looks whispy, but has an iron grip when he catches one of your wrists. Caught off guard by the sudden motion, snick-snick, he cuffs your hands behind your back before it even occurs to you that resistance is possible.
 
     "Come along, #{name}. Time for your punishment." The woman doesn't seem unfriendly, but neither is she sympathetic - for you it may a traumatic experience, but for her it's just part of her job. "You know what you've done."
 
-    The man, though, smiles at your discomforture as he leads you out of the room and across the grounds. The distination is a squat building, one you #{if g.events.PunishmentMachine then "haven't seen used before" else "haven't been to often"}. The heavy wooden deer clicks closed behind the three of you ominously. There are no windows.
+    The man, though, smiles at your discomfiture as he leads you out of the room and across the grounds. The destination is a squat building, one you #{if g.events.PunishmentMachine then "haven't seen used before" else "haven't been to often"}. The heavy wooden deer clicks closed behind the three of you ominously. There are no windows.
 
-    You're left in the dark a moment while the woman fumbles to find the lightswitch. "Damn it Sorley, hold the door open while I find this damn thing."
+    You're left in the dark a moment while the woman fumbles to find the light switch. "Damn it Sorley, hold the door open while I find this damn thing."
 
     Sorley just gives you a little shove in the shoulder, enough to remind you that he's there without moving you, his other hand on your wrists, still cuffed together behind your back. You're pretty sure you can feel him smirking.
 
@@ -32,9 +32,9 @@ Data.events.PunishMachineYes =
 
     Naked, spread eagle, helpless... Sorley runs his hands along your inner thighs, cupping your sex with one hand and thrusting a finger in roughly. This draws a disapproving sound from the woman, but he doesn't seem to care.
 
-    "Like that, bitch? Well too bad, I'm not giving you my cock today. You get the machine instead." He removes his finger and begins adjusting the fucking machine, oblivious to - or perhaps enjoying - the woman's silent eye roll. Exhasperation, not sympathy. She doesn't seem to care about you at all.
+    "Like that, bitch? Well too bad, I'm not giving you my cock today. You get the machine instead." He removes his finger and begins adjusting the fucking machine, oblivious to - or perhaps enjoying - the woman's silent eye roll. Exasperation, not sympathy. She doesn't seem to care about you at all.
 
-    You can't raise your head to see what's happening, but you feel a silicone head pressing against your pussy. Sorley adjusts it a little more, then smears a big glob of cold goop over your crotch. A switch is flicked. The dildo pushes slowly into you. First just the tip, slowly, then it withdraws. A moment later it slides into you again, easier this time, and further. Slowly, back and forth, it explores into your depths. Despite the indignaty of the situation, you feel yourself getting wet. It does feel nice, a slow, steady fucking, not too deep, not too hard... nervously you wonder when the punishment is going to begin.
+    You can't raise your head to see what's happening, but you feel a silicone head pressing against your pussy. Sorley adjusts it a little more, then smears a big glob of cold goop over your crotch. A switch is flicked. The dildo pushes slowly into you. First just the tip, slowly, then it withdraws. A moment later it slides into you again, easier this time, and further. Slowly, back and forth, it explores into your depths. Despite the indignity of the situation, you feel yourself getting wet. It does feel nice, a slow, steady fucking, not too deep, not too hard... nervously you wonder when the punishment is going to begin.
 
     "Ok, I think we're done here." It's the woman, sounding bored. "See you in a few hours, #{name}."
 
@@ -58,7 +58,7 @@ Data.randomEvents.PunishNight =
     misc:
       punishment: true
   text: ->"""
-    They come for you in the middle of the night, and your first sign that anything's happening is a sudden grip on your shoulders, pulling you up and rousing you from your sleep. Someone yanks a bag over yaur head before you can do more than shout in surprise, drawstring pulling tight around your neck. You try to raise your hands to pull it off, but strong hands grab each wrist and pull them together over your head, hauling you painfully upright and out of bed.
+    They come for you in the middle of the night, and your first sign that anything's happening is a sudden grip on your shoulders, pulling you up and rousing you from your sleep. Someone yanks a bag over your head before you can do more than shout in surprise, drawstring pulling tight around your neck. You try to raise your hands to pull it off, but strong hands grab each wrist and pull them together over your head, hauling you painfully upright and out of bed.
 
     You nearly panic as you realize they're going to #{options} you.
   """

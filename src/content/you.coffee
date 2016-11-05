@@ -9,7 +9,7 @@ Data.events.AboutYou =
     skillSliders = ("<div><label>#{label}</label>#{skillSlider(rating)}</div>" for label, rating of g.skills)
 
     """
-      You are #{g.name}, property of #{mistress} #{Masterson}, bought and paid for at an auction #{dayToTimeString(g.day)} ago. You stand a delicate 5' 3", your slight frame weighing in at 110 lbs. You have shoulder-length staight hair and are currently wearing #{if g.events.NamingDone? then 'nothing at all' else clothesDesc[g.clothes]}. Before becoming a slave, you were a #{g.background} #{g.profession}.
+      You are #{g.name}, property of #{mistress} #{Masterson}, bought and paid for at an auction #{dayToTimeString(g.day)} ago. You stand a delicate 5' 3", your slight frame weighing in at 110 lbs. You have shoulder-length straight hair and are currently wearing #{if g.events.NamingDone? then 'nothing at all' else clothesDesc[g.clothes]}. Before becoming a slave, you were a #{g.background} #{g.profession}.
 
       <div class="sliders stats">#{moodSliders.join('')}</div>
 
