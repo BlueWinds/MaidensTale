@@ -23,8 +23,11 @@ Characters so far
 =======
 
 Mr. Stevens - You don't know his first name. He's the head overseer, a dignified man with neatly trimmed salt-and-pepper beard. Enjoys his work, preferring to remain a somewhat distant figure.
-Sorley - One of the overseers, a short man somewhere in his thirties. No matter how stereotypical it may be, you can't help but compare him to a rat. Enjoys dealing with helpless and squirming slaves, especially those who don't like him.
-Wendy - One of the overseers, a plush woman with long golden waves of hair and a false smile. She pretends to be people's friends, but really she just likes hurting people.
-Joel - Hardworking field hand, relatively new to the estate. Tall, muscular, handsome, probably a little past twenty.
-Robin - Another slave, she's been here six months before you arrived, enslaved on her 18th birthday. Cute, petite, hair red as a blushing bride, it seems everyone's delight to tease her sexually.
 
+Sorley - One of the overseers, a short man somewhere in his thirties. No matter how stereotypical it may be, you can't help but compare him to a rat. Enjoys dealing with helpless and squirming slaves, especially those who don't like him.
+
+Wendy - One of the overseers, a plush woman with long golden waves of hair and a false smile. She pretends to be people's friends, but really she just likes hurting people.
+
+Joel - Hardworking field hand, relatively new to the estate. Tall, muscular, handsome, probably a little past twenty.
+
+Robin - Another slave, she's been here six months before you arrived, enslaved on her 18th birthday. Cute, petite, hair red as a blushing bride, it seems everyone's delight to tease her sexually.
