@@ -8,6 +8,8 @@ window.She = -> if Data.storytellers[g.storyteller].gender is 'f' then 'She' els
 window.her = -> if Data.storytellers[g.storyteller].gender is 'f' then 'her' else 'his'
 window.Her = -> if Data.storytellers[g.storyteller].gender is 'f' then 'Her' else 'His'
 window.woman = -> if Data.storytellers[g.storyteller].gender is 'f' then 'woman' else 'man'
+window.maam = -> if Data.storytellers[g.storyteller].gender is 'f' then "ma'am" else 'sir'
+window.Maam = -> if Data.storytellers[g.storyteller].gender is 'f' then "Ma'am" else 'Sir'
 
 mistress.toString = mistress
 Mistress.toString = Mistress
@@ -19,6 +21,8 @@ She.toString = She
 her.toString = her
 Her.toString = Her
 woman.toString = woman
+maam.toString = maam
+Maam.toString = Maam
 
 window.saveLabel = (game, short)->
   if short

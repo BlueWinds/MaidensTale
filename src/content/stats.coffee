@@ -52,7 +52,7 @@ window.Game =
   profession: 'Student'
   storyteller: 'danni'
   confined: 'cell'
-  punishment: false
+  punishment: ''
   Clothes: 'Sundress'
   availableClothes:
     Sundress: false

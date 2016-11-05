@@ -32,7 +32,7 @@ Data.jobs.Meditate =
     skills:
       Concentration: 'Spirit'
   text: ->"""
-    You sit on your bed, legs crossed and eyes closed, attempting to be as present as possible. You reassure yourself that the past and the future don't need your attention right now. You notice your breath, feel the sensations as air flows in and out of your body. Breathing is relaxing and fluid. Listen carefully to the environment around you, content merely to observe...
+    You sit on your bed, legs crossed and eyes closed, attempting to be as present in the moment as possible. You reassure yourself that the past and the future don't need your attention right now. You notice your breath, feel the sensations as air flows in and out of your body. Breathing is relaxing and fluid. Listen carefully to the environment around you, content merely to observe...
 
     You stand up, stretch, shake your whole body to restore the habit of motion. A good way to spend a few hours.
   """

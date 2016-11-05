@@ -56,10 +56,12 @@ drawChoice = (label, option)->
 
   # A skill test. Render the widget.
   skillBonus = Math.floor(g.skills[option.skill] / 10)
-  union = describeUnion(option.result[0], option.result[1])
+  r0 = getEvent(option.result[0])
+  r1 = getEvent(option.result[1])
+  union = describeUnion(r0, r1)
   diff = [
-    describeDiff(option.result[0], option.result[1])
-    describeDiff(option.result[1], option.result[0])
+    describeDiff(r0, r1)
+    describeDiff(r1, r0)
   ]
 
   mainTitle = """#{if union then union + '\n&nbsp;\n' else ''}\
@@ -173,24 +175,9 @@ applyEffects = (effects)->
 skillBonus = (mood)-> 2 + Math.floor(g.mood[mood] / 3)
 
 window.describeEvent = (label)->
-  event = getEvent(label)
-  if not event then return ''
+  return describeDiff(getEvent(label), {})
 
-  text = []
-  if event.title
-    text.push event.title
-  for type in ['mood', 'skills'] when event.effects?[type]
-    for item, amount of event.effects[type]
-      if g.mood[amount]?
-        text.push "#{item} +#{skillBonus(amount)} (#{amount})"
-      else
-        text.push "#{item} +#{amount}"
-  return text.join('\n')
-
-describeUnion = (label1, label2)->
-  event1 = getEvent(label1)
-  event2 = getEvent(label2)
-
+describeUnion = (event1, event2)->
   text = []
   if event1.description and event1.description is event2.description
     text.push event1.description.call(event)
@@ -199,13 +186,11 @@ describeUnion = (label1, label2)->
       if g.mood[amount]?
         text.push "#{item} +#{skillBonus(amount)} (#{amount})"
       else
-        text.push "#{item} +#{amount}"
+        text.push "#{item} #{if amount > 0 then '+' + amount else amount}"
   return text.join('\n')
 
-describeDiff = (label1, label2)->
-  event1 = getEvent(label1)
-  event2 = getEvent(label2)
-
+describeDiff = (event1, event2)->
+  if not event1 then return ''
   text = []
   if event1.description and event1.description isnt event2.description
     text.push event1.description
@@ -214,7 +199,7 @@ describeDiff = (label1, label2)->
       if g.mood[amount]?
         text.push "#{item} +#{skillBonus(amount)} (#{amount})"
       else
-        text.push "#{item} +#{amount}"
+        text.push "#{item} #{if amount > 0 then '+' + amount else amount}"
   return text.join('\n')
 
 describeTest = (test)->
@@ -228,22 +213,11 @@ drawEvent = (event)->
   unless event.text then return
 
   currentEvent = event
-  text = describeEffects(event.description, event.effects) + event.text.call(event)
+  text = describeDiff(event, {}) + event.text.call(event)
   unless text then return
 
   div.innerHTML = '<div>' + text.split('\n\n').filter(Boolean).join('</div><div>') + '</div>'
   return div
-
-describeEffects = (description, effects)->
-  unless description or effects?.mood or effects?.skills then return ''
-  text = []
-  for type in ['mood', 'skills'] when effects?[type]
-    for item, amount of effects[type]
-      if g.mood[amount]?
-        text.push "#{item} +#{skillBonus(amount)} (#{amount})"
-      else
-        text.push "#{item} +#{amount}"
-  return """<div class="effects">#{if description then description + '<br>' else ''}#{text.join(', ')}</div>"""
 
 setInteraction = (interaction)->
   content = document.getElementById('content')

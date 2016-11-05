@@ -41,7 +41,7 @@ Object.assign Data.events,
     effects:
       mood: {Hope: -2, Despair: 1}
     text: ->"""
-      Taken away from your home and enslaved, humiliated, stripped naked, brutalized and generally completely out of control... you break down. It's not pretty, and you try to spare yourself the indignity of remembering too much, but it's a couple of hours before you manage to pull yourself together again.
+      Taken away from your home and enslaved, humiliated, stripped naked, brutalized and generally completely out of control... you break down, sobbing, howling and hiding under the blanket. It's not pretty, and you try to spare yourself the indignity of remembering too much, but it's a couple of hours before you manage to pull yourself together again. No one came to check on you.
 
       You clean yourself up a little, splashing water over a tear-stained face. Fuck. Life is not looking up right now.
     """
@@ -61,7 +61,7 @@ Object.assign Data.events,
     text: ->"""
       So much has happened the last few days that you deserve a bit of rest. Curling up on your bed, you drift off, planning to just rest your eyes for a few minutes.
 
-      A few hours later, you rub the sleep from your eyes and yawn. Whelp. There goes the #{time}.
+      A few hours later, you rub the sleep from your eyes and yawn. Whelp. There goes the #{g.time}.
     """
 
   ReduceDetachment:

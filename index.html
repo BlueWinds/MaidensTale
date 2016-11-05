@@ -174,7 +174,7 @@
     profession: 'Student',
     storyteller: 'danni',
     confined: 'cell',
-    punishment: false,
+    punishment: '',
     Clothes: 'Sundress',
     availableClothes: {
       Sundress: false,
@@ -240,7 +240,7 @@
           }
           opposed = Data.opposedMood[label];
           alreadySeenMoods[opposed] = true;
-          results.push("<div><label>" + label + "<br>" + opposed + "</label>" + (moodSlider(rating, g.mood[opposed])) + "</div>");
+          results.push("<div><label>" + label + "<br>" + opposed + "</label>" + (moodSlider(rating, g.mood[opposed], label, opposed)) + "</div>");
         }
         return results;
       })();
@@ -254,7 +254,7 @@
         }
         return results;
       })();
-      return "You are " + g.name + ", property of " + mistress + " " + Masterson + ", bought and paid for at an auction " + (dayToTimeString(g.day)) + " ago. You stand a delicate 5' 3\", your slight frame weighing in at 110 lbs. You have shoulder-length staight hair and are currently wearing " + (g.events.NamingDone != null ? 'nothing at all' : clothesDesc[g.clothes]) + ". Before becoming a slave, you were a " + g.background + " " + g.profession + ".\n\n<div class=\"sliders stats\">" + (moodSliders.join('')) + "</div>\n\n<div class=\"sliders\">" + (skillSliders.join('')) + "</div>\n\n" + options;
+      return "You are " + g.name + ", property of " + mistress + " " + Masterson + ", bought and paid for at an auction " + (dayToTimeString(g.day)) + " ago. You stand a delicate 5' 3\", your slight frame weighing in at 110 lbs. You have shoulder-length straight hair and are currently wearing " + (g.events.NamingDone != null ? 'nothing at all' : clothesDesc[g.clothes]) + ". Before becoming a slave, you were a " + g.background + " " + g.profession + ".\n\n<div class=\"sliders stats\">" + (moodSliders.join('')) + "</div>\n\n<div class=\"sliders\">" + (skillSliders.join('')) + "</div>\n\n" + options;
     },
     next: {
       Back: 'Back'
@@ -265,11 +265,11 @@
     return Math.max(min, Math.min(max, value));
   };
 
-  moodSlider = function(mood, opposed) {
+  moodSlider = function(mood, opposed, moodLabel, opposedLabel) {
     var moodW, opposedW;
     moodW = clamp(mood * 10, 3, 97);
     opposedW = clamp(opposed * 10, 3, 97);
-    return "<slider style=\"width: 100px\" title=\"" + mood + " / " + opposed + "\">\n  <div class=\"bottom\" style=\"width: " + (Math.min(50 - moodW, 100 - moodW - opposedW)) + "px\"></div>\n  <div class=\"bottom mood\" style=\"width: " + moodW + "px\"></div>\n  <div class=\"top opposed\" style=\"width: " + opposedW + "px\"></div>\n</slider>";
+    return "<slider style=\"width: 100px\" title=\"" + mood + " " + moodLabel + "\n" + opposed + " " + opposedLabel + "\">\n  <div class=\"bottom\" style=\"width: " + (Math.min(50 - moodW, 100 - moodW - opposedW)) + "px\"></div>\n  <div class=\"bottom mood\" style=\"width: " + moodW + "px\"></div>\n  <div class=\"top opposed\" style=\"width: " + opposedW + "px\"></div>\n</slider>";
   };
 
   skillSlider = function(skill) {
@@ -314,7 +314,7 @@
   Object.assign(Data.events, {
     Intro: {
       text: function() {
-        return "\"You're almost at your new home, slut.\"\n\nYou roll over in your cage, quickly running up against the bars when you try to stretch. You sit upright, drawing an appreciative chuckle from the man who addressed you at the sight of hay clinging to your nude breasts.\n\nThis is not how you expected your vacation to go. You'd planned on a nice relaxing drive down the coast, resting wherever fancy landed you, with no cares, plenty of time to see the sights, meet the strangers, get drunk at bars... And now here you are. Whoops.\n\nA " + options + " girl like you should have known better than to take a drink from a stranger.\n\n<em>You have " + (Object.keys(Game.skills).length) + " different possible skills, ranging from 0 to 100. Different events will offer you chances to raise them over time, and events will present options with various chances of success depending on your ratings.</em>\n\n<em>Almost all buttons in the game have title text - you can hover over them to see the mechanical effects of various choices.</em>";
+        return "\"You're almost at your new home, slut.\"\n\nYou roll over in your cage, quickly running up against the bars when you try to stretch. You sit upright, drawing an appreciative chuckle from the man who addressed you. It probably had something to do with the sight of hay clinging to your nude breasts.\n\nThis is not how you expected your vacation to go. You'd planned on a nice relaxing drive down the coast, resting wherever fancy landed you, no cares, plenty of time to see the sights, meet the strangers, get drunk at bars... And now here you are. Whoops.\n\nA " + options + " girl like you should have known better than to take a drink from a stranger.\n\n<em>You have " + (Object.keys(Game.skills).length) + " different possible skills, ranging from 0 to 100. Different events will offer you chances to raise them over time, and events will present options with various chances of success depending on your ratings.</em>\n\n<em>Almost all buttons in the game have title text - you can hover over them to see the mechanical effects of various choices.</em>";
       },
       next: {
         'Well Bred': 'IntroRich',
@@ -325,7 +325,7 @@
     },
     IntroRich: {
       text: function() {
-        return "The man smiles as he unlocks the cell door and gestures you to come out. It's a proper barred prison cell, but with the hay to sleep on, you couldn't help but think of it as your cage.\n\n\"Lucky girl, you're going to see your new home today. The auction will begin in an hour, so plenty of time to get you cleaned up and ready. Fine piece of ass like you, no doubt you'll get a fine rich man to take care of you. Or woman. You like women, slut?\"\n\n\"I...\"\n\n\"Doesn't matter,\" he cuts you off. \"You'll fuck who you're told to, and you'll learn to enjoy it. Go on into the showers and get yourself cleaned up. You want to look nice for the buyers, and that's for your benefit as well as mine. You go for a high price, you get treated like a worthy prize, yes? You don't want to end up a street trash whore.\"\n\nYou were a normal woman, living your normal life... now you're for sale in an Anglani market. You'd never heard of Anglani before three days ago, when you glimpsed it on the arrival gate, disembarking from your airplane. How they'd arranged to have a squirming duffle bag pass through security back home was a mystery to you. When you got off the plane, you were in for another shock: slavery was legal here, and you were now property. The customs official explained it all very clearly - you can't be killed, that's still a crime, but anything short of that is at your owner's discretion. Your immigration form - filled out for you - didn't state a name. You aren't allowed a name until your master chooses one for you. And a slave trading company has no interesting in naming you - that's a privilage be for your new master.\n\nThat was two days ago. Everything since then has been a blur. Somehow you find you've managed to wash yourself - with that done, rough hands drape you in an elegant gown, do your hair, apply makeup and otherwise prepare you in a hurry, getting you ready to sell for the highest possible price. And, just like that, you find yourself stumbling onto the stage.\n\n\"Ladies and Gentlemen, our next piece of meat is a real prize, a genuine never owned free woman. And boy doesn't she look excellent tonight, you can just tell what a " + options + " girl she'll be.";
+        return "The man smiles as he unlocks the cell door and gestures you to come out. It's a proper barred prison cell, but with only hay to sleep on you can't help but think of it as your cage.\n\n\"Lucky girl. You're going to see your new home today. The auction will begin in an hour. Plenty of time to get you cleaned up and ready. Fine piece of ass like you, you'll get a fine rich man to take care of you. Or a woman. You like women, slut?\"\n\n\"I...\"\n\nHe cuts you off. \"Doesn't matter. You'll fuck who you're told to, and you'll learn to enjoy it. Now go to the showers and get yourself cleaned up. You want to look nice for the buyers. That's for your benefit as well as mine. You go for a high price, you get treated like a worthy prize, yes? You don't want to end up a street trash whore.\"\n\nTwo days ago you were a normal woman, living your normal life. Now you're up for sale in an Anglani market. You'd never heard of Anglani before three days ago, when you glimpsed it on the arrival gate, disembarking from your airplane. How they'd arranged to have a squirming duffle bag pass through security back home was a mystery to you. When you got off the plane, you were in for another shock: slavery is legal here, and you are now property. The customs official explained it all very clearly, in a bored tone - you can't be killed, that's still a crime, but anything short of that is at your owner's discretion. Your immigration form - filled out for you - didn't state a name. You aren't allowed a name until your master chooses one for you. And a slave trading company - your current owner - has no interesting in naming you. That's a privilage be for your new master.\n\nEverything since then has been a blur. Somehow you find you've managed to wash yourself - with that done, rough hands drape you in an elegant gown, do your hair, apply makeup and otherwise prepare you in a hurry, getting you ready to sell for the highest possible price. And, just like that, you find yourself stumbling onto the stage.\n\n\"Ladies and Gentlemen, our next piece of meat is a real prize, a genuine never owned free woman. And boy doesn't she look excellent tonight, you can just tell what a " + options + " girl she'll be.";
       },
       next: {
         Pretty: 'IntroPretty',
@@ -389,7 +389,7 @@
     IntroPretty: {
       title: 'Past careers depending on beauty',
       text: function() {
-        return "\"I hear she was " + options + " in her old life, can you believe that? Keep her as one or mold her into something new, can't you just feel that pliable flesh in your hands... young and fresh and ripe for the plucking. She's not a virgin though, I can tell you that much.\" The lewd joke at your expense draws some laughter from the crowd, and some heat from your cheeks.";
+        return "\"I hear she was " + options + " in her old life, can you believe that? Keep her as one or mold her into something new. Can't you just feel that pliable flesh in your hands... young and fresh and ripe for the plucking. She's not a virgin though, I can tell you that much.\" The lewd joke at your expense draws some laughter from the crowd, and some heat from your cheeks.";
       },
       next: {
         'An exotic dancer': 'IntroDancer',
@@ -438,7 +438,7 @@
         }
       },
       text: function() {
-        return "The bidding starts slow, picking up as the announcer reminds them that you've never been a slave, and climbing up even more fiercely when you're stripped naked on stage. It's all a blur. You can't hear the numbers being shouted out. You can barely see the crowd, with so much bright light on the stage, but you manage to pick out some faces here and there. Most of the people present aren't bidding - they're just here to enjoy the show. That's you.\n\n\"Going once...\" With a start you realize you're about to be sold. To the hideous man in the far corner. Everyone's left him plenty of space. You imagine you can smell him from all the way up here. That's... that's not good. But he hesitated a long time before that last bid - one more and he'll probably be out of the running. You look desperately across the crowd, and finally see\n\n" + options + "\n\n<em>The master or mistress you choose will personally only appear in the game rarely, but this choice will also determine the sorts of random events you'll encounter - a cruel mistress will still send nice things your way now and then, but you can expect harder tasks and worse punishments.</em>";
+        return "The bidding starts slow, picking up as the auctioneer reminds them that you've never been a slave, and climbing even more fiercely when you're stripped naked on stage. It's all a blur. You can't hear the numbers being shouted out. With so much bright light on the stage you can barely see the crowd, but you manage to pick out some faces right up in the front row. Most of the people present aren't bidding - they're just here to enjoy the show. That's you.\n\n\"Going once...\" With a start you realize you're about to be sold. To the hideous man on the far left. Everyone's left him plenty of space. You imagine you can smell him from all the way up here. That's... that's not good. But he hesitated a long time before that last bid - one more and he'll probably be out of the running. You look desperately across the crowd. Nothing. Wait, is that... it's a hand! Someone else has made a bid.\n\n" + options + "\n\n<em>The master or mistress you choose will personally only appear in the game rarely, but this choice will also determine the sorts of random events you'll encounter - a cruel mistress will still send nice things your way now and then, but you can expect harder tasks and worse punishments.</em>";
       },
       next: {
         'Ms. Danni Jemson': 'IntroDanni',
@@ -664,7 +664,7 @@
         }
       },
       text: function() {
-        return "You lock eyes with a young woman, hardly older than you but clearly used to command. Long dark curls roll past her shoulders, and when she sees the desperation in your gaze, there's an immediate reaction of sympathy. She bids.";
+        return "You lock eyes with the young woman who just bid, hardly older than you but clearly used to command. Long dark curls roll past her shoulders, and you sense what seems to be sympathy in her smile.";
       },
       next: 'IntroHome'
     },
@@ -676,7 +676,7 @@
         }
       },
       text: function() {
-        return "You catch the eye of an older man, with salt and pepper hair and a neatly trimmed beard. He smiles, a mixture of reassurance and sensuality, and raises his sign for a bid.";
+        return "You catch the eye of the older man who just bid, with salt and pepper hair and a neatly trimmed beard. He smiles, a mixture of reassurance and sensuality.";
       },
       next: 'IntroHome'
     },
@@ -688,13 +688,13 @@
         }
       },
       text: function() {
-        return "You catch the eye of an older woman, and are rewarded by an electric thrill running up your spine. Even from across the room, she manages to make you feel like prey. She bids.";
+        return "You catch the eye of the older woman who just bid, and are rewarded by an electric thrill running up your spine. Even from across the room, she manages to make you feel like prey.";
       },
       next: 'IntroHome'
     },
     IntroHome: {
       text: function() {
-        return " \"Going once... going twice... sold! Sold to one of our favorite customers. You can collect your merchandise out back, we'll have it ready for you as usual in a few minutes.\"\n\n It takes you a moment to realize that \"it\" refers to \"you,\" but your realization isn't necessary - hands hustle your naked body off stage so the auctioneer can get on with the rest of the night. That leaves you in the hands of a single guard. Briefly, you consider trying to escape -  you're not bound, and there's a whole crowd of people nearby you could try to get lost in, but you abandon the idea when you get a better look at the guard - he's at least a foot taller than you and seemingly made of muscle. He smirks when he sees you looking.\n\n \"Ready as usual\" turns out to involve a great deal of rope and cloth - cloth stuffed in your mouth holding your jaw open then wrapped around your head to hold it in place, more cloth around your eyes, and rope pulling your knees up to your chest and your arms folded along your sides. The whole procedure occurs without regard for your comfort or compliance, leaving you blind, mute and immobile, folded up like a little pill and abandoned on the floor, still naked.\n\n You hear people moving around, people talking about payment, and steps approaching. Suddenly a pair of fingers push themselves into your unprepared pussy. You'd yelp, were you able to make noise, but your startled reaction draws a chuckle anyway. The fingers probe around inside you for a moment before withdrawing.\n\n \"She's a hot little thing, isn't she?\"\n \"Mhm. The " + mistress + " will be pleased. See you at poker night?\"\n \"Of course.\"\n\n The purpose of the ropes - beyond making you helpless - becomes apparent as the place where they gather behind your back becomes a handle, the man lifting you up like a squirming duffle bag. They're not sure how much trouble you'd be left to your own devices, so they're taking no chances. You're carried outside, then into a van. Even if you couldn't see bits and pieces around your blindfold, the change in quality of the surrounding sounds would make that much obvious. The engine starts, and you're off.\n\n It's an uncomfortable ride. Face pressed up against the floor, it seems like you can feel every bump in the road. At least it doesn't last long - you can't be more than a few miles from the auction house when the van comes to a stop again.\n\n \"Welcome to your new home, slut.\" A shoe digs into your side - not unkindly, but enough to make sure you know you're the one being addressed. \"I'm going to remove your blindfold and gag now, and loosen most of the restraints. Feel free to scream. Most new slaves do, and it's best to get it out of your system before I open the door and everyone sees you. Wouldn't make a good first impression to be acting like a wild animal caught in a cage, now would it?\" He leans down so his voice is right in your ear. \"That is what you are though, a wild animal. Don't worry though, we'll tame you.\"\n\n\"I'm untying you now.\" He reaches down and begins to unwrap the gag. \"We'll put up with a lot, especially in your first few days. One thing we never tollerate is attacking any of the overseers or other slaves. Hurting people is my job, not yours.\"\n\n" + options + "\n\n<em>In addition to your skills, you have three mood bars, which fill up with different emotions. The first holds some combination of Humility and Pride, the second combines Hope and Despair, the third combines Spirit and Detachment. Each bar can hold up to ten points, distributed between the two emotions.</em>\n\n<em>Moods serve two purposes - they help you learn skills faster, and they can be spent to help pass skill tests. More on skill tests in a moment.</em>";
+        return " \"Going once... going twice... sold! Sold to one of our favorite customers. You can collect your merchandise out back, " + maam + ". We'll have it ready for you in a few minutes.\"\n\n It takes you a moment to realize that \"it\" refers to \"you,\" but your realization isn't necessary. Hands hustle your naked body off stage so the auctioneer can get on with the rest of the night. You're left in the hands of a single guard. Briefly, you consider trying to escape. You're not bound, and there's a whole crowd of people nearby you could try to get lost in if you could grab some clothes... You completely abandon the idea when you get a better look at the guard. He's at least a foot taller than you and seemingly made of concrete and muscle. He smirks when he sees you looking.\n\n \"Ready as usual\" turns out to involve a great deal of rope and cloth - cloth stuffed in your mouth holding your jaw open, then wrapped around your head to hold it in place. More cloth around your eyes, and rope pulling your knees up to your chest and your arms folded along your sides. The whole procedure occurs without regard for your comfort or compliance, leaving you blind, mute and immobile, folded up like a little pill and abandoned on the floor. You're still naked.\n\n You hear people moving around, people talking about payment, and steps approaching. Suddenly a pair of fingers push themselves into your unprepared pussy. You'd yelp, were you able to make noise, but your startled reaction draws a chuckle anyway. The fingers probe around inside you for a moment before withdrawing.\n\n \"She's a hot little thing, isn't she?\"\n \"Mhm. The " + mistress + " will be pleased. See you at poker night?\"\n \"Of course.\"\n\n The purpose of the ropes - beyond making you helpless of course - becomes apparent as the place where your bindings gather behind your back becomes a handle, the man lifting you up like a squirming duffle bag. They're obviously not sure how much trouble you'd be left to your own devices, so they're taking no chances. You're carried outside, then into a van. Even if you couldn't see bits and pieces around your blindfold, the change in quality of the surrounding sounds would make that much obvious. The engine starts, and you're off.\n\n It's an uncomfortable ride. Face pressed up against the hard floor, you can feel every bump in the road. At least it doesn't last long. You can't be more than a few miles from the auction house when the van comes to a stop again.\n\n \"Welcome to your new home, slut.\" A shoe digs into your side - not unkindly, but enough to make sure you know you're the one being addressed. \"I'm going to remove your blindfold and gag now, and loosen most of the restraints. Feel free to scream. Most new slaves do. It's best to get it out of your system before I open the door and everyone sees you. Wouldn't make a good first impression to be acting like a wild animal caught in a cage, now would it?\" He leans down so his voice is right in your ear. \"That is what you are though, a wild animal. Don't worry though, we'll tame you.\"\n\n\"I'm untying you now.\" He reaches down and begins to unwrap the gag. \"We'll put up with a lot, especially in your first few days. One thing we never tolerate is attacking any of the overseers or other slaves. Hurting people is my job, not yours.\"\n\n" + options + "\n\n<em>In addition to your skills, you have three mood bars, which fill up with different emotions. The first holds some combination of Humility and Pride, the second combines Hope and Despair, the third combines Spirit and Detachment. Each bar can hold up to ten points, distributed between the two emotions.</em>\n\n<em>Moods serve two purposes - they help you learn skills faster, and they can be spent to help pass skill tests. More on skill tests in a moment.</em>";
       },
       next: {
         'Bite him': 'IntroBite',
@@ -704,7 +704,7 @@
     },
     IntroBite: {
       text: function() {
-        return "Sicko. You nod to show you understand. Once the cloth is gone, you spit out the rag that was holding your jaw open and work it, biding your time while he removes the blindfold and works the knots to untie you. Your attack comes when he reaches down to caress your cheek - rather than the gentle gesture he expected to give, he gets your teeth sunk into his palm and fingers.\n\nHe doesn't yell, just backhands you across the face with his other arm, a brutal blow that still isn't enough to dislodge you. His follow up kick to your gut is, however, leaving you twisting on the floor gasping for breath while he cradles a bloody hand.\n\n\"I warned you, bitch. Now, we have some things to do right this second, but come tomorrow, or the day after, or the day after that... you'll regret it. We like to make people live in suspense about what exactly that means. You've just earned your first punishment.\" He kicks you again, and while you're still curled up in pain, rolls you over onto your face with his foot. He uses his one good hand to open the van door. \"Joel! A hand? Bitch bit me, right down to the bone.\"\n\nIt doesn't take long before Joel arrives to help carry you. You thrash a little, but it's not at all effective - now that they're keeping clear of your head, there's nothing you can do to stop him from throwing you over one shoulder like a sack of potatoes.";
+        return "Sicko. You nod to show you understand. Once the cloth is gone, you spit out the rag that was holding your jaw open and work it, biding your time while he removes the blindfold and works the knots to untie you. Your attack comes when he reaches down to caress your cheek. Rather than the gentle gesture he expected to give, he gets your teeth sunk into his palm and fingers.\n\nHe doesn't yell, just backhands you across the face, a brutal blow that still isn't enough to dislodge you. His follow up kick to your gut is, however, leaving you twisting on the floor gasping for breath while he cradles a bloody hand.\n\n\"I warned you, bitch. Now, we have some things to do right this second, but you'll regret that soon enough. We like to make people live in suspense about what exactly that means. You've just earned your first punishment.\" He kicks you again, and while you're still curled up in pain, rolls you over onto your face with his foot. He uses his one good hand to open the van door. \"Joel! A hand? Bitch bit me, right down to the bone.\"\n\nIt doesn't take long before Joel arrives to help carry you. You thrash a little, but it's not at all effective. Now that they're keeping clear of your head, there's nothing you can do to stop him from throwing you over one shoulder like a sack of potatoes.";
       },
       next: 'IntroArrive',
       effects: {
@@ -713,13 +713,13 @@
           Spirit: 3
         },
         set: {
-          punishment: true
+          punishment: 'biting the overseer'
         }
       }
     },
     IntroPanic: {
       text: function() {
-        return "It's all too much. His hand right by your head, the jerky ride, the shock of being told you're going to be a slave... you scream something obscene and incoherent at your captor, thrash around on the floor with wild eyes, and start to sob.\n\nYou half expected him to kick you, or perhaps drag you screaming across the yard, but the abuse never comes. Instead he sits on you long enough to pull out a knife and cut most of ropes holding you curled up, then sits behind you and pulls you upright in an irresistible hug. He doesn't speak, just holds you. You're terribly weak compared to him, but you do manage to conk him a good one in the eye with the back of your head in your panic.\n\nSlowly though, the gentle contact works its magic, and in spite of yourself, you find your body relaxing. He still doesn't say anything, just holding you comfortingly. Eventually he lets go, and with a handkerchief from one pocket, wipes off your face, an action welcome despite the indignity of having him do it for you.\n\n\"That's a good girl.\" He stands and opens the door, and after a moment looking around, \"Hey Joel! Come carry the new one in, I have to give my report.\"\n\nIt doesn't take long before Joel arrives to help carry you. All your fight is gone for now, your body exhausted, so you don't do anything to resist when he throws you over his shoulder like a sack of potatoes.";
+        return "It's all too much. His hand right by your head, the jerky ride, the shock of being told you're going to be a slave. You scream something obscene and incoherent at your captor, thrash around on the floor with wild eyes and then start to sob.\n\nYou half expected him to kick you, or perhaps drag you screaming across the yard, but the abuse never comes. Instead he sits on you long enough to pull out a knife and cut most of ropes holding you curled up, then sits behind you and pulls you upright in an irresistible hug. He doesn't speak, just holds you. You're terribly weak compared to him, but you do manage to conk him a good one in the eye with the back of your head in your panic.\n\nSlowly though, the gentle contact works its magic. In spite of yourself, you find your body relaxing. He still doesn't say anything, just holds you comfortingly. Eventually he lets go, and with a handkerchief from one pocket, wipes off your face. The action welcome despite the indignity of having him do it for you.\n\n\"That's a good girl.\" He stands and opens the door, and after a moment looking around, \"Hey Joel! Come carry the new one in, I have to give my report.\"\n\nIt doesn't take long before Joel arrives to help carry you. All your fight is gone for now, your body exhausted, so you don't do anything to resist when he throws you over his shoulder like a sack of potatoes.";
       },
       next: 'IntroArrive',
       effects: {
@@ -731,7 +731,7 @@
     },
     IntroDignity: {
       text: function() {
-        return "You nod your understanding. Tied up like this, there's not a whole lot you can do, and even if you did manage to get free, you're naked in a foreign country where everyone seems to accept slaves as the natural state of affairs. It wouldn't be long before you were caught and returned.\n\nWith your silent cooperation, it doesn't take him long to remove the gag and blindfold, and untie most of the ropes. Only most of them - your elbows and wrists are still tied together. He helps you to stand, but you're still weak from being immobile too long, and looking at your wobble, he sits you back down - still naked - on the floor.\n\n\"Hey Joel! Come carry the new one in. She's being good, but I have to give my report.\" It doesn't take long before Joel arrives to help carry you. He's rather gentle, scooping you up in a bridal carry.";
+        return "You nod your understanding. Tied up like this, there's not a whole lot you can do. Even if you did manage to get free, you're naked in a foreign country where everyone seems to accept slaves as the natural state of affairs. It wouldn't be long before you were caught and returned.\n\nWith your silent cooperation, it doesn't take him long to remove the gag and blindfold, and untie most of the ropes, leaving your elbows and wrists are still bound together. He helps you to stand, but you're still weak from being immobile too long. Looking at your wobble he sits you back down - still naked - on the floor.\n\n\"Hey Joel! Come carry the new one in. She's being good, but she's weak and I still have to give my report.\" It doesn't take long before Joel arrives to help carry you. He's rather gentle, scooping you up in a bridal carry.";
       },
       next: 'IntroArrive',
       effects: {
@@ -743,7 +743,7 @@
     },
     IntroArrive: {
       text: function() {
-        return "The afternoon light bites your eyes after so much darkness, making you squint and wish your arms were free so you could rub them. Lifting your head, you get your first look at your new home.\n\nIt's a mansion. A fabulous one, right out of a storybook. " + Ms + ". " + Masterson + " must be very wealthy indeed, as though you didn't already know that from the way " + she + " bought a new sex slave out from under a room full of eager bidders. A red tile roof and stone walls, dozens of rooms, a garage off to one side large enough for a dozen cars. The grounds are huge, and very well kept - multiple outbuildings, some of them large enough to be houses in their own right, are interspersed with gardens and an outdoor pool. You were wrong at first - it's not a mansion, it's a palace. Or at least it seems that way.\n\nThere are others working or walking around, but you don't get a chance to do more than glimpse their curious faces before Joel carries you into one of the outbuildings. It's a bedroom - or a dungeon? It has features of both. There's a soft bed, but stone walls with manacles hanging from them. A bathroom to one side, but also a hole in the ground and a hose coiled half out of sight beneath a stone bench.\n\nJoel drops you onto the bed, and before you can react, climbs on top of you, pinning you down with his bodyweight. Like most of the men you've seen so far, he's over six foot and with muscles to back it up, the sort that come from hard work rather than the gym. If he weren't about to rape you, he'd be almost handsome, with his chiseled face, chopped brown hair and rough hands... it takes a moment before you realize you're not about to be raped. He's just taking no chances as he finishes untying you.\n\n\"This'll be your new home for the next few days, while we get everything sorted. Someone will be by soon to speak with you.\" He climbs off and stands as soon as he's done, no lingering touches or other unnecessary contact.\n\nYou rub your wrists and look around. You're pretty sure it's a cell now, not a bedroom. He's handsome and he has power over you, but maybe you can get some more answers before he leaves you alone and naked in your cell.\n\n" + options + "\n\n<em>Here you have the option of several different skill tests. During a skill test, you roll 2d6 + (skill / 10, round down). If you meet the difficulty, you pass. Don't worry if you can't pass every skill check, especially at first - you'll usually get better at the skill even if you fail.</em>\n\n<em>During random events, which test you choose determines </em>what happens<em>, while pass/fail determines the </em>mechanical rewards<em>. You won't miss anything during random events (and the intro) by failing tests.</em>";
+        return "The afternoon light bites your eyes after so much darkness, making you squint and wish your arms were free so you could rub them. Lifting your head, you get your first look at your new home.\n\nIt's a mansion. A fabulous one from the look of it, right out of a storybook. " + Ms + ". " + Masterson + " must be very wealthy indeed, as though you didn't already know that from the way " + she + " bought a new sex slave out from under a room full of eager bidders. A red tile roof and stone walls, dozens of rooms, a garage off to one side large enough for a dozen cars. The grounds are huge, and very well kept - multiple outbuildings, some of them large enough to be houses in their own right, are interspersed with gardens and an outdoor pool. You were wrong at first - it's not a mansion. It's a palace. Or at least it seems that way.\n\nThere are others working or walking around, but you don't get a chance to do more than glimpse their curious faces before Joel carries you into one of the outbuildings. It's a bedroom - or perhaps a dungeon? It has features of both. There's a soft bed, but stone walls with manacles hanging from them. A bathroom to one side, but also a hole in the ground and a hose coiled half out of sight beneath a stone bench.\n\nJoel drops you onto the bed, and before you can react, climbs on top of you, pinning you down with his bodyweight. Like most of the men you've seen so far, he's over six foot and with muscles to back it up, the sort that come from hard work rather than the gym. If he weren't about to rape you his chiseled face, chopped brown hair and rough hands could be considered attractive.\n\nIt takes a moment before you realize you're not about to be raped. He's just taking no chances as he finishes untying you. \"This'll be your new home for the next few days, while we get everything sorted. Someone will be by to speak with you, maybe tommorrow.\" He climbs off and stands as soon as he's done, no lingering touches or other unnecessary contact.\n\nYou rub your wrists and look around. You're pretty sure it's a cell now, not a bedroom. He's handsome and he has power over you, but maybe you can get some more answers before he leaves you alone and naked in your cell.\n\n" + options + "\n\n<em>Here you have the option of several different skill tests. During a skill test, you roll 2d6 + (skill / 10, round down). If you meet the difficulty, you pass. Don't worry if you can't pass every skill check, especially at first - you'll usually get better at the skill even if you fail.</em>\n\n<em>During random events, which test you choose determines </em>what happens<em>, while pass/fail determines the </em>mechanical rewards<em>. You won't miss anything during random events (and the intro) by failing tests.</em>";
       },
       next: {
         'Be cute and scared': {
@@ -765,7 +765,7 @@
     },
     IntroCuteYes: {
       text: function() {
-        return "You bite your lip and glance at his face, then away again, hugging your arms across your chest. \"That's a long time to be alone...\"\n\nHe reaches out to put a hand on your shoulder, then seeming to remember how naked you are, pulls it back. \"It's not that bad. A chance to think things over and have some privacy. You won't get much of that anymore.\"\n\nYou smile shyly in his direction and turn on the bed, pulling your knees up to your chest. \"Do you have to go right now?\"\n\n\"I'm afraid I do. Work waits for no woman.\" He does put his hand on your shoulder this time, giving it a brief squeeze before standing. \"Don't worry, the " + mistress + " treats " + her + " slaves well.\" He's clearly not used to using that word yet, especially not with attractive naked women.\n\n\"You're not a slave?\"\n\n\"Nope, just a hired hand. " + She + " treats us pretty well too.\" He grins, pats your shoulder again and makes his exit.\n\nThe lock clicks. You're alone.";
+        return "You bite your lip and glance at his face, then away again, hugging your arms across your chest. \"And you're just going to leave me here...\"\n\nHe reaches out to put a hand on your shoulder, then seeming to remember how naked you are, pulls it back. \"It's not that bad. A chance to think things over and have some privacy. You won't get much of that anymore.\"\n\nYou smile shyly in his direction and turn on the bed, pulling your knees up to your chest. \"Do you have to go right now?\"\n\n\"I'm afraid I do. Work won't wait.\" He does put his hand on your shoulder this time, giving it a brief squeeze before standing. \"Don't worry, the " + mistress + " treats " + her + " slaves well.\" He's clearly not used to using that word yet. Or maybe he's not used to the presence of attractive naked women.\n\n\"You're not a slave?\"\n\n\"Nope, just a hired hand. " + She + " treats us pretty well.\" He grins, pats your shoulder again and makes his exit.\n\nThe lock clicks. You're alone.";
       },
       effects: {
         skills: {
@@ -790,7 +790,7 @@
     },
     IntroClothesYes: {
       text: function() {
-        return "\"Um... do I have to stay naked?\" You lower your arms and pull your knees up to your chin, giving him a brief flash of first your breasts and then your pussy before you turn to face the wall, back in his direction.\n\n\"That you do.\" It's obvious he's noticed your state of nakedness - not that he could have helped it carrying you few minutes ago then pinning you to the bed, but now you're calling attention to it, and he's blushing slightly. It's cute.\n\n\"It's a bit drafty in here...\"\n\n\"There's a thermostat in the corner. This isn't a punishment, just a... um... reminder of your new status. As a slave.\" He's not really used to using that word, it's clear, especially not with attractive women.\n\n\"You're not one?\"\n\n\"Nope, just a hired hand.\" He pats you on the shoulder and flees the scene. You may not have gotten any clothes - not that you were really expecting to - but you're pretty sure you've at least made an impression.\n\nThe lock clicks. You're alone.";
+        return "\"Um... do I have to stay naked?\" You lower your arms and pull your knees up to your chin, giving him a brief flash of first your breasts and then your pussy before you turn to face the wall, your back in his direction.\n\n\"That you do.\" It's obvious he's noticed your state of nakedness - not that he could have helped it carrying you few minutes ago then pinning you to the bed, but now you're calling attention to it. He's blushing. It's cute.\n\nYou attempt more conversation. \"It's a bit drafty in here...\"\n\n\"There's a thermostat in the corner. This isn't a punishment, just a... um... reminder of your new status. As a slave.\" He's not really used to using that word, it's clear. Or perhaps he's not used to the presence of attractive naked women.\n\n\"You're not one?\"\n\n\"Nope, just a hired hand.\" He pats you on the shoulder and flees the scene. You may not have gotten any clothes - not that you were really expecting to - but you're pretty sure you've at least made an impression.\n\nThe lock clicks. You're alone.";
       },
       effects: {
         skills: {
@@ -858,7 +858,7 @@
   Data.events.ReleaseFromCell = {
     description: 'The mansion',
     text: function() {
-      return "You're woken from a sound sleep by a hush of air from the door opening. You stretch your arms up and rub your eyes, trying to make sense of your surroundings. Comfortable bed, stone walls, no clothes, a strange man watching you... you sit upright and pull the sheet up to cover your naked chest.\n\n\"Good morning, my nameless little whore. It's time to get you acquainted with the estate. I'd tell you to get dressed, but, well, you don't get to.\" He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their complete mercy.\n\n\"Come on, get a move.\" He comes over to the edge of the bed and gives the sheet a tug. You hang onto it for a moment before sense takes over. He's going to get his way, one way or another, and you'd rather not give him an excuse to make \"his way\" into something worse than a tour and introductions. He tugs the sheet again and you let it fall, leering at your breasts as you squirm in discomfort.\n\nHe leads you out of your cell into the early morning light, your arms firmly crossed over your chest, providing the least possible bit of modesty. The two of you walk along a cobbled path towards the main mansion.\n\n\"" + Ms + " " + Masterson + " is a good owner - like most of the other sex slaves here, you'll have a lot more freedom than you might have expected. The four of you are here as decoration and fuck toys, not laborers. That's not an excuse for laziness, but you won't have someone leaning over your shoulder telling you what to do every minute. How you make yourself pleasing to us is your decision.\" He stops walking suddenly, and as you nearly run into him, he reaches down between your legs to grope you. Your hands slap him away reflexively, and he takes the chance to grab a breast and squeeze, before stepping back and giving you space again.\n\n\"There's one important duty you have though. Your body's available to anyone who wants it at any time. The " + mistress + ", me, the field hands, visitors from town - if they're on the estate, you're at their disposal sexually. Only overseers can give you non-sexual orders, though. That's me, Mr. Stevens, Ms. Wendy. We're also the only ones - other than the " + mistress + " of course - who can give you long-standing orders. Once you're out of sight of anyone else, you're free. Understand?\"\n\n\"Yes.\"\n\n\"Yes Sir. My first order - I'm always Sir to you. The other overseers don't care so much, but I like it. I want a sir at the end of everything you say to me.\" He pauses, waiting for you to answer.\n\n\"Yes... sir.\" Now doesn't seem the time to push.\n\n\"Very good. Now, I'm going to have some fun with you later, but first we need to visit the " + mistress + ". We can't keep calling you slut forever, it's not specific enough, since that could mean any woman in the room. Time to get your new name. Exciting, isn't it, slut?\"";
+      return "You're woken from a sound sleep by a hush of air from the door opening. You stretch your arms up and rub your eyes, trying to make sense of your surroundings. Comfortable bed, stone walls, no clothes, a strange man watching you... you sit upright and pull the sheet up to cover your naked chest.\n\n\"Good morning, my nameless little whore. It's time to get you acquainted with the estate. I'd tell you to get dressed, but, well, you don't get to.\" He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their complete mercy.\n\n\"Come on, get a move.\" He comes over to the edge of the bed and gives the sheet a tug. You hang onto it for a moment before sense takes over. He's going to get his way, one way or another, and you'd rather not give him an excuse to make \"his way\" into something worse than a tour and introductions. He tugs the sheet again and you let it fall, leering at your breasts as you squirm in discomfort.\n\nHe leads you out of your cell into the early morning light, your arms firmly crossed over your chest, providing the least possible bit of modesty. The two of you walk along a cobbled path towards the main mansion.\n\n\"" + Ms + " " + Masterson + " is a good owner - like most of the other sex slaves here, you'll have a lot more freedom than you might have expected. The four of you are here as decoration and fuck toys, not laborers. That's no an excuse for laziness, but you won't have someone leaning over your shoulder telling you what to do every minute. How you make yourself pleasing to us is your decision.\" He stops walking suddenly, and as you nearly run into him, he reaches down between your legs to grope you. Your hands slap him away reflexively, and he takes the chance to grab a breast and squeeze, before stepping back and giving you space again.\n\n\"There's one important duty you have though. Your body's available to anyone who wants it at any time. The " + mistress + ", me, the field hands, visitors from town - if they're on the estate, you're at their disposal sexually. Only overseers can give you non-sexual orders, though. That's me, Mr. Stevens, Ms. Wendy. We're also the only ones - other than the " + mistress + " of course - who can give you long-standing orders. Once you're out of sight of anyone else, you're free. Understand?\"\n\n\"Yes.\"\n\n\"Yes Sir. My first order - I'm always Sir to you. The other overseers don't care so much, but I like it. I want a sir at the end of everything you say to me.\" He pauses, waiting for you to answer.\n\n\"Yes... sir.\" Now doesn't seem the time to push.\n\n\"Very good. Now, I'm going to have some fun with you later, but first we need to visit the " + mistress + ". We can't keep calling you slut forever, it's not specific enough, since that could mean any woman in the room. Time to get your new name. Exciting, isn't it, slut?\"";
     },
     next: 'Naming'
   };
@@ -975,12 +975,12 @@
 
   Data.jobs.Misbehave = {
     description: 'Misbehave',
-    title: "Get into trouble, setting yourself up for punishment later.",
+    title: "Get into trouble, setting yourself up for punishment later. Placeholder event to view punishment scenes.",
     time: 'Night',
     conditions: {
       misc: {
         confined: '!cell',
-        punishment: false
+        punishment: ''
       }
     },
     text: function() {
@@ -988,7 +988,7 @@
     },
     effects: {
       set: {
-        punishment: true
+        punishment: 'misbehaving'
       }
     }
   };
@@ -1056,7 +1056,7 @@
       }
     },
     text: function() {
-      return "You sit on your bed, legs crossed and eyes closed, attempting to be as present as possible. You reassure yourself that the past and the future don't need your attention right now. You notice your breath, feel the sensations as air flows in and out of your body. Breathing is relaxing and fluid. Listen carefully to the environment around you, content merely to observe...\n\nYou stand up, stretch, shake your whole body to restore the habit of motion. A good way to spend a few hours.";
+      return "You sit on your bed, legs crossed and eyes closed, attempting to be as present in the moment as possible. You reassure yourself that the past and the future don't need your attention right now. You notice your breath, feel the sensations as air flows in and out of your body. Breathing is relaxing and fluid. Listen carefully to the environment around you, content merely to observe...\n\nYou stand up, stretch, shake your whole body to restore the habit of motion. A good way to spend a few hours.";
     }
   };
 
@@ -1140,7 +1140,7 @@
         }
       },
       text: function() {
-        return "Taken away from your home and enslaved, humiliated, stripped naked, brutalized and generally completely out of control... you break down. It's not pretty, and you try to spare yourself the indignity of remembering too much, but it's a couple of hours before you manage to pull yourself together again.\n\nYou clean yourself up a little, splashing water over a tear-stained face. Fuck. Life is not looking up right now.";
+        return "Taken away from your home and enslaved, humiliated, stripped naked, brutalized and generally completely out of control... you break down, sobbing, howling and hiding under the blanket. It's not pretty, and you try to spare yourself the indignity of remembering too much, but it's a couple of hours before you manage to pull yourself together again. No one came to check on you.\n\nYou clean yourself up a little, splashing water over a tear-stained face. Fuck. Life is not looking up right now.";
       }
     },
     ReduceDespair: {
@@ -1170,7 +1170,7 @@
         }
       },
       text: function() {
-        return "So much has happened the last few days that you deserve a bit of rest. Curling up on your bed, you drift off, planning to just rest your eyes for a few minutes.\n\nA few hours later, you rub the sleep from your eyes and yawn. Whelp. There goes the " + time + ".";
+        return "So much has happened the last few days that you deserve a bit of rest. Curling up on your bed, you drift off, planning to just rest your eyes for a few minutes.\n\nA few hours later, you rub the sleep from your eyes and yawn. Whelp. There goes the " + g.time + ".";
       }
     },
     ReduceDetachment: {
@@ -1234,7 +1234,7 @@
   Data.events.ExploreNothing = {
     description: 'Explore the mansion',
     text: function() {
-      return "You wander around a bit, poking your head into various rooms, but don't manage to find anything interesting. All places you've been before, locked doors and sound coming from inside rooms you don't feel like interrupting lest you be required to join in and lose the rest of your day as someone's entertainment.";
+      return "You wander around a bit, poking your head into various rooms, but don't manage to find anything interesting. All places you've been before, locked doors and rooms with sounds you don't feel like interrupting lest you be required to join in and lose the rest of your day as someone's entertainment.";
     }
   };
 
@@ -1246,7 +1246,7 @@
       }
     },
     text: function() {
-      return "You've discovered... a pool. Why did no one tell you there was an indoor pool? It took a bit of finding - the thing is underground, no windows and an unmarked door. The lack of windows is an intentional part of the effect - blue and green light undulates slowly across the ceiling, giving the whole room the effect of being underwater. Pale blue tiles in rippling patterns slope downward into the water - there's no hard edge to the pool, just a steady slope down towards the deep end. No one's here at the moment, but there's a rack of fresh white towels at each side waiting use.\n\nYou take note. It's a beautiful place, very relaxing. Even if not going for a swim you might like to spend some time here.";
+      return "You've discovered... a pool. Why did no one tell you there was an indoor pool? It took a bit of finding - the thing is underground, no windows and an unmarked door. The lack of windows is an intentional part of the effect - blue and green light undulates slowly across the ceiling, giving the whole room the effect of being underwater. Pale blue tiles in rippling patterns slope downward into the water - there's no hard edge to the pool, just a steady slope down towards the deep end. No one's here at the moment, but there's a rack of fresh white towels at each side awaiting use.\n\nYou take note. It's a beautiful place, very relaxing. You might like to spend some time here even if you don't go for a swim.";
     }
   };
 
@@ -1270,7 +1270,7 @@
       }
     },
     text: function() {
-      return "In addition to the normal closets set aside for your use at any time of day or night (it's rather embarrassing, how many pairs of panties you've ruined or lost since coming here), you've found the storage room.\n\nIt's huge. You don't dare take anything out of it - you're not allowed more than the outfits the overseers have chosen to give you - but given how empty it is, you doubt anyone would mind if you spent a few hours... practicing. Yes, that's what you'll be doing. Definitely not drooling, that would be undignified. You can totally... practice... with that fur coat over there. Or even better, baggy jeans and a tshirt. You didn't think this country <i>made</i> clothes that didn't highlight a woman's sexuality.";
+      return "In addition to the two normal closets set aside for your use at any time of day or night (it's rather embarrassing how many pairs of panties you've ruined or lost since coming here), you've found the storage room.\n\nIt's huge. You don't dare take anything out of it - you're not allowed more than the outfits the overseers have chosen to give you - but given how unoccupied it feels, you doubt anyone would mind if you spent a few hours... practicing. Yes, that's what you'll be doing. Definitely not drooling, that would be undignified. You can totally... practice... with that fur coat over there. Or even better, baggy jeans and a t-shirt. You didn't think this country even <em>made</em> clothes that didn't highlight a woman's sexuality.";
     }
   };
 
@@ -1282,7 +1282,7 @@
       }
     },
     text: function() {
-      return "The library, oddly enough, is not very extensive. Oh, sure, when you stumble across a room filled floor to ceiling with books it's more than <i>you've</i> ever owned, but compared to the decadence displayed everywhere else in the mansion, one room tucked away in a corner of the fourth floor is hardly what you'd expected.\n\nStill, books. It seems well enough used - no dust to be found - but you can probably squirrel yourself up in one of those comfy overstuffed chairs and do some reading, if you like. Or study, if that's your thing. Or at take a nap.";
+      return "The library, oddly enough, is not very extensive. Oh, sure, when you stumble across a room with walls covered floor to ceiling with books it's more than <em>you've</em> ever owned, but compared to the decadence displayed everywhere else in the mansion, one room tucked away in a corner of the third floor is hardly what you'd expected.\n\nStill, books. It seems well enough used - no dust to be found - but you can probably squirrel yourself up in one of those comfy overstuffed chairs and do some reading if you like. Or study, if that's your thing. Or at take a nap. You do that last one now.";
     }
   };
 
@@ -1294,7 +1294,7 @@
       }
     },
     text: function() {
-      return "There's a recording studio. Of course there's a recording studio. It's not big, just enough for a couple of chairs, but it's soundproof, full of high quality electronics, and there's a closet full of beat up old instruments and songbooks. It must double as a practice room as well.\n\nThe place doesn't feel like it gets that much use, so it's probably safe to borrow it whenever you like. The worst they can do is... well, no, you don't want to think about the worst they can do to you. The worst they're <i>likely</i> to do is kick you out.";
+      return "There's a recording studio. Of course there's a recording studio. Silly to imagine there's a thing this estate isn't equiped for, no matter how unusual. It's not big, just enough for a couple of chairs, but it's soundproof, full of high quality electronics, and there's a closet full of beat up old instruments and songbooks. It must double as a practice room as well. The engineer's booth is empty.\n\nThe place doesn't feel like it gets that much use, so it's probably safe to borrow it whenever you like. The worst they can do is... well, no, you don't want to think about the worst they can do to you. The worst they're <em>likely</em> to do is kick you out.";
     }
   };
 
@@ -1306,7 +1306,7 @@
       }
     },
     text: function() {
-      return "You stumble across a great secret - Mr. Stevens' room. Well, it's probably not actually a secret - there is a sign on the door after all - but it feels like one. You stand there staring at the door dumbly for a moment before it opens.\n\nMr. Stevens is as surprised to see you as you are to see him. He blinks, then steps back into his room, gesturing you to follow.\n\nHe's decorated it much like you expected, from what little you know of him. There's a fireplace in one wall, with a huge leather chair facing it, flanked by bookshelves. The speckled grey and black tiled floor matches his mustache. His bed is spacious, neatly made. Everything is perfectly in its place.\n\n\"" + g.name + ". Why are you here?\"\n\nYou take a moment to formulate a response that won't get you punished - you haven't done anything wrong, you know that, but you want to be sure he knows it too. \"I didn't know your room was here, I was just passing by.\"\n\nHe frowns. Not, it takes you a moment to realize, at the content of your words - he's frowning at your slouching stance. \"You look like a slob, and like a free woman. Please return another evening and we'll see what we can do to fix that. But for now just go away. I'm busy.\"\n\nYou flee.";
+      return "You stumble across a great secret - Mr. Stevens' room. Well, it's probably not actually a secret, given there is a sign on the door, but it feels like one. You stand there staring at the door dumbly for a moment before it opens.\n\nMr. Stevens is as surprised to see you as you are to see him. He blinks, then steps back into his room, gesturing you to follow.\n\nIt's decorated much like you expected, from what little you know of him. There's a fireplace in one wall flanked by bookshelves, with a huge leather chair facing it. The speckled grey and black tiled floor matches his mustache. His bed is spacious and neatly made. Everything is perfectly in its place.\n\n\"" + g.name + ". Why are you here?\"\n\nYou take a moment to formulate a response that won't get you punished - you haven't done anything wrong, you know that, but you want to be sure he knows it too. \"I didn't know your room was here, I was just passing by.\"\n\nHe frowns. Not, it takes you a moment to realize, at the content of your words - he's frowning at your slouching stance. \"You look like a slob, and like a free woman. Please return another evening and we'll see what we can do to fix that. But for now just go away. I'm busy.\"\n\nYou flee.";
     }
   };
 
@@ -1318,7 +1318,7 @@
       }
     },
     text: function() {
-      return "While you do get fucked a lot, sometimes it would be nice to take your time, go at your own pace... or maybe practice deep-throating things so you don't feel so much like throwing up next time someone skullfucks you.\n\nThere are sex toys everywhere in this building. Like, you can't open a closet without finding a pair of vibrating dildos and a butt plug and maybe a blindfold. The trouble, though, is finding a place to use them in private, where the sounds you make won't draw someone wanting to take advantage of you.\n\nBut! You've just found a spot, a nice little balcony on the second floor (so no one inside can hear you) sheltered by trees (so no one outside can see you). And, of course, there's a chest full of naughty objects just waiting for use. Because going fifteen feet inside to fetch... a squirt gun filled with lube and a vibrator with a smiley face?... might ruin the mood. You close the chest again and try not to think about who decided to put it there.";
+      return "While you do get fucked a lot, sometimes it would be nice to take your time, go at your own pace... or maybe practice deep-throating things so you don't feel so much like throwing up next time someone skullfucks you.\n\nThere are sex toys everywhere in this building. Like, you can't open a closet without finding a pair of vibrating dildos and a butt plug and maybe a blindfold. The trouble though is finding a place to use them in private, where the sounds you make won't draw someone wanting to take advantage of you.\n\nBut! You've just found a spot, a nice little balcony on the second floor (so no one inside can hear you) sheltered by trees (so no one outside can see you). And, of course, there's a chest full of naughty objects just waiting for use. Because going fifteen feet inside to fetch... a squirt gun filled with lube and a vibrator with a smiley face?... might ruin the mood. You close the chest again and try not to think about who decided to put it there.";
     }
   };
 
@@ -1329,15 +1329,15 @@
     time: 'Morning',
     conditions: {
       misc: {
-        punishment: true
+        punishment: '!'
       }
     },
     text: function() {
-      return "They come for you midmorning, a polite knock on the door before they open it without waiting for you to respond. They, in this case, are a plump woman with beautiful golden waves of hair down her back and pursed lips, accompanied by a man who looks whispy, but has an iron grip when he catches one of your wrists. Caught off guard by the sudden motion, snick-snick, he cuffs your hands behind your back before it even occurs to you that resistance is possible.\n\n\"Come along, " + name + ". Time for your punishment.\" The woman doesn't seem unfriendly, but neither is she sympathetic - for you it may a traumatic experience, but for her it's just part of her job. \"You know what you've done.\"\n\nThe man, though, smiles at your discomfiture as he leads you out of the room and across the grounds. The destination is a squat building, one you " + (g.events.PunishmentMachine ? "haven't seen used before" : "haven't been to often") + ". The heavy wooden deer clicks closed behind the three of you ominously. There are no windows.\n\nYou're left in the dark a moment while the woman fumbles to find the light switch. \"Damn it Sorley, hold the door open while I find this damn thing.\"\n\nSorley just gives you a little shove in the shoulder, enough to remind you that he's there without moving you, his other hand on your wrists, still cuffed together behind your back. You're pretty sure you can feel him smirking.\n\nThe woman finally finds the light, revealing the room you've been brought to. Since it was a punishment, you were expecting grey stone walls and a concrete floor, but instead it looks more like a luxurious sitting room, with lush red carpet and black leather couches just begging to be sat un.\n\nYou don't get to sit on them, of course - as soon as you see it, you're certain what's about to happen next. The centerpiece of the room is a " + options + ".";
+      return "They come for you midmorning, a polite knock on the door before they open it without waiting for you to respond. They, in this case, are a plump woman with beautiful golden waves of hair down her back and pursed lips, accompanied by a man who looks whispy, but has an iron grip when he catches one of your wrists. Caught off guard by the sudden motion, snick-snick, he cuffs your hands behind your back before it even occurs to you that resistance is possible.\n\n\"Come along, " + name + ". Time for your punishment.\" The woman doesn't seem unfriendly, but neither is she sympathetic - for you it may a traumatic experience, but for her it's just part of her job. \"Time to pay the piper. You shouldn't go " + g.punishment + "\"\n\nThe man, though, smiles at your discomfiture as he leads you out of the room and across the grounds. The destination is a squat building, one you " + (g.events.PunishmentMachine ? "haven't seen used before" : "haven't been to often") + ". The heavy wooden deer clicks closed behind the three of you ominously. There are no windows.\n\nYou're left in the dark a moment while the woman fumbles to find the light switch. \"Damn it Sorley, hold the door open while I find this damn thing.\"\n\nSorley just gives you a little shove in the shoulder, enough to remind you that he's there without moving you, his other hand on your wrists, still cuffed together behind your back. You're pretty sure you can feel him smirking.\n\nThe woman finally finds the light, revealing the room you've been brought to. Since it was a punishment, you were expecting grey stone walls and a concrete floor, but instead it looks more like a luxurious sitting room, with lush red carpet and black leather couches just begging to be sat un.\n\nYou don't get to sit on them, of course - as soon as you see it, you're certain what's about to happen next. The centerpiece of the room is a " + options + ".";
     },
     effects: {
       set: {
-        punishment: false
+        punishment: ''
       }
     },
     next: {
@@ -1376,15 +1376,15 @@
     time: 'Night',
     conditions: {
       misc: {
-        punishment: true
+        punishment: '!'
       }
     },
     text: function() {
-      return "They come for you in the middle of the night, and your first sign that anything's happening is a sudden grip on your shoulders, pulling you up and rousing you from your sleep. Someone yanks a bag over your head before you can do more than shout in surprise, drawstring pulling tight around your neck. You try to raise your hands to pull it off, but strong hands grab each wrist and pull them together over your head, hauling you painfully upright and out of bed.\n\nYou nearly panic as you realize they're going to " + options + " you.";
+      return "They come for you in the middle of the night, and your first sign that anything's happening is a sudden grip on your shoulders, pulling you up and rousing you from your sleep. Someone yanks a bag over your head before you can do more than shout in surprise, drawstring pulling tight around your neck. You try to raise your hands to pull it off, but strong hands grab each wrist and pull them together over your head, hauling you painfully upright and out of bed. \"Bitch needs to learn that she shouldn't go " + g.punishment + ".\"\n\nYou nearly panic as you realize they're going to " + options + " you.";
     },
     effects: {
       set: {
-        punishment: false
+        punishment: ''
       }
     },
     next: {
@@ -1456,7 +1456,7 @@
       }
     },
     text: function() {
-      return "You're interrupted midafternoon by a polite knock on your door. Unusual - you're near the bottom of the totem pole around here, so even the other slaves usually just open the door on you. Grateful for the respect being shown, you set down your task and answer it quickly. In the doorway stands another slave named Robin, naked, glancing around furtively. You take the hint and invite her in.\n\n\"I, uh, I really want to eat you out. Like, right now.\"\n\nYou blink a few times. \"Why's that?\" It's not every day a cute redhead knocks on your door desperate to please you. She's both very cute and fire-hydrant red. The smell of female arousal and a faint buzzing follow her in to your room.\n\n\"I... um... I didn't please " + (she() === 'she' ? 'the Mistress' : 'one of the overseers') + ", and she thinks I need more practice with women. I'm not allowed to cum except when I get a woman off, and she won't... w-won't turn the vibrator off...\"\n\n" + options;
+      return "You're interrupted midafternoon by a polite knock on your door. Odd - you're near the bottom of the totem pole around here. Even other slaves usually just open the door on you. Grateful for the respect being shown, you set down your task and answer it quickly. In the doorway stands another slave named Robin, naked, glancing around furtively. You take the hint and invite her in.\n\n\"I, uh, I really want to eat you out. Like, right now.\"\n\nYou blink a few times. \"Why's that?\" It's not every day a cute redhead knocks on your door desperate to please you. She's both very cute and very red, hair and cheeks alike. The smell of female arousal and a faint buzzing follow her in to your room.\n\n\"I... um... I didn't please " + (she() === 'she' ? 'the Mistress' : 'one of the overseers') + ", and she thinks I need more practice with women. I'm not allowed to cum except when I get a woman off, and she won't... w-won't turn the vibrator off...\"\n\n" + options;
     },
     next: {
       'Grin and say no': 'LesbianBootyCallDenial',
@@ -1472,7 +1472,7 @@
       }
     },
     text: function() {
-      return "You grin, drawing the moment out. \"No.\"\n\n\"P-please? It's driving me crazy, why not?\"\n\n\"You look so cute like this!\" You reach out and tweak a nipple, causing her to moan. \"Come back tomorrow and I'll consider it.\"\n\nRobin looks at you with desperation, getting even more turned on by your flat refusal. You enjoy the sight of juices running down her thighs as she runs out of your room to continue her search. Maybe she'll find some other woman to satisfy her needs before she explodes and earns herself another punishment... but you doubt it.";
+      return "You grin, drawing the moment out. \"No.\"\n\n\"P-please? It's driving me crazy, why not?\"\n\n\"You look so cute like this!\" You reach out and tweak a nipple, causing her to moan. \"Come back tomorrow and I'll consider it.\"\n\nRobin looks at you with desperation. You enjoy the sight of juices running down her thighs as she runs out of your room to continue her search. Maybe she'll find some other woman to satisfy her needs before she explodes and earns herself another punishment... but you doubt it.";
     }
   };
 
@@ -1483,7 +1483,7 @@
       }
     },
     text: function() {
-      return "\"Down on your knees.\"\n\nRobin obeys instantly, and offers her spreads her legs eagerly when you nudge them apart. She moans eagerly as you move to the closet and fetch some items. Sexual implements are available in virtually any room of the mansion, a fact which usually works to your disadvantage, but right now is quite pleasant. \"How may I please you?\"\n\nYou don't answer, only return to stand in front of her. Gently you place harsh metal over her tender pink buds, eliciting a sharp intake of breath for each one. She doesn't flinch though, for which you reward her with a pat on the head. You finish her off with a blindfold.\n\n\"Good Robin. Now, I have some things to do before you interrupted, so you'll have to wait for me to finish. If you stay still like that for...\" you glance at the clock, \"ten minutes, I'll let you get me off.\"\n\nShe nods. You smile and pat her head again, and return to your work.\n\nRobin is indeed obedient. It's wonderfully distracting to have her kneeling at your feet, naked and dripping which a light buzz continues to emanate from her pussy.\n\nYou let her stew there for nine minutes - not quite the ten you promised - before finally setting down your work again. She perks up instantly as you move in her direction.\n\n" + options;
+      return "\"Down on your knees.\"\n\nRobin obeys instantly, and spreads her legs eagerly when you nudge them apart. She moans as you move to the closet and fetch some items. Sexual implements are available in any room of the mansion, a fact which mostly works to your disadvantage, but right now is quite pleasant. \"How may I please you?\"\n\nYou don't answer, only return to stand in front of her. Gently you place harsh metal over her tender pink buds, eliciting a sharp intake of breath for each one. She doesn't flinch though, for which you reward her with a pat on the head. You finish with a blindfold.\n\n\"Good Robin. Now, I had some things to do before you interrupted, so you'll have to wait for me to finish. If you stay still like that for...\" you glance at the clock, \"ten minutes, I'll let you get me off.\"\n\nShe nods. You smile and pat her head again, and return to your task.\n\nRobin is indeed obedient. It's wonderfully distracting to have her kneeling at your feet, naked and dripping while a quiet buzz continues to emanate from her pussy.\n\nYou let her stew there for nine minutes - not quite the ten you promised - before finally setting down your work again. She perks up instantly as you move in her direction.\n\n" + options;
     },
     next: {
       'Get her off': 'LesbianBootyCallTormentYes',
@@ -1493,13 +1493,13 @@
 
   Data.events.LesbianBootyCallTormentNo = {
     text: function() {
-      return "Grabbing both nipple clamps, you yank them off.\n\n\"Ahhh!\" She yelps and jerks forward at the intense pain, bringing her hands forward so she doesn't fall all the way over.\n\n\"That wasn't ten minutes, Robin.\" You remove the blindfold and wag your finger at her. \"I'm afraid you'll have to find someone else, since you couldn't obey me.\"\n\nShe hics, and looks at you with (entirely justified) betrayal. \"I... um... owwww...\" she staggers to her knees, the start of tears forming in her eyes.\n\nYou catch her and plant a kiss on her head before she can run out. \"You are a very sexy girl, and it's just so hot to see you like this.\"\n\nShe flees, each step sending droplets of her arousal flying. She may not like you much right now, but there's absolutely no doubt of how hot she's getting.";
+      return "Grabbing both nipple clamps, you yank them off.\n\n\"Ahhh!\" She yelps and jerks forward at the intense pain, bringing her hands forward so she doesn't fall all the way over.\n\n\"That wasn't ten minutes, Robin.\" You remove the blindfold and wag your finger at her. \"I'm afraid you'll have to find someone else, since you couldn't obey me.\"\n\nShe hics, and looks at you with (entirely justified) betrayal. \"I... um... owwww...\" she staggers to her knees, the start of tears forming in her eyes.\n\nYou catch her and plant a kiss on her head before she can run out. \"You are a very sexy girl, and it's just so cute seeing you like this that I couldn't bear to end it.\"\n\nShe flees, each step sending droplets of her arousal flying. She may not like you much right now, but there's absolutely no doubt of how hot she's getting.";
     }
   };
 
   Data.events.LesbianBootyCallTormentYes = {
     text: function() {
-      return "You strip down to your bare flesh, making her wait, and position your own pussy, now damp of its own accord, just in front of her. \"It hasn't been ten minutes yet,\" you caution her as you remove the nipple clamps - those draw gasps but no flinching - and her blindfold.\n\nShe tries to look up at you without inclining her head, but close as you are, quickly drops her eyes back to your crotch, inches away from her face. She makes a little noise of desperation, and inhales deeply.\n\nYou glance at the clock. A few seconds left. Fuck it, you're horny, and she's horny, and there's nothing stopping your from grabbing her face and shoving it into your crotch. She takes it as permission to move, and brings her hands up to grip your thighs. Robin's eager tongue flicks across your folds, and you tighten your grip in her short bob of shocking red hair, pressing her closer against you.";
+      return "You strip down to your bare flesh, making her wait, and position your own pussy, now damp of its own accord, just in front of her. \"It hasn't been ten minutes yet,\" you caution her as you remove the nipple clamps - those draw gasps but no flinching - and her blindfold.\n\nShe tries to look up at your face without inclining her head, but close as you are, quickly drops her eyes back to your crotch, inches away from her face. She makes a little noise of desperation, and inhales deeply.\n\nYou glance at the clock. A few seconds left. Fuck it, you're horny, and she's horny, and there's nothing stopping your from grabbing her face and shoving it into your crotch. She takes it as permission to move, and brings her hands up to grip your thighs. Robin's eager tongue flicks across your folds, and you tighten your grip in her short bob of shocking red hair, pressing her closer against you.";
     },
     next: 'LesbianBootyCallCleanup'
   };
@@ -1658,6 +1658,22 @@
     }
   };
 
+  window.maam = function() {
+    if (Data.storytellers[g.storyteller].gender === 'f') {
+      return "ma'am";
+    } else {
+      return 'sir';
+    }
+  };
+
+  window.Maam = function() {
+    if (Data.storytellers[g.storyteller].gender === 'f') {
+      return "Ma'am";
+    } else {
+      return 'Sir';
+    }
+  };
+
   mistress.toString = mistress;
 
   Mistress.toString = Mistress;
@@ -1677,6 +1693,10 @@
   Her.toString = Her;
 
   woman.toString = woman;
+
+  maam.toString = maam;
+
+  Maam.toString = Maam;
 
   window.saveLabel = function(game, short) {
     if (short) {
@@ -1965,7 +1985,7 @@
 }).call(this);
 
 (function() {
-  var appendEvent, applyEffects, chooseNextEvent, clamp, conditionsEventMatch, conditionsEventMisc, currentEvent, describeDiff, describeEffects, describeTest, describeUnion, drawChoice, drawEvent, ext, getCond, getEvent, j, key, len, nextType, numberMatch, ref, ref1, setInteraction, setSelectedLabel, skillBonus, type, value;
+  var appendEvent, applyEffects, chooseNextEvent, clamp, conditionsEventMatch, conditionsEventMisc, currentEvent, describeDiff, describeTest, describeUnion, drawChoice, drawEvent, ext, getCond, getEvent, j, key, len, nextType, numberMatch, ref, ref1, setInteraction, setSelectedLabel, skillBonus, type, value;
 
   Data.pseudoEvents.Refresh = function() {
     var content, label, todayEvents;
@@ -2054,13 +2074,15 @@
   options.toString = options;
 
   drawChoice = function(label, option) {
-    var diff, i, k, mainTitle, ref2, skillBonus, spendOptions, union;
+    var diff, i, k, mainTitle, r0, r1, ref2, skillBonus, spendOptions, union;
     if (typeof option === 'string') {
       return "<button disabled onclick='applyEvent(\"" + option + "\", \"" + label + "\")' title=\"" + (describeEvent(option)) + "\">" + label + "</button>";
     }
     skillBonus = Math.floor(g.skills[option.skill] / 10);
-    union = describeUnion(option.result[0], option.result[1]);
-    diff = [describeDiff(option.result[0], option.result[1]), describeDiff(option.result[1], option.result[0])];
+    r0 = getEvent(option.result[0]);
+    r1 = getEvent(option.result[1]);
+    union = describeUnion(r0, r1);
+    diff = [describeDiff(r0, r1), describeDiff(r1, r0)];
     mainTitle = "" + (union ? union + '\n&nbsp;\n' : '') + option.skill + " (" + skillBonus + ") + " + (option.mood ? option.mood + ' +' : '') + " 2d6 vs " + option.diff + ":\n      " + (diff[0].replace(/\n/g, '\n      ')) + "\n--------or--------\n      " + (diff[1].replace(/\n/g, '\n      '));
     if (option.mood) {
       spendOptions = {};
@@ -2215,37 +2237,11 @@
   };
 
   window.describeEvent = function(label) {
-    var amount, event, item, k, len1, ref2, ref3, ref4, text;
-    event = getEvent(label);
-    if (!event) {
-      return '';
-    }
-    text = [];
-    if (event.title) {
-      text.push(event.title);
-    }
-    ref2 = ['mood', 'skills'];
-    for (k = 0, len1 = ref2.length; k < len1; k++) {
-      type = ref2[k];
-      if ((ref3 = event.effects) != null ? ref3[type] : void 0) {
-        ref4 = event.effects[type];
-        for (item in ref4) {
-          amount = ref4[item];
-          if (g.mood[amount] != null) {
-            text.push(item + " +" + (skillBonus(amount)) + " (" + amount + ")");
-          } else {
-            text.push(item + " +" + amount);
-          }
-        }
-      }
-    }
-    return text.join('\n');
+    return describeDiff(getEvent(label), {});
   };
 
-  describeUnion = function(label1, label2) {
-    var amount, event1, event2, item, k, len1, ref2, ref3, ref4, ref5, text;
-    event1 = getEvent(label1);
-    event2 = getEvent(label2);
+  describeUnion = function(event1, event2) {
+    var amount, item, k, len1, ref2, ref3, ref4, ref5, text;
     text = [];
     if (event1.description && event1.description === event2.description) {
       text.push(event1.description.call(event));
@@ -2261,7 +2257,7 @@
             if (g.mood[amount] != null) {
               text.push(item + " +" + (skillBonus(amount)) + " (" + amount + ")");
             } else {
-              text.push(item + " +" + amount);
+              text.push(item + " " + (amount > 0 ? '+' + amount : amount));
             }
           }
         }
@@ -2270,10 +2266,11 @@
     return text.join('\n');
   };
 
-  describeDiff = function(label1, label2) {
-    var amount, event1, event2, item, k, len1, ref2, ref3, ref4, ref5, ref6, text;
-    event1 = getEvent(label1);
-    event2 = getEvent(label2);
+  describeDiff = function(event1, event2) {
+    var amount, item, k, len1, ref2, ref3, ref4, ref5, ref6, text;
+    if (!event1) {
+      return '';
+    }
     text = [];
     if (event1.description && event1.description !== event2.description) {
       text.push(event1.description);
@@ -2289,7 +2286,7 @@
             if (g.mood[amount] != null) {
               text.push(item + " +" + (skillBonus(amount)) + " (" + amount + ")");
             } else {
-              text.push(item + " +" + amount);
+              text.push(item + " " + (amount > 0 ? '+' + amount : amount));
             }
           }
         }
@@ -2311,36 +2308,12 @@
       return;
     }
     currentEvent = event;
-    text = describeEffects(event.description, event.effects) + event.text.call(event);
+    text = describeDiff(event, {}) + event.text.call(event);
     if (!text) {
       return;
     }
     div.innerHTML = '<div>' + text.split('\n\n').filter(Boolean).join('</div><div>') + '</div>';
     return div;
-  };
-
-  describeEffects = function(description, effects) {
-    var amount, item, k, len1, ref2, ref3, text;
-    if (!(description || (effects != null ? effects.mood : void 0) || (effects != null ? effects.skills : void 0))) {
-      return '';
-    }
-    text = [];
-    ref2 = ['mood', 'skills'];
-    for (k = 0, len1 = ref2.length; k < len1; k++) {
-      type = ref2[k];
-      if (effects != null ? effects[type] : void 0) {
-        ref3 = effects[type];
-        for (item in ref3) {
-          amount = ref3[item];
-          if (g.mood[amount] != null) {
-            text.push(item + " +" + (skillBonus(amount)) + " (" + amount + ")");
-          } else {
-            text.push(item + " +" + amount);
-          }
-        }
-      }
-    }
-    return "<div class=\"effects\">" + (description ? description + '<br>' : '') + (text.join(', ')) + "</div>";
   };
 
   setInteraction = function(interaction) {

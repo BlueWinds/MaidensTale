@@ -4,7 +4,7 @@ Data.events.AboutYou =
     moodSliders = for label, rating of g.mood when not alreadySeenMoods[label]
       opposed = Data.opposedMood[label]
       alreadySeenMoods[opposed] = true
-      "<div><label>#{label}<br>#{opposed}</label>#{moodSlider(rating, g.mood[opposed])}</div>"
+      "<div><label>#{label}<br>#{opposed}</label>#{moodSlider(rating, g.mood[opposed], label, opposed)}</div>"
 
     skillSliders = ("<div><label>#{label}</label>#{skillSlider(rating)}</div>" for label, rating of g.skills)
 
@@ -22,10 +22,10 @@ Data.events.AboutYou =
 
 clamp = (value, min, max)-> Math.max(min, Math.min(max, value))
 
-moodSlider = (mood, opposed)->
+moodSlider = (mood, opposed, moodLabel, opposedLabel)->
   moodW = clamp(mood * 10, 3, 97)
   opposedW = clamp(opposed * 10, 3, 97)
-  """<slider style="width: 100px" title="#{mood} / #{opposed}">
+  """<slider style="width: 100px" title="#{mood} #{moodLabel}\n#{opposed} #{opposedLabel}">
     <div class="bottom" style="width: #{Math.min(50 - moodW, 100 - moodW - opposedW)}px"></div>
     <div class="bottom mood" style="width: #{moodW}px"></div>
     <div class="top opposed" style="width: #{opposedW}px"></div>
