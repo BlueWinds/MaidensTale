@@ -1,0 +1,8 @@
+#!/bin/bash
+set -o errexit
+grunt build
+scp index.html threewestwinds.com:MaidensTale/index.html
+zip MaidensTale index.html
+./butler login
+./butler push MaidensTale.zip bluewinds/maidens-tale:linux-64
+echo "Deployed."
