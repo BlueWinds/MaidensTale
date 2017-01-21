@@ -38,9 +38,13 @@ window.Data =
         Sundress: "Skimpy flower-patterned sun dress"
         Jeans: "X-backed teal blouse and skinny jeans"
         Miniskirt: "Hip-hugging black miniskirt and low cut red blouse"
+  updates: [
+    -> delete g.events.ContentFinished
+  ]
 
 window.Game =
   day: 0
+  version: Data.updates.length
   events: {Intro: 0} # In the form {eventName: lastOccurrance}
   history: [['Intro']] # In the form [[Day0Event1, Day0Event2, ...], [Day1Event1], ...]. Start it off which the event you want to open a new game with.
   upcoming: [] # A list of upcoming events, pulled from when the "current event chain" runs out of items.

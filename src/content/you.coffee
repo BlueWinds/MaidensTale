@@ -38,7 +38,7 @@ skillSlider = (skill)->
   </slider>"""
 
 clothesDesc =
-  Sundress: 'wearing a skimpy floral sundress'
+  Sundress: 'wearing a skimpy floral sun dress'
   Jeans: 'wearing skinny jeans and an x-backed teal blouse'
   Miniskirt: 'wearing a hip-hugging black miniskirt and low cut red blouse'
 

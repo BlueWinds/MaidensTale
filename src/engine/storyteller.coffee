@@ -69,9 +69,11 @@ Data.pseudoEvents.StartDay = ->
   randomEvent = findEvent()
   eventTime = Data.randomEvents[randomEvent]?.time
   for time, index in Data.times
-    choice = if conditionsMatch(g.plans[index]) then g.plans[index] else Object.keys(findJobs(time))[0]
-    g.upcoming.push(choice)
-    if eventTime is time then g.upcoming.push(randomEvent)
+    if eventTime is time
+      g.upcoming.push(randomEvent)
+    else
+      choice = if conditionsMatch(g.plans[index]) then g.plans[index] else Object.keys(findJobs(time))[0]
+      g.upcoming.push(choice)
   g.upcoming.push('PlanDay')
 
   g.day++

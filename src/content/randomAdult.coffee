@@ -5,7 +5,7 @@ Data.randomEvents.LesbianBootyCall =
     misc:
       confined: 'manor'
   text: ->"""
-    You're interrupted midafternoon by a polite knock on your door. Odd - you're near the bottom of the totem pole around here. Even other slaves usually just open the door on you. Grateful for the respect being shown, you set down your task and answer it quickly. In the doorway stands another slave named Robin, naked, glancing around furtively. You take the hint and invite her in.
+    You're interrupted mid-afternoon by a polite knock on your door. Odd - you're near the bottom of the totem pole around here. Even other slaves usually just open the door on you. Grateful for the respect being shown, you set down your task and answer it quickly. In the doorway stands another slave named Robin, naked, glancing around furtively. You take the hint and invite her in.
 
     "I, uh, I really want to eat you out. Like, right now."
 
@@ -120,7 +120,7 @@ Data.randomEvents.OverseerCarWash =
 
     Your destination is a car - red, sporty, mud splashed on the wheels and undercarriage. "Wash it."
 
-    The day is sunny and warm, so being outside in your skivies isn't too uncomfortable... or it wouldn't be if Wendy weren't watching you intently. She sits in the shade under a nearby tree as you gather bucket, suds, a hose...
+    The day is sunny and warm, so being outside in your skivvies isn't too uncomfortable... or it wouldn't be if Wendy weren't watching you intently. She sits in the shade under a nearby tree as you gather bucket, suds, a hose...
     #{options}
   """
   next:
@@ -158,4 +158,87 @@ Data.events.OverseerCarWashPunishment =
     "Dammit, I have to get going. Wash the soap off, you can finish some other time." Though she's trying to scowl, you can tell she doesn't really mean it. Also, she's a little flushed, and not just from the sun.
 
     Mission accomplished.
+  """
+
+Data.randomEvents.OverseerStatue =
+  description: "Be Decoration"
+  time: 'Evening'
+  conditions:
+    misc:
+      confined: 'manor'
+  text: ->"""
+    "Follow me." Mr. Stevens walks past, demanding your obedience without even slowing down his pace. You follow.
+
+    "How does #{she} expect me to get everything ready on such short notice..." he mutters to himself, smoothing back his hair with one hand as he rushes to the ballroom, stopping here and there to speak with other helping hands. There seem to be a lot of servants around, and you don't recognize half of them. They must be hired help for whatever event Stevens is trying to organize.
+
+    "Right, #{g.name}. You stand here." He points to one side of the entryway to the ballroom. "Not yet, when the guests arrive," he gestures impatiently as you take the indicated place. "You get naked and stand there with your eyes closed. Don't open them and don't move. Now where's Robin... go find Robin, then come back here and get ready. She knows the drill, she can explain the rest." Mr. Stevens frowns at a servant carrying a bucket full of ice and wine bottles, and you take the opportunity to escape his gaze.
+
+    You find Robin in her room, brushing out her hair. It's even redder than usual, if possible, and must be freshly dyed. She's a sex-slave, favorite toy for many of the men on the estate, as cute as a button and quite young. Much like you, in many ways.
+
+    "Mr. Stevens wants us in the main hall for an event. We're supposed to be naked and stand still and not open our eyes. He said you could explain more."
+
+    Robin sighs and puts down her brush. "If you need to go to the restroom, better do that first. We're going to be decoration all evening. First one who opens their eyes or moves from the spot gets to be the door-prize. I shrieked when someone stuck a finger up my bum - turns out they'd been doing that to Patty for five minutes before they started on me. Bloody Patricia, she's made of stone. I can't help being sensitive. I got loaned out for three days to a cranky old man who'd never had a slave before."
+
+    #{options}
+  """
+  next:
+    'Do your best':
+      skill: 'Concentration'
+      diff: 11
+      result: ['OverseerStatueYes', 'OverseerStatueNo']
+    "Hide in Robin's room": 'OverseerStatuePunishment'
+
+Data.events.OverseerStatueYes =
+  effects:
+    mood: {Detachment: 2}
+    skills: {Concentration: 1}
+  text: ->"""
+    You briefly consider just staying here, hiding from Mr. Stevens until the party's over. He's so busy with other things, no way he'll notice you're gone. You shake your head and dismiss the idea. You don't really want to be punished for disobeying a direct order. The two of you stash your clothing in Robin's room and scurry down. You take your places on either side of the entry way in your slave uniforms, which is just another way of saying nude. You obediently close your eyes as soon as you catch sight of the first guest.
+
+    The air is slightly chill against your skin, causing your nipples to stand erect, and your crotch is painfully warm as you listen to all the people walking around, talking to each other, observing your unshielded body and wondering what they should do to try and make you moan or squeal or gasp.
+
+    It begins lightly - now and then, someone will reach over and tweak your nipples or caress your sides. You bear all of it silently, wondering if Robbin is getting the same attention nearby. A woman's lips on your neck nearly do you in, but you bear it and enjoy the sensation silently as she works her way along your throat and up to your lips. She shoves her tongue into your mouth, and you respond greedily - but silently.
+
+    By the end of the evening though you can hear people around you talking louder, and smell wine on the breath of those standing around you. A hand settles on the small of your back, trying to draw you away from the wall, but wary of Mr. Stevens' orders, you resist.
+
+    "Come," he whispers in your ear - it is Mr. Stevens himself. You allow him to lead you to the middle of the room, and then suddenly you're pressed up against Robbin. "Make out with her."
+
+    Having been stimulated and exposed all night, you need no second prompting, and neither does Robbin. The two of you remain completely silent as you grope each other's breasts. She runs a hand through your hair, and you nibble at her ear.
+
+    "Well, since they've done so well, I think we'll just have to up the stakes," you recognize #{Ms}. #{Masterson}'s voice. "Can't have you the party end before Ms. Landel gets her door prize." You draw a sudden sharp breath as something presses against your pussy, and given her Robbin mirrors the with a sudden tenseness in her body, you can only assume the same thing has happened to her. The dildo slides into you. It starts to vibrate.
+
+    "Now girls, don't stop making out. Remember, first one to make a squeal goes home with Ms. Landel."
+
+    The vibrator grows stronger. You arch your back, pressing your breasts into Robbin, biting your tongue and trying not to moan. You're saved, though - Robbin lets out a sob and spasms in your arms. Her fingers dig into your back as she jerks against you and moans.
+
+    "Well, looks like we have a winner. Well done, #{g.name}. Robbin, get yourself cleaned up and attend to Ms. Landel. I believe your car is already out front?"
+
+    Having won the competition, you give up on silence. It's your turn to sag against Robbin, ignoring her attempts to pull away and obey the order. You pull her knee between your legs and start humping it greedily, pressing the vibrator further into your cunt.
+
+    "Now isn't that a delightful sight. It makes me want to torment you more, though." The #{mistress} pulls you away from Robbin, and with a wet slurp, pulls the vibrator out of you. "#{g.name}, you're forbidden to cum tonight."
+
+    You groan and open your eyes, trying to form words into a coherent complaint. People laugh at your expression, and you're suddenly reminded of your surroundings. You glance at #{Ms}. #{Masterson}, and at #{her} nod that you're free to go, flee the scene with a noise halfway between a whimper and a howl.
+  """
+
+Data.events.OverseerStatueNo =
+  ext: 'OverseerStatueYes'
+  effects:
+    mood: {Detachment: 1}
+    skills: {Concentration: 1}
+
+Data.events.OverseerStatuePunishment =
+  effects:
+    mood: {Hope: 1}
+    skills: {Bluffing: 1}
+    set: {punishment: 'hiding from her duties at a party'}
+  text: ->"""
+    You suggest that Mr. Stevens is so busy that, maybe, he won't have time to come looking for the two of you. You'll get punished, doubtless, but it might be better than the alternative. Maybe?
+
+    Robbin considers the idea, a mischievious spark growing in her eye. "I bet we could even sneak in and grab some nice food from the kitchen. If we're going to get whipped for slacking off, may as well go all the way, right? You get snacks, I'll get other things."
+
+    Agreeing to her plan, you make your way to the kitchen. You grab a plate of crackers and cheese sitting unattended on the counter. No one will miss it, and none of the kitchen staff give you so much as a second glance.
+
+    You get back before Robbin does. Setting the tray on the floor, you flop across one of the bean bags decorating her floor and enjoy a bite of cheese. It's fantastic. She returns before you can take a second, and in her arms she's carrying... pajamas. Wow. So comfy, and not at all sexualized.
+
+    "Is this a good idea, or is this a good idea?" She throws a pair of comfy bottoms at your face, laughing. You have to agree. Excellent idea. You hope whatever punishment the overseers come up with isn't too bad, but you'll have a hard time regretting this choice regardless. You spend a fun night with Robbin, lounging, snacking and talking of girly things.
   """

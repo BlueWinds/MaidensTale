@@ -27,11 +27,11 @@ for type in ['events', 'randomEvents', 'jobs']
       delete value.ext
       Object.defaults(value, ext)
 
-window.drawHistory = ->
+window.drawHistory = (onlyOnce)->
   content = document.getElementById 'content'
   for day, events of g.history when day > g.day - 5
     for label in events
-      if text = drawEvent(getEvent(label))
+      if text = drawEvent(getEvent(label), onlyOnce)
         content.appendChild text
   setInteraction(true)
   smoothScroll(content.offsetHeight)
@@ -126,11 +126,11 @@ window.applyEvent = (label, selectedLabel, scroll = true)->
     return Data.pseudoEvents[label](selectedLabel)
 
   event = getEvent(label)
-  appendEvent(event, selectedLabel, scroll)
-
   applyEffects(event.effects)
   g.events[label] = g.day
   g.history[g.day].push(label)
+
+  appendEvent(event, selectedLabel, scroll)
 
   if next = chooseNextEvent(event)
     applyEvent(next, null, false)
@@ -158,12 +158,15 @@ window.applyTest = (test, selectedLabel, spent = 0)->
 applyEffects = (effects)->
   unless effects then return
 
+  description = []
   for mood, amount of effects.mood
     opposed = Data.opposedMood[mood]
     g.mood[mood] = clamp(g.mood[mood] + amount, 0, 10 - g.mood[opposed])
+    description.push "#{if amount > 0 then '+' + amount else amount} #{mood}"
   for skill, amount of effects.skills
     if g.mood[amount]? then amount = skillBonus(amount)
     g.skills[skill] = clamp(g.skills[skill] + amount, 0, 100)
+    description.push "+#{amount} #{skill}"
   for key, value of effects.set
     if typeof value is 'object'
       for subKey, subValue of value
@@ -171,6 +174,12 @@ applyEffects = (effects)->
     else
       g[key] = value
   effects.call?()
+
+  content = document.getElementById 'content'
+  div = document.createElement('div')
+  div.classList.add 'effects'
+  div.innerHTML = description.join(', ')
+  content.appendChild div
 
 skillBonus = (mood)-> 2 + Math.floor(g.mood[mood] / 3)
 
@@ -208,12 +217,16 @@ describeTest = (test)->
   return """Test #{test.skill}: #{skillRating} + 2d6 vs. #{test.diff}
   +2 for each #{test.mood} spent (have #{g.mood[test.mood]})"""
 
-drawEvent = (event)->
+onceEvents = []
+drawEvent = (event, onlyOnce)->
   div = document.createElement('div')
   unless event.text then return
 
+  if onlyOnce
+    if event.text in onceEvents then return
+    onceEvents.push event.text
   currentEvent = event
-  text = describeDiff(event, {}) + event.text.call(event)
+  text = event.text.call(event)
   unless text then return
 
   div.innerHTML = '<div>' + text.split('\n\n').filter(Boolean).join('</div><div>') + '</div>'

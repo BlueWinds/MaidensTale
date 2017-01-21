@@ -30,4 +30,6 @@ Wendy - One of the overseers, a plush woman with long golden waves of hair and a
 
 Joel - Hardworking field hand, relatively new to the estate. Tall, muscular, handsome, probably a little past twenty.
 
-Robin - Another slave, she's been here six months before you arrived, enslaved on her 18th birthday. Cute, petite, hair red as a blushing bride, it seems everyone's delight to tease her sexually.
+Robin - Another slave, she's been here a year when you arrive, enslaving herself on her 18th birthday. Cute, petite, hair red as a blushing bride, it seems everyone's delight to tease her sexually.
+
+Tits - Another slave, this is her sixth year year. Middle aged, massive knockers, long brown curls and olive skin.

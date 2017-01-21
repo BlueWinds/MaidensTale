@@ -23,7 +23,7 @@ Object.assign Data.events,
     effects:
       mood: {Pride: -2, Humility: 1}
     text: ->"""
-      You're a slave. Really, it'd probably be better if you accepted the fact that these people have complete control over your life. Even if you escaped from them, you'd still be in a foreign country, with no money, no friends, and your face on a wanted poster. Whatever your eventual plans... for now, it'd be better not to antagonize them <em>too</em> much.
+      You're a slave. Really, it'd probably be better if you accepted the fact that these people have complete control over your life. Even if you escaped from them, you'd still be in a foreign country, with no money, no friends, your face on a wanted poster and your signature on a document marking you as property. Whatever your eventual plans... for now, it'd be better not to antagonize them <em>too</em> much.
     """
 
   ReduceHumility:
@@ -61,7 +61,7 @@ Object.assign Data.events,
     text: ->"""
       So much has happened the last few days that you deserve a bit of rest. Curling up on your bed, you drift off, planning to just rest your eyes for a few minutes.
 
-      A few hours later, you rub the sleep from your eyes and yawn. Whelp. There goes the #{g.time}.
+      A few hours later, you rub the sleep from your eyes and yawn. Welp. There goes the #{g.time}.
     """
 
   ReduceDetachment:
@@ -86,8 +86,4 @@ Object.assign Data.events,
         Detachment: [0, 1]
     effects:
       mood: {Spirit: 1}
-    text: ->"""
-      So what if you're a slave? That's no excuse to laze around all day and wait for things to happen. You're lucky enough to have a good amount of freedom (within the confines set by your #{Mistress}), so it's time to get up and use it!
-
-      You spend a few hours trying to stir up some motivation. It doesn't actually accomplish anything, but it might help you accomplish something later. You hope.
-    """
+    ext: 'ReduceDetachment'

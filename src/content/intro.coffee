@@ -5,9 +5,9 @@ Object.assign Data.events,
 
       You roll over in your cage, quickly running up against the bars when you try to stretch. You sit upright, drawing an appreciative chuckle from the man who addressed you. It probably had something to do with the sight of hay clinging to your nude breasts.
 
-      This is not how you expected your vacation to go. You'd planned on a nice relaxing drive down the coast, resting wherever fancy landed you, no cares, plenty of time to see the sights, meet the strangers, get drunk at bars... And now here you are. Whoops.
+      This is not exactly how you expected your vacation to go. Well, 'vacation' - signing up for a one year slave contract wouldn't be most people's idea of a vacation, but for whatever reason it seemed like a good idea at the time. You saw a doctor, spoke with a lawyer, signed a lot of papers, showed up at the airport, handed over your identification... And now here you are.
 
-      A #{options} girl like you should have known better than to take a drink from a stranger.
+      A #{options} girl like you shouldn't end up naked in a cage in a foreign country. Whoops.
 
       <em>You have #{Object.keys(Game.skills).length} different possible skills, ranging from 0 to 100. Different events will offer you chances to raise them over time, and events will present options with various chances of success depending on your ratings.</em>
 
@@ -27,13 +27,13 @@ Object.assign Data.events,
 
       "I..."
 
-      He cuts you off. "Doesn't matter. You'll fuck who you're told to, and you'll learn to enjoy it. Now go to the showers and get yourself cleaned up. You want to look nice for the buyers. That's for your benefit as well as mine. You go for a high price, you get treated like a worthy prize, yes? You don't want to end up a street trash whore."
+      He cuts you off. "Doesn't matter. You'll fuck who you're told to, and you'll learn to enjoy it. Now go to the showers and get yourself cleaned up. You want to look nice for the buyers, attract someone who'll treat you well. You don't look like a livestock kinda girl."
 
-      Two days ago you were a normal woman, living your normal life. Now you're up for sale in an Anglani market. You'd never heard of Anglani before three days ago, when you glimpsed it on the arrival gate, disembarking from your airplane. How they'd arranged to have a squirming duffle bag pass through security back home was a mystery to you. When you got off the plane, you were in for another shock: slavery is legal here, and you are now property. The customs official explained it all very clearly, in a bored tone - you can't be killed, that's still a crime, but anything short of that is at your owner's discretion. Your immigration form - filled out for you - didn't state a name. You aren't allowed a name until your master chooses one for you. And a slave trading company - your current owner - has no interesting in naming you. That's a privilage be for your new master.
+      Two days ago you were a normal woman, living your normal life. Now you're up for sale in an Anglani market. You'd never heard of Anglani before last month, when you saw a posting on your favorite porn site. A supposedly real-life account of a voluntary sex slave. It was hot. You schlicked yourself to exhaustion, then went to see if there was more by that author. Nope, but the search led you to a web portal, and to reviews, and to... well, eventually to paperwork, a six digit sum in your bank account, and an airplane. It was all very legal. You can't be killed or maimed, but anything short of that is at your owner's discretion. Your immigration form - filled out for you - didn't state a name. You aren't allowed a name until your master chooses one for you.
 
       Everything since then has been a blur. Somehow you find you've managed to wash yourself - with that done, rough hands drape you in an elegant gown, do your hair, apply makeup and otherwise prepare you in a hurry, getting you ready to sell for the highest possible price. And, just like that, you find yourself stumbling onto the stage.
 
-      "Ladies and Gentlemen, our next piece of meat is a real prize, a genuine never owned free woman. And boy doesn't she look excellent tonight, you can just tell what a #{options} girl she'll be.
+      "Ladies and Gentlemen, our next piece of meat is a real prize, a genuine never-before-owned free woman. And boy doesn't she look excellent tonight, you can just tell what a #{options} girl she'll be.
     """
     next:
       Pretty: 'IntroPretty'
@@ -122,9 +122,13 @@ Object.assign Data.events,
       set:
         profession: 'Exotic Dancer'
     text: ->"""
-      The bidding starts slow, picking up as the auctioneer reminds them that you've never been a slave, and climbing even more fiercely when you're stripped naked on stage. It's all a blur. You can't hear the numbers being shouted out. With so much bright light on the stage you can barely see the crowd, but you manage to pick out some faces right up in the front row. Most of the people present aren't bidding - they're just here to enjoy the show. That's you.
+      The bidding starts slow, picking up as the auctioneer reminds them that you've never been a slave before, and climbing even more fiercely when you're stripped naked on stage. It's all a blur. You can't hear the numbers being shouted out. With so much bright light on the stage you can barely see the crowd, but you manage to pick out some faces right up in the front row. Most of the people present aren't bidding - they're just here to enjoy the show. That's you.
 
-      "Going once..." With a start you realize you're about to be sold. To the hideous man on the far left. Everyone's left him plenty of space. You imagine you can smell him from all the way up here. That's... that's not good. But he hesitated a long time before that last bid - one more and he'll probably be out of the running. You look desperately across the crowd. Nothing. Wait, is that... it's a hand! Someone else has made a bid.
+      "Going once..." With a start you realize you're about to be sold. You squint desperately, trying to see who bid on you, but the stage lights are blinding. You can't see anything. "Sold! If you're one of the winners, please come and meet her in the back room."
+
+      One of the winners...? You're not quite sure... oh, right. You read about this. It's hard to think straight given how hot you are right now. The top four bidders all present themselves, and you have your pick. A nice compromise between the fantasy of helplessness and the reality of the fact that you're here voluntarily. Or at least you were. It's too late to back out now, even if you wanted to. The air is a little chill, your nipples erect, and your pussy oh so very demanding. You resist touching yourself while you wait for your new owner to arrive. That would be just too embarrassing.
+
+      After a minute or two they arrive as a group, two women and a man, led by the man who woke you up this morning. You spend a few minutes speaking with them, but your decision was made instantly.
 
       #{options}
 
@@ -291,7 +295,7 @@ Object.assign Data.events,
       set:
         storyteller: 'danni'
     text: ->"""
-      You lock eyes with the young woman who just bid, hardly older than you but clearly used to command. Long dark curls roll past her shoulders, and you sense what seems to be sympathy in her smile.
+      You lock eyes with the young woman, hardly older than you but clearly used to command. Long dark curls roll past her shoulders, and you sense what seems to be sympathy in her smile.
     """
     next: 'IntroHome'
   IntroNick:
@@ -300,7 +304,7 @@ Object.assign Data.events,
       set:
         storyteller: 'nick'
     text: ->"""
-      You catch the eye of the older man who just bid, with salt and pepper hair and a neatly trimmed beard. He smiles, a mixture of reassurance and sensuality.
+      You catch the eye of the older man, with salt and pepper hair and a neatly trimmed beard. He smiles, a mixture of reassurance and sensuality.
     """
     next: 'IntroHome'
   IntroSarah:
@@ -309,17 +313,21 @@ Object.assign Data.events,
       set:
         storyteller: 'sarah'
     text: ->"""
-      You catch the eye of the older woman who just bid, and are rewarded by an electric thrill running up your spine. Even from across the room, she manages to make you feel like prey.
+      You catch the eye of the older woman, and are rewarded by an electric thrill running up your spine. Even without saying a word she manages to make you feel like prey.
     """
     next: 'IntroHome'
 
   IntroHome:
     text: -> """
-      "Going once... going twice... sold! Sold to one of our favorite customers. You can collect your merchandise out back, #{maam}. We'll have it ready for you in a few minutes."
+      "You're sure? Remember, you'll be #{hers} for a full year."
 
-      It takes you a moment to realize that "it" refers to "you," but your realization isn't necessary. Hands hustle your naked body off stage so the auctioneer can get on with the rest of the night. You're left in the hands of a single guard. Briefly, you consider trying to escape. You're not bound, and there's a whole crowd of people nearby you could try to get lost in if you could grab some clothes... You completely abandon the idea when you get a better look at the guard. He's at least a foot taller than you and seemingly made of concrete and muscle. He smirks when he sees you looking.
+      You nod, attempting to make it look decisive, but your hands are trembling.
 
-      "Ready as usual" turns out to involve a great deal of rope and cloth - cloth stuffed in your mouth holding your jaw open, then wrapped around your head to hold it in place. More cloth around your eyes, and rope pulling your knees up to your chest and your arms folded along your sides. The whole procedure occurs without regard for your comfort or compliance, leaving you blind, mute and immobile, folded up like a little pill and abandoned on the floor. You're still naked.
+      The auctioneer smiles, and, your sole remaining say in the matter complete, proceeds to ignore you completely. "Congratulations, #{Ms}. #{Masterson}. You can collect your merchandise out back, #{maam}. We'll have it ready for you in a few minutes."
+
+      It takes you a moment to realize that "it" refers to "you," but your realization isn't necessary. The other potential owners file out of the room, chatting with each other amicably. Hands hustle your naked body out of the room so the auctioneer can get on with the rest of the night. You're left in the hands of a single guard. Briefly, you consider trying to escape. Last minute jitters. You're not bound, and there's a whole crowd of people nearby you could try to get lost in if you could grab some clothes... You completely abandon the idea when you get a better look at the guard. He's at least a foot taller than you and seemingly made of concrete and muscle. He smirks when he sees you looking.
+
+      "Ready" turns out to involve a great deal of rope and cloth - cloth stuffed in your mouth holding your jaw open, then wrapped around your head to hold it in place. More cloth around your eyes, and rope pulling your knees up to your chest and your arms folded along your sides. The whole procedure occurs without regard for your comfort or compliance, leaving you blind, mute and immobile, folded up like a little pill and abandoned on the floor. You're still naked.
 
       You hear people moving around, people talking about payment, and steps approaching. Suddenly a pair of fingers push themselves into your unprepared pussy. You'd yelp, were you able to make noise, but your startled reaction draws a chuckle anyway. The fingers probe around inside you for a moment before withdrawing.
 
@@ -327,11 +335,11 @@ Object.assign Data.events,
       "Mhm. The #{mistress} will be pleased. See you at poker night?"
       "Of course."
 
-      The purpose of the ropes - beyond making you helpless of course - becomes apparent as the place where your bindings gather behind your back becomes a handle, the man lifting you up like a squirming duffle bag. They're obviously not sure how much trouble you'd be left to your own devices, so they're taking no chances. You're carried outside, then into a van. Even if you couldn't see bits and pieces around your blindfold, the change in quality of the surrounding sounds would make that much obvious. The engine starts, and you're off.
+      The purpose of the ropes - beyond making you helpless of course - becomes apparent as the place where your bindings gather behind your back becomes a handle, the man lifting you up like a squirming duffel bag. They're obviously not sure how much trouble you'd be left to your own devices, so they're taking no chances. You're carried outside, then into a van. Even if you couldn't see bits and pieces around your blindfold, the change in quality of the surrounding sounds would make that much obvious. The engine starts.
 
       It's an uncomfortable ride. Face pressed up against the hard floor, you can feel every bump in the road. At least it doesn't last long. You can't be more than a few miles from the auction house when the van comes to a stop again.
 
-      "Welcome to your new home, slut." A shoe digs into your side - not unkindly, but enough to make sure you know you're the one being addressed. "I'm going to remove your blindfold and gag now, and loosen most of the restraints. Feel free to scream. Most new slaves do. It's best to get it out of your system before I open the door and everyone sees you. Wouldn't make a good first impression to be acting like a wild animal caught in a cage, now would it?" He leans down so his voice is right in your ear. "That is what you are though, a wild animal. Don't worry though, we'll tame you."
+      "Welcome to your new home, slut." A shoe digs into your side - not unkindly, but enough to make sure you know you're the one being addressed. "I'm going to remove your blindfold and gag now, and loosen most of the restraints. Feel free to scream. Most new slaves do. It's best to get it out of your system before I open the door and everyone sees you. Wouldn't make a good first impression to be acting like a wild animal caught in a trap, now would it?" He leans down so his voice is right in your ear. "That is what you are though, a wild animal. Don't worry though, we'll tame you."
 
      "I'm untying you now." He reaches down and begins to unwrap the gag. "We'll put up with a lot, especially in your first few days. One thing we never tolerate is attacking any of the overseers or other slaves. Hurting people is my job, not yours."
 
@@ -348,7 +356,7 @@ Object.assign Data.events,
 
   IntroBite:
     text: -> """
-      Sicko. You nod to show you understand. Once the cloth is gone, you spit out the rag that was holding your jaw open and work it, biding your time while he removes the blindfold and works the knots to untie you. Your attack comes when he reaches down to caress your cheek. Rather than the gentle gesture he expected to give, he gets your teeth sunk into his palm and fingers.
+      Sicko. You nod to show you understand. Once the cloth is gone, you spit out the rag that was holding your jaw open and work it, biding your time while he removes the blindfold and works the knots to untie you. This is way too much. This is not fun and not sexy. Your attack comes when he reaches down to caress your cheek. Rather than the gentle gesture he expected to give, he gets your teeth sunk into his palm and fingers.
 
       He doesn't yell, just backhands you across the face, a brutal blow that still isn't enough to dislodge you. His follow up kick to your gut is, however, leaving you twisting on the floor gasping for breath while he cradles a bloody hand.
 
@@ -365,9 +373,9 @@ Object.assign Data.events,
         punishment: 'biting the overseer'
   IntroPanic:
     text: ->"""
-      It's all too much. His hand right by your head, the jerky ride, the shock of being told you're going to be a slave. You scream something obscene and incoherent at your captor, thrash around on the floor with wild eyes and then start to sob.
+      It's all too much. His hand right by your head, the jerky ride, the sudden reality of what was until now only a dark fantasy. You scream something obscene and incoherent at your captor, thrash around on the floor with wild eyes and then start to sob.
 
-      You half expected him to kick you, or perhaps drag you screaming across the yard, but the abuse never comes. Instead he sits on you long enough to pull out a knife and cut most of ropes holding you curled up, then sits behind you and pulls you upright in an irresistible hug. He doesn't speak, just holds you. You're terribly weak compared to him, but you do manage to conk him a good one in the eye with the back of your head in your panic.
+      You half expected him to kick you, or perhaps drag you screaming across the yard, but the abuse never comes. Instead he sits on you long enough to pull out a knife and cut most of ropes holding you curled up, then sits behind you and pulls you upright in an irresistible hug. He doesn't speak, just holds you. You're terribly weak compared to him, but you do manage to conk him a good one in the eye with the back of your head as your thrash.
 
       Slowly though, the gentle contact works its magic. In spite of yourself, you find your body relaxing. He still doesn't say anything, just holds you comfortingly. Eventually he lets go, and with a handkerchief from one pocket, wipes off your face. The action welcome despite the indignity of having him do it for you.
 
@@ -382,7 +390,7 @@ Object.assign Data.events,
         Despair: 3
   IntroDignity:
     text: ->"""
-      You nod your understanding. Tied up like this, there's not a whole lot you can do. Even if you did manage to get free, you're naked in a foreign country where everyone seems to accept slaves as the natural state of affairs. It wouldn't be long before you were caught and returned.
+      You nod your understanding. Tied up like this, there's not a whole lot else you can do. Even if you did manage to get free, you're naked in a foreign country where everyone seems to accept slaves as the natural state of affairs. It wouldn't be long before you were caught and returned. They have your signature on file as agreeing to this.
 
       With your silent cooperation, it doesn't take him long to remove the gag and blindfold, and untie most of the ropes, leaving your elbows and wrists are still bound together. He helps you to stand, but you're still weak from being immobile too long. Looking at your wobble he sits you back down - still naked - on the floor.
 
@@ -395,15 +403,15 @@ Object.assign Data.events,
         Despair: 3
   IntroArrive:
     text: ->"""
-      The afternoon light bites your eyes after so much darkness, making you squint and wish your arms were free so you could rub them. Lifting your head, you get your first look at your new home.
+      The afternoon light bites your eyes after so much darkness, making you squint and wish your arms were free so you could rub them. You had thought it was evening. Lifting your head, you get your first look at your new home.
 
       It's a mansion. A fabulous one from the look of it, right out of a storybook. #{Ms}. #{Masterson} must be very wealthy indeed, as though you didn't already know that from the way #{she} bought a new sex slave out from under a room full of eager bidders. A red tile roof and stone walls, dozens of rooms, a garage off to one side large enough for a dozen cars. The grounds are huge, and very well kept - multiple outbuildings, some of them large enough to be houses in their own right, are interspersed with gardens and an outdoor pool. You were wrong at first - it's not a mansion. It's a palace. Or at least it seems that way.
 
       There are others working or walking around, but you don't get a chance to do more than glimpse their curious faces before Joel carries you into one of the outbuildings. It's a bedroom - or perhaps a dungeon? It has features of both. There's a soft bed, but stone walls with manacles hanging from them. A bathroom to one side, but also a hole in the ground and a hose coiled half out of sight beneath a stone bench.
 
-      Joel drops you onto the bed, and before you can react, climbs on top of you, pinning you down with his bodyweight. Like most of the men you've seen so far, he's over six foot and with muscles to back it up, the sort that come from hard work rather than the gym. If he weren't about to rape you his chiseled face, chopped brown hair and rough hands could be considered attractive.
+      Joel drops you onto the bed, and before you can react, climbs on top of you, pinning you down with his bodyweight. Like most of the men you've seen here so far, he's over six foot and with muscles to back it up, the sort that come from hard work rather than the gym. If he weren't about to rape you his chiseled face, chopped brown hair and rough hands could be considered attractive.
 
-      It takes a moment before you realize you're not about to be raped. He's just taking no chances as he finishes untying you. "This'll be your new home for the next few days, while we get everything sorted. Someone will be by to speak with you, maybe tommorrow." He climbs off and stands as soon as he's done, no lingering touches or other unnecessary contact.
+      It takes a moment before you realize you're not about to be raped. He's just taking no chances as he finishes untying you. "This'll be your new home for the next few days, while we get everything sorted. Someone will be by to speak with you, maybe tomorrow." He climbs off and stands as soon as he's done, no lingering touches or other unnecessary contact.
 
       You rub your wrists and look around. You're pretty sure it's a cell now, not a bedroom. He's handsome and he has power over you, but maybe you can get some more answers before he leaves you alone and naked in your cell.
 
@@ -439,7 +447,7 @@ Object.assign Data.events,
 
       "You're not a slave?"
 
-      "Nope, just a hired hand. #{She} treats us pretty well." He grins, pats your shoulder again and makes his exit.
+      "Nope, just a hired hand. Started last week. #{She} treats us pretty well too." He grins, pats your shoulder again and makes his exit.
 
       The lock clicks. You're alone.
     """
@@ -470,7 +478,7 @@ Object.assign Data.events,
 
       "You're not one?"
 
-      "Nope, just a hired hand." He pats you on the shoulder and flees the scene. You may not have gotten any clothes - not that you were really expecting to - but you're pretty sure you've at least made an impression.
+      "Nope, just a hired hand. I started last week." He pats you on the shoulder and flees the scene. You may not have gotten any clothes - not that you were really expecting to - but you're pretty sure you've at least made an impression.
 
       The lock clicks. You're alone.
     """
@@ -540,13 +548,13 @@ Data.events.ReleaseFromCell =
   text: ->"""
     You're woken from a sound sleep by a hush of air from the door opening. You stretch your arms up and rub your eyes, trying to make sense of your surroundings. Comfortable bed, stone walls, no clothes, a strange man watching you... you sit upright and pull the sheet up to cover your naked chest.
 
-    "Good morning, my nameless little whore. It's time to get you acquainted with the estate. I'd tell you to get dressed, but, well, you don't get to." He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their complete mercy.
+    "Good morning, my nameless little whore. It's time to get you acquainted with the estate. I'd tell you to get dressed, but, well, you don't get to." He levels a crooked smile in your direction, and you decide that you don't much like the way he looks at you. Joel from yesterday was pleasant and blushing, and the head overseer whose name you didn't catch was direct and efficient, but really, you didn't find yourself worrying about either of them too much, even naked and at their completely mercy.
 
-    "Come on, get a move." He comes over to the edge of the bed and gives the sheet a tug. You hang onto it for a moment before sense takes over. He's going to get his way, one way or another, and you'd rather not give him an excuse to make "his way" into something worse than a tour and introductions. He tugs the sheet again and you let it fall, leering at your breasts as you squirm in discomfort.
+    "Come on, get a move on." He comes over to the edge of the bed and gives the sheet a tug. You hang onto it for a moment before sense takes over. He's going to get his way, one way or another, and you'd rather not give him an excuse to make "his way" into something worse than a tour and introductions. He tugs the sheet again and you let it fall, leering at your breasts as you squirm in discomfort.
 
     He leads you out of your cell into the early morning light, your arms firmly crossed over your chest, providing the least possible bit of modesty. The two of you walk along a cobbled path towards the main mansion.
 
-    "#{Ms} #{Masterson} is a good owner - like most of the other sex slaves here, you'll have a lot more freedom than you might have expected. The four of you are here as decoration and fuck toys, not laborers. That's no an excuse for laziness, but you won't have someone leaning over your shoulder telling you what to do every minute. How you make yourself pleasing to us is your decision." He stops walking suddenly, and as you nearly run into him, he reaches down between your legs to grope you. Your hands slap him away reflexively, and he takes the chance to grab a breast and squeeze, before stepping back and giving you space again.
+    "#{Ms} #{Masterson} is a good owner - like most of the other sex slaves here, you'll have a lot more freedom than you might have expected. The four of you are here as decoration and fuck toys, not laborers. That's no excuse for laziness, but you won't have someone leaning over your shoulder telling you what to do every minute. How you make yourself pleasing to us is your decision." He stops walking suddenly, and as you nearly run into him, he reaches down between your legs to grope you. Your hands slap him away reflexively, and he takes the chance to grab a breast and squeeze, before stepping back and giving you space again.
 
     "There's one important duty you have though. Your body's available to anyone who wants it at any time. The #{mistress}, me, the field hands, visitors from town - if they're on the estate, you're at their disposal sexually. Only overseers can give you non-sexual orders, though. That's me, Mr. Stevens, Ms. Wendy. We're also the only ones - other than the #{mistress} of course - who can give you long-standing orders. Once you're out of sight of anyone else, you're free. Understand?"
 
@@ -567,7 +575,7 @@ Data.events.Naming =
 
     It can't be anything other than the master bedroom, given the combination of a king sized bed, an amazingly expensive looking computer setup in one corner currently showing rows of security cameras, and the #{woman} lounging in bed reading. #{She} looks up when the two of you enter, and suddenly you're completely conscious of your nudity again. You try to shrink back, but a hand pushes you forward.
 
-    #{Mandy} #{Masterson}, your owner, the #{woman} with almost complete power over your life, sizes you up. It's the first time you've seen #{her} up close, and the first time #{she}'s seen you except on stage.
+    #{Mandy} #{Masterson}, your owner, the #{woman} with almost complete power over your life, sizes you up. It's the first time you've seen #{her} since the auction, and the first time #{she}'s seen you since you became her property.
 
     "I'll name her..." #{options}
   """
@@ -592,11 +600,11 @@ Data.events.NamingDone =
   text: ->"""
     "#{g.name}. I hope you'll find your new life enjoyably and fulfilling. We'll speak again in a few days once you've had more of a chance to settle in."
 
-    And just like that, you have a new name. #{g.name}. You roll it around in your mind trying to figure out how to feel about it.
+    And just like that, you have a new name. #{g.name}. You roll it around in your mind trying to figure out how to feel about it. #{Ms}. #{Masterson} smiles, waiting.
 
     #{options}
 
-    <em>An adventure is a series of events, each of which ends with a skill check. Unlike random events though, each option has the same result - pass, and you continue the adventure. Fail, and the adventure comes to a halt. You can resume partially completed adventures without penalty other than wasted time, so don't be afraid to scout out new situations when they appear.</em>
+    <em>An adventure is a series of events, each of which ends with a skill check. Unlike random events, each option has the same result - pass, and you continue the adventure. Fail, and the adventure comes to a halt. You can resume partially completed adventures without penalty other than wasted time, so don't be afraid to scout out new situations when they appear.</em>
 
   """
   next:
@@ -626,9 +634,9 @@ Data.events.NamingFail =
 Data.events.Clothing =
   description: 'Clothes'
   text: ->"""
-    #{Ms}. #{Masterson} smiles at your words. With that little ritual taken care of, the overseer - you still haven't caught his name besides "sir," and that's not a thing you want to call him to yourself - hurries you back out of #{her} presence.
+    The overseer - you still haven't caught his name besides "sir," and that's not a thing you want to call him in the privacy of your minds - hurries you back out of #{her} presence.
 
-    He leads you back down the stairway and into a walk-in closet right next to the manner door. It's large enough to serve as a changing room as well as a closet, with a vanity and mirror along the back wall. The hanging space is divided into several sections - Robin, Tanya, Tits, unlabeled.
+    He leads you back down the stairway and into a walk-in closet right next to the manor door. It's large enough to serve as a changing room as well as a closet, with a vanity and mirror along the back wall. The hanging space is divided into several sections - Robin, Tanya, Tits, unlabeled.
 
     "That's your section right there," he points to the unlabeled division. It's mostly empty right now, only three outfits compared to the dozen or so for each of the other slaves. "Right next to Robin's clothes. You'll earn more options over time. There's another copy of this closet over on the opposite side of the mansion - use whichever's convenient. Shower's just on the other side of the hall. This drawer," he pats the vanity and leers, "always has fresh panties, since you'll be soaking, losing, tearing off or otherwise ruining them rather frequently. Now, cute as it is to watch your little derriere bouncing along, that's a treat for special occasions. Time to get dressed."
 
@@ -656,7 +664,11 @@ Data.events.Clothing =
 Data.events.ClothingFail =
   description: 'Pause adventure'
   text: ->"""
-    You can't really find anything that catches your interest, and after a few minutes,
+    You can't really find anything that catches your interest, and after a few minutes, he sighs and shakes his head. "Can't even get dressed without orders? Really?"
+
+    You flush and mumble something that he ignores.
+
+    "Well. Back to the cell with you, and we can try this again tomorrow when you're feeling a bit more energetic."
   """
 
 Data.events.ClothingChoice =
@@ -666,7 +678,7 @@ Data.events.ClothingChoice =
 
     By this point you know better than to hope he'll let you dress in privacy, and you can feel his eyes on you while you wiggle into your new clothes. But it doesn't really matter - you're dressed in something resembling normal clothes, and that instantly allows you to recover some portion of the modesty, sense of control and self-esteem you've been so lacking in since this whole ordeal began. You breathe a sigh of relief.
 
-    "You know, I was going to give you a tour of the estate, but my enthusiasm has suddenly just dried up. Your room's on the third floor. You're currently confined to the manor house - don't go wandering, we'll know. And remember, anyone can fuck you whenever and however they want. You're everyone's slut."
+    "You know, I was going to give you a tour of the estate, but my enthusiasm has suddenly just dried up. Your room's on the third floor. You're currently confined to the manor house - don't go wandering. And remember, anyone can fuck you whenever and however they want. You're everyone's slut."
 
     He leaves. You're at loose ends.
   """
@@ -693,17 +705,3 @@ Data.jobs.Misbehave =
   """
   effects:
     set: {punishment: 'misbehaving'}
-
-Data.randomEvents.ContentFinished =
-  description: "That's all for now"
-  conditions:
-    events:
-      OverseerCarWash: true
-      LesbianBootyCall: true
-      ContentFinished: false
-  time: 'Night'
-  text: ->"""
-    <em>You've now seen most of the content in the game so far. Sorry, it's a bit short as of yet, but a two week game jam isn't a ton of time to write a game engine from scratch and add content to it. I certainly intend to extend Maiden's Tale further in the future, and you can follow progress - and play my other games in the meantime - <a href="http://winds.blue" target="_blank">on my blog</a>.</em>
-
-    <em>Feel free to continue exploring the mansion - there are a good number of rooms to discover, though none of them do much yet. Also try Misbehaving - there are three different punishments available, if you haven't seen them yet.</em>
-  """

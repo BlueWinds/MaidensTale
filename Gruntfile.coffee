@@ -9,6 +9,8 @@ files = [
   'content/statRaising'
   'content/punishments'
   'content/randomAdult'
+  'content/mistress'
+  'content/slaveShow'
 
   'engine/helpers'
   'engine/storyteller'

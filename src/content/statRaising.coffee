@@ -77,7 +77,7 @@ Data.events.ExploreRecordingStudio =
     events:
       ExploreRecordingStudio: false
   text: -> """
-    There's a recording studio. Of course there's a recording studio. Silly to imagine there's a thing this estate isn't equiped for, no matter how unusual. It's not big, just enough for a couple of chairs, but it's soundproof, full of high quality electronics, and there's a closet full of beat up old instruments and songbooks. It must double as a practice room as well. The engineer's booth is empty.
+    There's a recording studio. Of course there's a recording studio. Silly to imagine there's a thing this estate isn't equipped for, no matter how unusual. It's not big, just enough for a couple of chairs, but it's soundproof, full of high quality electronics, and there's a closet full of beat up old instruments and songbooks. It must double as a practice room as well. The engineer's booth is empty.
 
     The place doesn't feel like it gets that much use, so it's probably safe to borrow it whenever you like. The worst they can do is... well, no, you don't want to think about the worst they can do to you. The worst they're <em>likely</em> to do is kick you out.
   """

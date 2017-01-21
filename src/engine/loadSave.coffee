@@ -1,6 +1,7 @@
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 window.domReady = ->
+  if window.location.hash is '#dump' then return dump()
   last = Object.keys(localStorage).map((key) -> parseFloat(key) or 0).sort().pop()
   try
     newGame(JSON.parse(localStorage[last]))
@@ -12,7 +13,14 @@ window.newGame = (data = {})->
   while content.firstChild
     content.removeChild(content.firstChild)
 
+  # We have to special case the very first release, since it didn't include a version number at all.
+  if data.day? and not data.version?
+    data.version = 0
+
   window.g = Object.defaultsDeep data, Game
+  while g.version < Game.version
+    Data.updates[g.version]()
+    g.version++
   drawHistory()
 
 window.saveGame = ->
@@ -77,3 +85,11 @@ Data.events.LoadGame = # This is a special event, which, when it would be displa
     """
   next:
     Cancel: 'Back'
+
+dump = ->
+  window.g = Object.defaultsDeep {}, Game
+  g.history = [[]]
+  for type in ['events', 'randomEvents', 'jobs']
+    for key, value of Data[type]
+      g.history[0].push key
+  drawHistory(true)
