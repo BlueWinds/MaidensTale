@@ -61,7 +61,7 @@ Object.assign Data.events,
     text: ->"""
       So much has happened the last few days that you deserve a bit of rest. Curling up on your bed, you drift off, planning to just rest your eyes for a few minutes.
 
-      A few hours later, you rub the sleep from your eyes and yawn. Welp. There goes the #{g.time}.
+      A few hours later, you rub the sleep from your eyes and yawn. Welp. There goes some time you could have used productively.
     """
 
   ReduceDetachment:
