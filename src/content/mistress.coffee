@@ -43,7 +43,7 @@ Data.events.WaitLiterature =
     'Um...':
       skill: 'Literature'
       diff: 12
-      result: ['WaitLiteratureYes', 'WaitLiteratureNo']
+      result: ['WaitLiteratureNo', 'WaitLiteratureNo']
 
 Data.events.WaitLiteratureYes =
   text: ->"""
@@ -55,6 +55,15 @@ Data.events.WaitLiteratureYes =
 
     You wonder briefly if all wealthy slave owners love the classics - it's such an aristocratic stereotype that you can't help but smile at the thought. There are far worse ways to spend the evening than indulging your owner's love of literature, even if the discussion does have a tendency to make you feel rather undereducated.
   """
+  effects:
+    mood: {Pride: 2}
+    skills: {Literature: 1}
+
+Data.events.WaitLiteratureNo =
+  ext: 'WaitLiteratureYes'
+  effects:
+    mood: {Pride: 1}
+    skills: {Literature: 1}
 
 Data.events.WaitFootstool =
   text: ->"""

@@ -73,7 +73,7 @@ module.exports = (Data, Game)->
           skill: {'enum': aSkill}
           mood: {aMood}
           diff: {type: 'integer', minimum: 0, maximum: 30}
-          results:
+          result:
             type: 'array'
             minItems: 2
             maxItems: 2
@@ -170,18 +170,34 @@ module.exports = (Data, Game)->
         type: 'object'
         additionalProperties:
           $ref: '#/definitions/RandomEvent'
+        patternProperties:
+          '\\W':
+            # These shouldn't exist at all, so we just try to match them against something that always fails.
+            'enum': [undefined]
       jobs:
         type: 'object'
         additionalProperties:
           $ref: '#/definitions/Job'
+        patternProperties:
+          '\\W':
+            # These shouldn't exist at all, so we just try to match them against something that always fails.
+            'enum': [undefined]
       events:
         type: 'object'
         additionalProperties:
           $ref: '#/definitions/Event'
+        patternProperties:
+          '\\W':
+            # These shouldn't exist at all, so we just try to match them against something that always fails.
+            'enum': [undefined]
       adventures:
         type: 'object'
         additionalProperties:
           $ref: '#/definitions/Adventure'
+        patternProperties:
+          '\\W':
+            # These shouldn't exist at all, so we just try to match them against something that always fails.
+            'enum': [undefined]
       times:
         type: 'array'
         items:

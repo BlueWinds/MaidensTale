@@ -209,7 +209,7 @@ Data.events.OverseerStatueYes =
 
     "Now girls, don't stop making out. Remember, first one to make a squeal goes home with Ms. Landel."
 
-    The vibrator grows stronger. You arch your back, pressing your breasts into Robbin, biting your tongue and trying not to moan. You're saved, though - Robbin lets out a sob and spasms in your arms. Her fingers dig into your back as she jerks against you and moans.
+    The vibrator grows stronger. You arch your back, pressing your breasts into Robbin, biting your tongue and trying not to moan. You're saved, though - Robbin leans close, gives you a kiss, and murmors "I like Ms. Landel, she's mine," too softly for anyone else to hear. She lets out a sob and spasms in your arms. Her fingers dig into your back as she jerks against you and moans.
 
     "Well, looks like we have a winner. Well done, #{g.name}. Robbin, get yourself cleaned up and attend to Ms. Landel. I believe your car is already out front?"
 

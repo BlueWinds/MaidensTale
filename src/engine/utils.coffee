@@ -6,6 +6,10 @@ Object.defineProperty Array.prototype, 'wordJoin', {value: ->
   return @join('')
 }
 
+Object.defineProperty String.prototype, 'escapeAttr', {value: ->
+  return @replace(/"/g, '&quot;').replace(/'/g, "&apos;")
+}
+
 Object.values = Object.values or (o)-> Object.keys(o).map((k)-> o[k])
 
 Object.firstValue = (obj)->

@@ -16,7 +16,7 @@ Data.events.PlanDay =
       choice = if conditionsMatch(g.plans[index]) then g.plans[index] else Object.keys(possibleJobs)[0]
       drawDropdown(Data.jobs[choice].description, describeEvent(choice), possibleJobs)
 
-    possibleAdventures = findAventures()
+    possibleAdventures = findAdventures()
     adventures = if possibleAdventures
       currentAdventure = if adventureMatch(g.adventure) then g.adventure else Object.firstValue(possibleAdventures).label
       currentAdventure = Data.adventures[currentAdventure]
@@ -80,7 +80,7 @@ Data.pseudoEvents.StartDay = ->
   g.history.push []
   applyEvent(g.upcoming.shift())
 
-findAventures = ->
+findAdventures = ->
   adventures = {}
   for label, adventure of Data.adventures when adventureMatch(label)
     adventures[adventure.description] =
@@ -102,6 +102,8 @@ Data.pseudoEvents.StartAdventure = (label)->
   g.day++
   g.history.push []
 
+  console.log Object.firstValue(findAdventures())
+  g.adventure = if adventureMatch(g.adventure) then g.adventure else Object.firstValue(findAdventures()).label
   adventure = Data.adventures[g.adventure]
   nextStep = adventure.steps.find (e, i)->
     not g.events[adventure.steps[i + 1]]?

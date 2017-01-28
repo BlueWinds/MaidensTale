@@ -52,7 +52,7 @@ options.toString = options
 drawChoice = (label, option)->
   # A simple choice -> event.
   if typeof option is 'string'
-    return """<button disabled onclick='applyEvent("#{option}", "#{label}")' title="#{describeEvent option}">#{label}</button>"""
+    return """<button disabled onclick='applyEvent("#{option}", "#{label.escapeAttr()}")' title="#{describeEvent(option).escapeAttr()}">#{label}</button>"""
 
   # A skill test. Render the widget.
   skillBonus = Math.floor(g.skills[option.skill] / 10)
@@ -80,7 +80,7 @@ drawChoice = (label, option)->
 
     return drawDropdown(label, mainTitle, spendOptions)
   else
-    return """<button disabled onclick='applyTest(#{JSON.stringify(option)}, "#{label}")' title="#{mainTitle}">#{label}</button>"""
+    return """<button disabled onclick='applyTest(#{JSON.stringify(option)}, "#{label.escapeAttr()}")' title="#{mainTitle.escapeAttr()}">#{label}</button>"""
 
 
 window.drawDropdown = (mainLabel, mainTitle, options)->
@@ -88,7 +88,7 @@ window.drawDropdown = (mainLabel, mainTitle, options)->
     """<button disabled onclick='#{option.click}' title="#{option.title}">#{label}</button>"""
 
   return """<div class="clickMenu" tabindex="0">
-    <label class="disabled" title="#{mainTitle}">#{mainLabel}</label>
+    <label class="disabled" title="#{mainTitle.escapeAttr()}">#{mainLabel}</label>
     <div class="clickMenu-content">#{buttons.join('\n')}</div>
   </div>"""
 
