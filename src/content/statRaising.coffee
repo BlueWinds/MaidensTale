@@ -128,5 +128,161 @@ Data.events.ExploreSexToys =
 #
 #     "I see you've managed to find my bedroom," he gestures to the door you just passed, unmarked, still held open with his toe. He's your least favorite of the overseers. Something about the way he stares... "Come in." Damn.
 #
-#     A flat TV takes up most of the wall opposite a large bed, rumpled sheets and a pair of jeans hanging off the side. An empty fast food bag sits next to his laptop on a cluttered desk. The screensaver is a slideshow of nude women, and with a start, you realize that one of the photos is of <em>you</em>. Oh dear.
+#     A flat TV takes up most of the wall opposite a large bed, rumpled sheets and a pair of jeans hanging off the side. An empty fast food bag sits next to his laptop on a cluttered desk. The screen saver is a slide show of nude women, and with a start, you realize that one of the photos is of <em>you</em>. Oh dear.
 #   """
+
+Data.jobs.PracticeBaking =
+  description: 'Baked goods!'
+  conditions:
+    events:
+      ExploreKitchen: true
+    misc:
+      confined: '!cell'
+  time: 'Night'
+  effects:
+    skills:
+      Baking: 'Humility'
+  selectNext: 'random'
+  next: [
+    'PracticeBakingCupcakes'
+    'PracticeBakingBread'
+    'PracticeBakingCheesecake'
+  ]
+
+Data.events.PracticeBakingCupcakes =
+  description: 'Baked goods!'
+  text: -> """
+    With the hustle and bustle of the day concluded, you poke your head around the corner, cautiously checking if the fearsome cook is still present. She isn't. Now's your chance - time to make cupcakes!
+
+    The kitchen is quite large, providing as it does for not only the household staff, but also dozens of field hands working the grounds and nearby farm land. You spend nearly an hour rummaging through pantries, trying to locate all the necessary ingredients, before you finally have everything laid out and ready for use.
+
+    Flour. Cocoa powder. Baking soda. Salt. Butter. Sugar. Eggs. Vanilla. Buttermilk. You mix, stir and pour, then put the batter in the oven to cook.
+
+    Butter. Sugar. Caramel sauce. Milk. Vanilla. You beat the frosting with an electric mixer until it stands stiff in the bowl. After spreading it over the top of the piping hot cakes, you drizzle a little more caramel sauce over it, then sprinkle a pinch of sea salt over everything.
+
+    You take three for yourself, two for Robbin, one for Tits and leave the rest in the kitchen for who ever's lucky enough to find them.
+  """
+
+Data.events.PracticeBakingBread =
+  ext: 'PracticeBakingCupcakes'
+  text: -> """
+    Taking a bit of break from the demanding presence of so many people, you slip down to the kitchen, expecting it to be deserted at this time of night. You're wrong, however - though all the assistants are long gone, the cook still remains, a scary lady known for chasing people around the mansion with her ladle and making them <em>wish</em> she were wielding a whip instead.
+
+    She sees you enter and motions you to come over. It's too late to flee, so you comply, but fortunately she seems in a good mood tonight. "#{g.name}, right? Silly name for a girl like you, I never know what the #{mistress} is thinking when she picks things like that. Come over here and measure out the flour for me, will you?"
+
+    Drafted into her service, you don't have time for any projects of your own. Measuring, mixing, kneading dough, and rolling out biscuits, you help her prepare for tomorrow in pleasant almost-silence, interrupted only by the cook's occasional orders and gentle corrections. You learn a great deal.
+  """
+
+Data.events.PracticeBakingCheesecake =
+  ext: 'PracticeBakingCupcakes'
+  text: -> """
+    You have a sweet tooth. After pondering a raid on the pantry, you instead settle on something more ambitious - you're going to make yourself a cheesecake. Down to the kitchens you go.
+
+    Given the time of night, the place is almost empty when you arrive, only a single servant remaining to finish up the dishes from dinner. You give him a friendly nod, reassure him that you'll clean up after yourself, and begin looking for a recipe book. After turning down three options, you eventually settle on one to your liking.
+
+    Heavy with rich cream cheese, a bit of tang from sour cream, with strawberry sauce poured over the top - it sounds perfect, and your mouth is watering just thinking about it. The refrigerator disappoints, however, giving you only four of the necessary six packages of cream cheese. Not to be deterred, you substitute in plain yogurt instead, adding a bit of extra butter to make up for the missing richness.
+
+    You stay up later than you should waiting for it to finish baking and then cool in the refrigerator, but it's worth the wait. It comes out fantastic. You set aside a slice with Robbin's name on it (poor girl needs a bit more flesh on her bones), then leave the rest in the refrigerator for anyone else lucky enough to find it.
+  """
+
+Data.jobs.PracticeInstruments =
+  description: 'Violin lessons'
+  conditions:
+    events:
+      ExploreRecordingStudio: true
+    misc:
+      confined: '!cell'
+  time: 'Evening'
+  effects:
+    skills:
+      Instruments: 'Spirit'
+  selectNext: 'random'
+  next: [
+    'PracticeInstrumentsWendy'
+    'PracticeInstrumentsAlone'
+    'PracticeInstrumentsAudience'
+  ]
+
+Data.events.PracticeInstrumentsWendy =
+  description: 'Violin lessons'
+  text: -> """
+    You remember, back to a former life. Violin lessons. It seems so long ago now, but the instruments you saw leaning up in the recording studio stirred an interest you'd almost forgotten about. Having a few hours before dinner, you decide to spend them seeing just how rusty your skills have gotten.
+
+    As you approach, a you realize the studio's already occupied. The door is ajar, and the sounds of warm up slurs and long open strings draw you closer. Through the half open door you see Wendy, violin tucked against her chin as she travels uncertainly through some very basic exercises.
+
+    You're about to turn away when she spots you. The music falters, and for a moment you're worried she's going to shout at you. Instead she gestures you in.
+
+    "This is #{g.name}," Wendy introduces you. She's one of the overseers, and in your opinion, one of the less pleasant ones. She's smiling at you right now, but that's no surety that she won't viciously punish you for hearing her falter at some later date.
+
+    Her teacher is an elderly man, tall and willowy, fragile enough that he might blow away in a stiff breeze. "How do you do, miss. Would you like to join us?" He gestures to a battered old practice instrument laying in the corner.
+
+    You thank him and collect it, trying not to catch Wendy's eye. He asks you how much you know, and soon you're performing exercises of your own. You're surprised how fair he is to you, even though you're a slave and not really his student, but he divides his attention evenly between the two of you.
+
+    By the end of the lesson, it's apparent that you're a more apt student than Wendy. You hope she doesn't bear a grudge.
+  """
+
+Data.events.PracticeInstrumentsAlone =
+  ext: 'PracticeInstrumentsWendy'
+  text: -> """
+    You remember back to a former life. Violin lessons. It seems so long ago now, but the instruments you saw leaning up in the recording studio stirred an interest you'd almost forgotten about. Having a few hours before dinner, you decide to spend them seeing just how rusty your skills have gotten.
+
+    The room is dark and empty as you approach. You slip inside and pull the door closed, going over to the closet holding instruments. There's two violin cases here, one polished and expensive looking, the other battered and fraying around the edges. You grab the cheap one.
+
+    The instrument inside is well used, but also well loved and well cared for. You tighten the bow and get started.
+  """
+
+Data.events.PracticeInstrumentsAudience =
+  ext: 'PracticeInstrumentsWendy'
+  text: -> """
+    On the way to practice violin in the recording studio you gather an audience. It's impossible to dissuade Robbin - protestations that you're in poor practice, that you're only going to be doing exercises tonight and that there's not much room only convince her further that you're hiding something wonderful behind false modesty. You shake your head at her enthusiasm and allow her to come.
+
+    While you tune the practice violin and tighten the bow, she plops herself down on the other chair in the room and draws her legs up to her chest.
+
+    You begin practicing, sure that she'll get bored soon and see herself out. She doesn't. Robbin listens raptly, chin on her knees, happy smile on her lips.
+  """
+
+Data.jobs.PracticeEtiquette =
+  description: "Mr. Stevens' lessons"
+  conditions:
+    events:
+      ExploreStevensRoom: true
+    misc:
+      confined: '!cell'
+  time: 'Night'
+  effects:
+    skills:
+      Etiquette: 'Hope'
+  selectNext: 'random'
+  next: [
+    'PracticeEtiquetteMadam'
+    'PracticeEtiquettePosture'
+    'PracticeEtiquetteNames'
+  ]
+
+Data.events.PracticeEtiquetteMadam =
+  description: "Mr. Stevens' lessons"
+  text: -> """
+    You finally take Mr. Stevens up on his offer, to help teach you the things expected of of a slave here in Anglan. While everyone seems willing to consider it cute rather than insulting due to the fact that you're not a native, there's something to be said for not sticking out like a sore thumb because you said the wrong thing to the wrong person.
+
+    "Let's start with the way you called Ms. Landel 'ma'am' the other day. It was inappropriate. I can ma'am her. Joel can ma'am her. You and Robbin cannot - you should use the full two syllables, madam, at all times with someone of high rank. You think it's silly, do you? That such class distinctions are nonsense? Well, I must admit, I can't blame you. I find the customs from your nation quite odd as well - it makes less than no sense that you thank everyone for every thing."
+
+    Ranting about the uselessness of please and thank you aside, you do learn a good deal from Mr. Stevens. You'll be less likely to embarrass yourself at future social functions.
+  """
+
+Data.events.PracticeEtiquettePosture =
+  ext: 'PracticeEtiquetteMadam'
+  text: -> """
+    Mr. Stevens' room is exactly as you remember, comfortable and old fashioned, with an understated sort of elegance. He has pretensions.
+
+    You only have a moment to study the room, though, before your lesson begins. Tonight he seems intent on teaching you how to stand properly. At first you're put off by the thought that you should need to be taught something silly like how to stand, but by the end of the evening your view has changed. Now your legs and back both <em>ache</em> at the thought that you need to be taught how to stand properly.
+
+    You understand where he's coming from. It does look better. It even feels better, when your posture improves. But it will take a while for muscles to adjust to a new standard.
+  """
+
+Data.events.PracticeEtiquetteNames =
+  ext: 'PracticeEtiquetteMadam'
+  text: -> """
+    For once, Mr. Stevens isn't in his room when you knock for a lesson. There is, however, an envelope on the floor in front of his door with your name on it.
+
+    <em>#{g.name}, here is a list of all the nobility that #{Ms}. #{Masterson} regularly invites to parties and other events, along with their dependents, positions, and other relevant information. Review it. Memorize it. Remember it. I will test you on your knowledge next week, and you will be punished severely if you ever confuse Mr. Thesal with Mr. Redrick again in my hearing.
+  """

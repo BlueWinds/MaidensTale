@@ -71,20 +71,20 @@ window.Game =
     Detachment: 0
   skills:
     Anal: 0 # Humility
-    Baking: 0 # Humility
+    Baking: 0 # Humility -
     Bluffing: 0 # Pride
     Climbing: 0 # Pride
     Concentration: 0 # Spirit
     Cooking: 0 # Humility
     Dancing: 0 # Spirit
     Endurance: 0 # Pride
-    Etiquette: 0 # Hope
+    Etiquette: 0 # Hope -
     Fashion: 0 # Hope
     Flattery: 0 # Despair
     Flirting: 0 # Hope
     'Gag Reflex': 0 # Despair
     Immodesty: 0 # Detachment
-    Instruments: 0 # Spirit
+    Instruments: 0 # Spirit -
     Intimidation: 0 # Spirit
     Literature: 0 # Detachment
     Lockpicking: 0 # Pride

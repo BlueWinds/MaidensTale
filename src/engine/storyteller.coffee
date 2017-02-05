@@ -1,5 +1,5 @@
 findEvent = ->
-#   if Math.random() > Data.dailyEventChance then return ''
+  if Math.random() > Data.dailyEventChance then return ''
 
   possibleEvents = for label of Data.randomEvents when conditionsMatch(label)
     label
@@ -35,7 +35,7 @@ Data.events.PlanDay =
 
       <table>
         <tr><th>#{Data.times.join('</th><th>')}</th></tr>
-        <tr><th>#{times.join('</th><th>')}</th><th>--> <button title="Take these actions" onclick="Data.pseudoEvents.StartDay()">Normal day</button></th></tr>
+        <tr><th>#{times.join('</th><th>')}</th><th>--> <button class="preferred" title="Take these actions" onclick="Data.pseudoEvents.StartDay()">Normal day</button></th></tr>
         #{adventures}
       </table>
     """

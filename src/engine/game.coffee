@@ -85,7 +85,7 @@ drawChoice = (label, option)->
 
 window.drawDropdown = (mainLabel, mainTitle, options)->
   buttons = for label, option of options
-    """<button disabled onclick='#{option.click}' title="#{option.title}">#{label}</button>"""
+    """<button disabled tabindex="-1" onclick='#{option.click}' title="#{option.title}">#{label}</button>"""
 
   return """<div class="clickMenu" tabindex="0">
     <label class="disabled" title="#{mainTitle.escapeAttr()}">#{mainLabel}</label>
@@ -97,7 +97,7 @@ clamp = (a, min, max)->
   a = Math.min(a, Math.ceil(max))
   return a
 
-appendEvent = (event, selectedLabel, scroll = true)->
+appendEvent = (event, selectedLabel)->
   content = document.getElementById 'content'
   setSelectedLabel(selectedLabel, content.lastElementChild)
 
@@ -111,9 +111,11 @@ appendEvent = (event, selectedLabel, scroll = true)->
       content.removeChild(content.firstChild)
 
     # Put this async, so there's time for later events to finish appending (and removing earlier divs if there are more than 20).
-    if scroll then setTimeout ->
+    setTimeout ->
       header = document.getElementsByTagName('header')[0]
-      smoothScroll(text.offsetTop - 40 - header.scrollHeight)
+      while 'effects' in text.previousElementSibling.classList
+        text = text.previousElementSibling
+      smoothScroll(text.offsetTop - 25 - header.scrollHeight)
     , 0
 
 setSelectedLabel = (label, div)->
@@ -121,18 +123,20 @@ setSelectedLabel = (label, div)->
   for button in div.getElementsByTagName('button') when button.innerHTML is label
     button.classList.add('clicked')
 
-window.applyEvent = (label, selectedLabel, scroll = true)->
+window.applyEvent = (label, selectedLabel)->
   if Data.pseudoEvents[label]
     return Data.pseudoEvents[label](selectedLabel)
 
+  if g.upcoming[0] is label
+    g.upcoming.shift()
   event = getEvent(label)
   applyEffects(event.effects)
   g.events[label] = g.day
   g.history[g.day].push(label)
 
-  appendEvent(event, selectedLabel, scroll)
-
-  if next = chooseNextEvent(event)
+  appendEvent(event, selectedLabel)
+  unless document.getElementById('content').lastElementChild.getElementsByTagName('button').length
+    next = chooseNextEvent(event)
     applyEvent(next, null, false)
 
 window.applyTest = (test, selectedLabel, spent = 0)->
@@ -230,6 +234,10 @@ drawEvent = (event, onlyOnce)->
   unless text then return
 
   div.innerHTML = '<div>' + text.split('\n\n').filter(Boolean).join('</div><div>') + '</div>'
+  if next = chooseNextEvent(event)
+    nextDiv = document.createElement('div')
+    nextDiv.innerHTML = options({Next: next})
+    div.appendChild(nextDiv)
   return div
 
 setInteraction = (interaction)->
@@ -247,6 +255,10 @@ setInteraction = (interaction)->
   for label in content.lastElementChild.getElementsByTagName('label')
     label.classList.remove('disabled')
 
+  enabledButtons = [].filter.call(content.getElementsByTagName('button'), (e)-> not e.disabled)
+  first = (enabledButtons.sort (a, b)-> return ('preferred' in b.classList) - ('preferred' in a.classList))[0]
+  first.focus()
+
   return
 
 chooseNextEvent = (event)->
@@ -258,7 +270,7 @@ chooseNextEvent = (event)->
     else if event.selectNext
       return nextType[event.selectNext](event.next.filter(conditionsMatch))
   else
-    g.upcoming.shift()
+    g.upcoming[0]
 
 nextType =
   first: (e)-> e[0]
@@ -308,3 +320,16 @@ numberMatch = (value, test)->
     unless value >= g.day - test then return false
   if test < 0
     if value >= g.day + test then return false
+
+window.keyPress = (event)->
+  code = event.charCode - 48
+  if code < 0 or code > 9 then return
+  # Change 0 into a 10
+  code or= 10
+
+  buttons = document.activeElement.children[1]
+  unless buttons and 'clickMenu-content' in buttons.classList then return
+
+  button = buttons.children[code - 1]
+  unless button then return
+  button.click()
